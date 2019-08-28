@@ -661,6 +661,10 @@ namespace BigFloat.Implementations
             return (new BigFloat(value)).Sqrt();
         }
 
+        #endregion
+
+        #region Operators
+
         public static BigFloat operator -(BigFloat value)
         {
             return (new BigFloat(value)).Negate();
