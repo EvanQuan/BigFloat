@@ -36,7 +36,8 @@ namespace Com.Github.EvanQuan.BigFloatingPoint.UnitTests.UsingInstanceMethods
         [InlineData(double.MinValue)]
         public void ShouldBeEqualForFloat(double value)
         {
-            string stringValue = value.ToString("F99").TrimEnd('0');
+            // Lossless conversion from double to string without scientific notation.
+            string stringValue = value.ToString("0." + new string('#', 339));
 
             BigFloat bigFloatFromDouble = new BigFloat(value);
             BigFloat bigFloatFromString = new BigFloat(stringValue);
