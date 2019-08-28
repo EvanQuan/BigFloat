@@ -55,8 +55,9 @@ namespace Com.Github.EvanQuan.BigFloatingPoint.Implementations
         public const int NeutralSign = 0;
 
         /// <summary>
-        /// Gets a number that indicates the sign (negative, positive, or zero) of
-        /// the current <see cref="BigFloat"/> object.
+        /// Gets a number that indicates the sign (<see cref="PositiveSign"/>,
+        /// <see cref="NegativeSign"/>, or <see cref="NeutralSign"/>) of the
+        /// current <see cref="BigFloat"/> object.
         /// </summary>
         public int Sign
         {
