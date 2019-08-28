@@ -5,17 +5,52 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Numerics;
 
+/// <summary>
+/// Represents an arbitrarily large signed floating point number.
+/// </summary>
 [Serializable]
 class BigFloat : IComparable, IComparable<BigFloat>, IEquatable<BigFloat>
 {
+    #region Fields
+
+    /// <summary>
+    /// Numerator
+    /// </summary>
     private BigInteger numerator;
+
+    /// <summary>
+    /// Denominator
+    /// </summary>
     private BigInteger denominator;
 
+    #endregion
+
+    #region Properties
+
+    /// <summary>
+    /// Gets a value that represents the number one (1).
+    /// </summary>
     public static readonly BigFloat One = new BigFloat(1);
+
+    /// <summary>
+    /// Gets a value that represents the number 0 (zero).
+    /// </summary>
     public static readonly BigFloat Zero = new BigFloat(0);
+
+    /// <summary>
+    /// Gets a value that represents the number negative one (-1).
+    /// </summary>
     public static readonly BigFloat MinusOne = new BigFloat(-1);
+
+    /// <summary>
+    /// Gets a value that represents the number one half (1/2).
+    /// </summary>
     public static readonly BigFloat OneHalf = new BigFloat(1,2);
 
+    /// <summary>
+    /// Gets a number that indicates the sign (negative, positive, or zero) of
+    /// the current <see cref="BigFloat"/> object.
+    /// </summary>
     public int Sign
     {
         get
@@ -31,19 +66,39 @@ class BigFloat : IComparable, IComparable<BigFloat>, IEquatable<BigFloat>
         }
     }
 
+    #endregion
 
-    //constructors
+    #region Constructors
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="BigFloat"/> strucutre with
+    /// the value of <see cref="Zero"/>.
+    /// </summary>
     public BigFloat()
     {
         numerator = BigInteger.Zero;
         denominator = BigInteger.One;
     }
+
+    /// <summary>
+    /// Initialize a new instance of the <see cref="BigFloat"/> structure with
+    /// the <see cref="string"/> representation of a number.
+    /// </summary>
+    /// <param name="value">A <see cref="string"/> value.</param>
     public BigFloat(string value)
     {
         BigFloat bf = Parse(value);
         this.numerator = bf.numerator;
         this.denominator = bf.denominator;
     }
+
+    /// <summary>
+    /// Initialize a new instance of the <see cref="BigFloat"/> structure as a
+    /// fraction with a <see cref="System.Numerics.BigInteger"/> numerator and
+    /// denominator.
+    /// </summary>
+    /// <param name="numerator">A <see cref="System.Numerics.BigInteger"/> value as the numerator.</param>
+    /// <param name="denominator">A <see cref="System.Numerics.BigInteger"/> value as the denominator.</param>
     public BigFloat(BigInteger numerator, BigInteger denominator)
     {
         this.numerator = numerator;
@@ -51,11 +106,24 @@ class BigFloat : IComparable, IComparable<BigFloat>, IEquatable<BigFloat>
             throw new ArgumentException("denominator equals 0");
         this.denominator = BigInteger.Abs(denominator);
     }
+
+    /// <summary>
+    /// Initialize a new instance of the <see cref="BigFloat"/> structure with
+    /// a <see cref="System.Numerics.BigInteger"/> value.
+    /// </summary>
+    /// <param name="value">A <see cref="System.Numerics.BigInteger"/> value.</param>
     public BigFloat(BigInteger value)
     {
         this.numerator = value;
         this.denominator = BigInteger.One;
     }
+
+
+    /// <summary>
+    /// Initilize a new instance of the <see cref="BigFloat"/> structure with a
+    /// <see cref="BigFloat"/> value.
+    /// </summary>
+    /// <param name="value">A <see cref="BigFloat"/> value.</param>
     public BigFloat(BigFloat value)
     {
         if (BigFloat.Equals(value, null))
@@ -70,37 +138,82 @@ class BigFloat : IComparable, IComparable<BigFloat>, IEquatable<BigFloat>
             this.denominator = value.denominator;
         }
     }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="BigFloat"/> structure with
+    /// an unsigned 64-bit integer value.
+    /// </summary>
+    /// <param name="value">A 64-bit unsigned integer value.</param>
     public BigFloat(ulong value)
     {
         numerator = new BigInteger(value);
         denominator = BigInteger.One;
     }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="BigFloat"/> structure
+    /// using a 64-bit signed integer value.
+    /// </summary>
+    /// <param name="value">A 64-bit signed integer.</param>
     public BigFloat(long value)
     {
         numerator = new BigInteger(value);
         denominator = BigInteger.One;
     }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="BigFloat"/> structure
+    /// using a 32-bit unsigned integer value.
+    /// </summary>
+    /// <param name="value">A 32-bit unsigned integer.</param>
     public BigFloat(uint value)
     {
         numerator = new BigInteger(value);
         denominator = BigInteger.One;
     }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="BigFloat"/> structure
+    /// using a 32-bit signed integer value.
+    /// </summary>
+    /// <param name="value"></param>
     public BigFloat(int value)
     {
         numerator = new BigInteger(value);
         denominator = BigInteger.One;
     }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="BigFloat"/> structure
+    /// using a single-precision floating-point value.
+    /// </summary>
+    /// <param name="value">A single-precision floating-point value.</param>
     public BigFloat(float value) : this(value.ToString("N99"))
     {
     }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="BigFloat"/> structure
+    /// using a double-precision floating-point value.
+    /// </summary>
+    /// <param name="value">A double-precision floating-point value.</param>
     public BigFloat(double value) : this(value.ToString("N99")) 
     { 
     }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="BigFloat"/> structure
+    /// using a <see cref="System.Decimal"/> value.
+    /// </summary>
+    /// <param name="value">A decimal number.</param>
     public BigFloat(decimal value) : this(value.ToString("N99"))
     {
     }
 
-    //non-static methods
+    #endregion
+
+    #region Instance Methods
+
     public BigFloat Add(BigFloat other)
     {
         if (BigFloat.Equals(other, null))
@@ -385,7 +498,10 @@ class BigFloat : IComparable, IComparable<BigFloat>, IEquatable<BigFloat>
         return base.GetHashCode();
     }
 
-    //static methods
+    #endregion
+
+    #region Static Methods
+
     public static bool Equals(object left, object right)
     {
         if (left == null && right == null) return true;
@@ -703,6 +819,10 @@ class BigFloat : IComparable, IComparable<BigFloat>, IEquatable<BigFloat>
         return new BigFloat(value);
     }
 
+    #endregion
+
+    #region Private Methods
+
     private BigFloat Factor()
     {
         //factoring can be very slow. So use only when neccessary (ToString, and comparisons)
@@ -719,4 +839,5 @@ class BigFloat : IComparable, IComparable<BigFloat>, IEquatable<BigFloat>
         return this;
     }
 
+    #endregion
 }
