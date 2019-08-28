@@ -1,58 +1,38 @@
-﻿using Implementations;
+﻿using Com.Github.EvanQuan.BigFloat;
 using Xunit;
 
 namespace UnitTests.UsingProperties
 {
     public class WhenReadingSign
     {
-        [Theory]
-        [InlineData(2)]
-        [InlineData(1)]
-        [InlineData(int.MaxValue)]
-        public void ShouldBePositiveForInt(int value)
+        [Fact]
+        public void ShouldBePositive()
         {
-            Assert.Equal(expected: BigFloat.PositiveSign, new BigFloat(value).Sign);
+            BigFloat bigFloat = new BigFloat(1);
+
+            Assert.Equal(
+                expected: BigFloat.PositiveSign,
+                actual: bigFloat.Sign);
         }
 
-        [Theory]
-        [InlineData(2l)]
-        [InlineData(1l)]
-        [InlineData(long.MaxValue)]
-        public void ShouldBePositiveForLong(long value)
+        [Fact]
+        public void ShouldBeNegative()
         {
-            Assert.Equal(expected: BigFloat.PositiveSign, new BigFloat(value).Sign);
+            BigFloat bigFloat = new BigFloat(-1);
+
+            Assert.Equal(
+                expected: BigFloat.NegativeSign,
+                actual: bigFloat.Sign);
         }
 
-        [Theory]
-        [InlineData(2.0f)]
-        [InlineData(1.0f)]
-        [InlineData(0.1f)]
-        [InlineData(float.MaxValue)]
-        public void ShouldBePositiveForFloat(float value)
+        [Fact]
+        public void ShouldBeNeutral()
         {
-            Assert.Equal(expected: BigFloat.PositiveSign, new BigFloat(value).Sign);
-        }
+            BigFloat bigFloat = new BigFloat(0);
 
-        [Theory]
-        [InlineData(2.0d)]
-        [InlineData(1.0d)]
-        [InlineData(0.1d)]
-        [InlineData(double.MaxValue)]
-        public void ShouldBePositiveForDouble(double value)
-        {
-            Assert.Equal(expected: BigFloat.PositiveSign, new BigFloat(value).Sign);
-        }
-
-        [Theory]
-        [InlineData("1")]
-        [InlineData("1.0")]
-        [InlineData("0.1")]
-        [InlineData("9999999999999999999999999")]
-        [InlineData("9999999999999999999999999.0")]
-        [InlineData("9999999999999999999999999.9")]
-        public void ShouldBePositiveForString(string value)
-        {
-            Assert.Equal(expected: BigFloat.PositiveSign, new BigFloat(value).Sign);
+            Assert.Equal(
+                expected: BigFloat.NeutralSign,
+                actual: bigFloat.Sign);
         }
     }
 }

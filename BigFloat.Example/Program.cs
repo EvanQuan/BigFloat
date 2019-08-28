@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Numerics;
-using Implementations;
+using Com.Github.EvanQuan.BigFloat;
 
 namespace Example
 {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Numerics;
 
-namespace Implementations
+namespace Com.Github.EvanQuan.BigFloat
 {
     /// <summary>
     /// Represents an arbitrarily large signed floating point number.

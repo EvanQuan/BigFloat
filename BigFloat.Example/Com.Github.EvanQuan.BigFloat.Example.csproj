@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BigFloat\BigFloat.csproj" />
+    <ProjectReference Include="..\BigFloat\Com.Github.EvanQuan.BigFloat.csproj" />
   </ItemGroup>
 
 </Project>
