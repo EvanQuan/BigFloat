@@ -28,7 +28,7 @@ namespace Com.Github.EvanQuan.BigFloatingPoint.Implementations
 
         #endregion
 
-        #region Properties
+        #region Constants
 
         /// <summary>
         /// Gets a value that represents the number one (1).
@@ -53,6 +53,10 @@ namespace Com.Github.EvanQuan.BigFloatingPoint.Implementations
         public const int PositiveSign = 1;
         public const int NegativeSign = -1;
         public const int NeutralSign = 0;
+
+        #endregion
+
+        #region Properties
 
         /// <summary>
         /// Gets a number that indicates the sign (<see cref="PositiveSign"/>,

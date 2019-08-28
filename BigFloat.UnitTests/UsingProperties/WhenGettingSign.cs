@@ -3,7 +3,7 @@ using Xunit;
 
 namespace Com.Github.EvanQuan.BigFloatingPoint.UnitTests.UsingProperties
 {
-    public class WhenReadingSign
+    public class WhenGettingSign
     {
         [Fact]
         public void ShouldBePositive()

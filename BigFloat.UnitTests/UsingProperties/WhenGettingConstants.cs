@@ -3,7 +3,7 @@ using Xunit;
 
 namespace Com.Github.EvanQuan.BigFloatingPoint.UnitTests.UsingProperties
 {
-    public class WhenReadingValues
+    public class WhenGettingConstants
     {
         [Fact]
         public void ShouldEqualOne()
