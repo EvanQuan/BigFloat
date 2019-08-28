@@ -10,6 +10,7 @@ namespace Com.Github.EvanQuan.BigFloatingPoint.UnitTests.UsingProperties
         {
             BigFloat.Zero.Add(1);
 
+            Assert.NotEqual(new BigFloat(1), BigFloat.Zero);
             Assert.Equal(new BigFloat(0), BigFloat.Zero);
         }
 
@@ -18,6 +19,7 @@ namespace Com.Github.EvanQuan.BigFloatingPoint.UnitTests.UsingProperties
         {
             BigFloat.One.Add(1);
 
+            Assert.NotEqual(new BigFloat(2), BigFloat.One);
             Assert.Equal(new BigFloat(1), BigFloat.One);
         }
 
@@ -26,6 +28,7 @@ namespace Com.Github.EvanQuan.BigFloatingPoint.UnitTests.UsingProperties
         {
             BigFloat.MinusOne.Add(1);
 
+            Assert.NotEqual(new BigFloat(0), BigFloat.MinusOne);
             Assert.Equal(new BigFloat(-1), BigFloat.MinusOne);
         }
 
@@ -34,6 +37,7 @@ namespace Com.Github.EvanQuan.BigFloatingPoint.UnitTests.UsingProperties
         {
             BigFloat.OneHalf.Add(1);
 
+            Assert.NotEqual(new BigFloat(1.5), BigFloat.OneHalf);
             Assert.Equal(new BigFloat(0.5), BigFloat.OneHalf);
         }
     }
