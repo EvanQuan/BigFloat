@@ -2,16 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Numerics;
 
-namespace BigFloat.Implementations
+namespace Implementations
 {
     /// <summary>
     /// Represents an arbitrarily large signed floating point number.
     /// </summary>
     [Serializable]
-    class BigFloat :
+    public class BigFloat :
         IComparable,
         IComparable<BigFloat>,
         IEquatable<BigFloat>
