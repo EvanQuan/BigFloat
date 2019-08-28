@@ -15,7 +15,6 @@
   <ItemGroup>
     <Folder Include="UsingOperators\" />
     <Folder Include="UsingStaticMethods\" />
-    <Folder Include="UsingInstanceMethods\" />
     <Folder Include="UsingConstructors\" />
   </ItemGroup>
 
