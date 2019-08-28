@@ -29,7 +29,7 @@ namespace Com.Github.EvanQuan.BigFloatingPoint.UnitTests.UsingInstanceMethods
         [InlineData(1, 0, 1)]
         [InlineData(-1, 0, -1)]
         [InlineData(0.5, 0, 0.5)]
-        public void ShouldAddCorrectly(float num1, float num2, float expected)
+        public void ShouldAddCorrectly(double num1, double num2, double expected)
         {
             BigFloat float1 = new BigFloat(num1);
             BigFloat float2 = new BigFloat(num2);
