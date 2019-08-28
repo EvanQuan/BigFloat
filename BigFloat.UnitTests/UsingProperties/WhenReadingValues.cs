@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Xunit;
 
-namespace UnitTests.UsingProperties
+namespace Com.Github.EvanQuan.BigFloatingPoint.UnitTests.UsingProperties
 {
     class WhenReadingValues
     {

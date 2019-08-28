@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Com.Github.EvanQuan.BigFloatingPoint.Implementations;
+using System;
 using System.Numerics;
-using Com.Github.EvanQuan.BigFloat;
 
-namespace Example
+namespace Com.Github.EvanQuan.BigFloatingPoint.Example
 {
     class Program
     {

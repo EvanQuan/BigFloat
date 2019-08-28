@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Com.Github.EvanQuan.BigFloat.UnitTests", "BigFloat.UnitTests\Com.Github.EvanQuan.BigFloat.UnitTests.csproj", "{C05B5B9F-15AD-45C0-BC9B-7845DB39EDDE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Com.Github.EvanQuan.BigFloatingPoint.UnitTests", "BigFloat.UnitTests\Com.Github.EvanQuan.BigFloatingPoint.UnitTests.csproj", "{C05B5B9F-15AD-45C0-BC9B-7845DB39EDDE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Com.Github.EvanQuan.BigFloat", "BigFloat\Com.Github.EvanQuan.BigFloat.csproj", "{4FCC20ED-5341-4234-9FB1-F8E773DAFE7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Com.Github.EvanQuan.BigFloatingPoint", "BigFloat\Com.Github.EvanQuan.BigFloatingPoint.csproj", "{4FCC20ED-5341-4234-9FB1-F8E773DAFE7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Github.EvanQuan.BigFloat.Example", "BigFloat.Example\Com.Github.EvanQuan.BigFloat.Example.csproj", "{0DAAA41E-FA9B-4E6D-B138-3F72C5D4BF9B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Github.EvanQuan.BigFloatingPoint.Example", "BigFloat.Example\Com.Github.EvanQuan.BigFloatingPoint.Example.csproj", "{0DAAA41E-FA9B-4E6D-B138-3F72C5D4BF9B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

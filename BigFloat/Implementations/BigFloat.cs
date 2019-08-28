@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Numerics;
 
-namespace Com.Github.EvanQuan.BigFloat
+namespace Com.Github.EvanQuan.BigFloatingPoint.Implementations
 {
     /// <summary>
     /// Represents an arbitrarily large signed floating point number.

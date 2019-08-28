@@ -1,7 +1,7 @@
-﻿using Com.Github.EvanQuan.BigFloat;
+﻿using Com.Github.EvanQuan.BigFloatingPoint.Implementations;
 using Xunit;
 
-namespace UnitTests.UsingProperties
+namespace Com.Github.EvanQuan.BigFloatingPoint.UnitTests.UsingProperties
 {
     public class WhenReadingSign
     {
