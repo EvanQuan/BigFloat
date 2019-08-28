@@ -51,6 +51,10 @@ namespace Implementations
         /// </summary>
         public static readonly BigFloat OneHalf = new BigFloat(1,2);
 
+        public const int PositiveSign = 1;
+        public const int NegativeSign = -1;
+        public const int NeutralSign = 0;
+
         /// <summary>
         /// Gets a number that indicates the sign (negative, positive, or zero) of
         /// the current <see cref="BigFloat"/> object.
@@ -61,11 +65,11 @@ namespace Implementations
             {
                 switch(numerator.Sign + denominator.Sign) {
                     case 2: case -2:
-                        return 1;
+                        return PositiveSign;
                     case 0:
-                        return -1;
+                        return NegativeSign;
                     default:
-                        return 0;
+                        return NeutralSign;
                 }
             }
         }

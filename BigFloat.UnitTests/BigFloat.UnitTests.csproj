@@ -17,7 +17,10 @@
     <Folder Include="UsingStaticMethods\" />
     <Folder Include="UsingInstanceMethods\" />
     <Folder Include="UsingConstructors\" />
-    <Folder Include="UsingProperties\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BigFloat\BigFloat.csproj" />
   </ItemGroup>
 
 </Project>
