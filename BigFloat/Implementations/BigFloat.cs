@@ -75,8 +75,19 @@ namespace BigFloatingPoint.Implementations
         /// </summary>
         public static BigFloat W { get; } = new BigFloat("2.09455148154232659148238654057930296385730610562823918030412852904531218998348366714626728177715775786083");
 
+        /// <summary>
+        /// Positive sign
+        /// </summary>
         public const int PositiveSign = 1;
+
+        /// <summary>
+        /// Negative sign
+        /// </summary>
         public const int NegativeSign = -1;
+
+        /// <summary>
+        /// Neutral sign (zero)
+        /// </summary>
         public const int NeutralSign = 0;
 
         /// <summary>
