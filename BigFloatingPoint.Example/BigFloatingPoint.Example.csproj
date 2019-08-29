@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BigFloat\BigFloatingPoint.csproj" />
+    <ProjectReference Include="..\BigFloatingPoint\BigFloatingPoint.csproj" />
   </ItemGroup>
 
 </Project>
