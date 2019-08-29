@@ -3,7 +3,7 @@ using System.Linq;
 using System.Text;
 using System.Numerics;
 
-namespace Com.Github.EvanQuan.BigFloatingPoint.Implementations
+namespace BigFloatingPoint.Implementations
 {
     /// <summary>
     /// Represents an arbitrarily large signed floating point number.
