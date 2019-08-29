@@ -225,18 +225,9 @@ namespace BigFloatingPoint.Implementations
         /// <param name="value">A <see cref="BigFloat"/> value.</param>
         public BigFloat(BigFloat value)
         {
-            if (BigFloat.Equals(value, null))
-            {
-                this.numerator = BigInteger.Zero;
-                this.denominator = BigInteger.One;
-            }
-            else
-            {
-
-                this.numerator = value.numerator;
-                this.denominator = value.denominator;
-            }
-            this.factored = denominator.IsOne;
+            this.numerator = value.numerator;
+            this.denominator = value.denominator;
+            this.factored = value.factored;
         }
 
         /// <summary>
