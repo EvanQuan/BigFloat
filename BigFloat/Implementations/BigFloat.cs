@@ -260,7 +260,7 @@ namespace BigFloatingPoint.Implementations
         public BigFloat Add(BigFloat other)
         {
             return new BigFloat(
-                numerator: this.numerator * other.denominator+ other.numerator * this.denominator,
+                numerator: this.numerator * other.denominator + other.numerator * this.denominator,
                 denominator: this.denominator * other.denominator);
         }
 
