@@ -40,8 +40,8 @@ namespace BigFloatingPoint.UnitTests.UsingInstanceMethods
         [InlineData(-0.15f, "-0.15")]
         [InlineData(-0.00001f, "-0.00001")]
         [InlineData(-0.000001f, "-0.000001")]
-        [InlineData(float.MaxValue, "0")]
-        [InlineData(float.MinValue, "0")]
+        [InlineData(float.MaxValue, "340282347000000000000000000000000000000")]
+        [InlineData(float.MinValue, "-340282347000000000000000000000000000000")]
         public void ShouldWorkForFloat(float value, string expected)
         {
             Assert.Equal(expected, new BigFloat(value).ToString());
