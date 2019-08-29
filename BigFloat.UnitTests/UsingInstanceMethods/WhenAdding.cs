@@ -6,16 +6,6 @@ namespace BigFloatingPoint.UnitTests.UsingInstanceMethods
 {
     public class WhenAdding
     {
-        [Fact]
-        public void ShouldThrowArgumentNullException()
-        {
-            Assert.Throws<ArgumentNullException>(
-                () =>
-                {
-                    BigFloat.Zero.Add(null);
-                });
-        }
-
         [Theory]
         [InlineData(0, 0, 0)]
         [InlineData(1, 1, 2)]
