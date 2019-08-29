@@ -2,7 +2,7 @@
 using System;
 using Xunit;
 
-namespace Com.Github.EvanQuan.BigFloatingPoint.UnitTests.UsingInstanceMethods
+namespace BigFloatingPoint.UnitTests.UsingInstanceMethods
 {
     public class WhenAdding
     {

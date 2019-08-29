@@ -1,7 +1,7 @@
 ﻿using BigFloatingPoint.Implementations;
 using Xunit;
 
-namespace Com.Github.EvanQuan.BigFloatingPoint.UnitTests.UsingProperties
+namespace BigFloatingPoint.UnitTests.UsingProperties
 {
     public class WhenGettingConstants
     {
