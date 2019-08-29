@@ -26,6 +26,11 @@ namespace BigFloatingPoint.Implementations
         /// </summary>
         private BigInteger denominator;
 
+        /// <summary>
+        /// <see cref="string"/> representation of <see cref="Sign"/>.
+        /// </summary>
+        private string SignString => Sign < 0 ? "-" : "";
+
         #endregion
 
         #region Constants
@@ -467,11 +472,11 @@ namespace BigFloatingPoint.Implementations
 
             if (trailingZeros)
             {
-                return (Sign < 0 ? "-" : "") + result + "." + new string(sb.ToString().Reverse().ToArray());
+                return SignString + result + "." + new string(sb.ToString().Reverse().ToArray());
             }
             else
             {
-                return (Sign < 0 ? "-" : "") + result + "." + new string(sb.ToString().Reverse().ToArray()).TrimEnd(new char[] { '0' });
+                return SignString + result + "." + new string(sb.ToString().Reverse().ToArray()).TrimEnd(new char[] { '0' });
             }
         }
 
