@@ -437,47 +437,13 @@ namespace BigFloatingPoint.Implementations
             }
 
 
-            BigInteger decimals = BigInteger.Abs((numerator * BigInteger.Pow(10, precision)) / denominator);
-
-            if (decimals == 0 && trailingZeros)
-            {
-                return unitString + ".0";
-            }
-            else if (decimals == 0)
-            {
-                return unitString;
-            }
-
-            StringBuilder sb = new StringBuilder();
-
-
-            // Add digits after and including first non-zero digit
-            while (precision-- > 0 && decimals > 0)
-            {
-                sb.Append(decimals % 10);
-                decimals /= 10;
-            }
-
-            // Add leading zeros.
-            BigInteger absoluteNumerator = BigInteger.Abs(numerator);
-            BigInteger denominatorCopy = denominator;
-
-            denominatorCopy /= 10;
-            denominatorCopy /= 10;
-
-            while (denominatorCopy >= absoluteNumerator)
-            {
-                sb.Append(0);
-                denominatorCopy /= 10;
-            }
-
             if (trailingZeros)
             {
-                return SignString + unitString + "." + new string(sb.ToString().Reverse().ToArray());
+                return SignString + unitString + "." + GetMantissaString(precision, trailingZeros);
             }
             else
             {
-                return SignString + unitString + "." + new string(sb.ToString().Reverse().ToArray()).TrimEnd(new char[] { '0' });
+                return SignString + unitString + "." + GetMantissaString(precision, trailingZeros);
             }
         }
 
@@ -887,6 +853,52 @@ namespace BigFloatingPoint.Implementations
             denominator /= factor;
 
             return this;
+        }
+
+        private string GetMantissaString(int precision, bool trailingZeros)
+        {
+            BigInteger decimals = BigInteger.Abs((numerator * BigInteger.Pow(10, precision)) / denominator);
+
+            if (decimals == 0 && trailingZeros)
+            {
+                return "0";
+            }
+            else if (decimals == 0)
+            {
+                return string.Empty;
+            }
+
+            StringBuilder sb = new StringBuilder();
+
+
+            // Add digits after and including first non-zero digit
+            while (precision-- > 0 && decimals > 0)
+            {
+                sb.Append(decimals % 10);
+                decimals /= 10;
+            }
+
+            // Add leading zeros.
+            BigInteger absoluteNumerator = BigInteger.Abs(numerator);
+            BigInteger denominatorCopy = denominator;
+
+            denominatorCopy /= 10;
+            denominatorCopy /= 10;
+
+            while (denominatorCopy >= absoluteNumerator)
+            {
+                sb.Append(0);
+                denominatorCopy /= 10;
+            }
+
+            string result = new string(sb.ToString().Reverse().ToArray());
+
+            if (!trailingZeros)
+            {
+                result = result.TrimEnd(new char[] { '0' });
+            }
+
+            return result;
         }
 
         #endregion
