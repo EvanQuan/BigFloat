@@ -1,7 +1,5 @@
-﻿using Com.Github.EvanQuan.BigFloatingPoint.Implementations;
+﻿using BigFloatingPoint.Implementations;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace Com.Github.EvanQuan.BigFloatingPoint.UnitTests.UsingInstanceMethods

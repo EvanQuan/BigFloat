@@ -1,4 +1,4 @@
-﻿using Com.Github.EvanQuan.BigFloatingPoint.Implementations;
+﻿using BigFloatingPoint.Implementations;
 using Xunit;
 
 namespace Com.Github.EvanQuan.BigFloatingPoint.UnitTests.UsingInstanceMethods
