@@ -79,6 +79,22 @@ namespace BigFloatingPoint.Implementations
         /// </summary>
         public static BigFloat W { get; } = new BigFloat("2.09455148154232659148238654057930296385730610562823918030412852904531218998348366714626728177715775786083");
 
+        public static BigFloat MaxInt { get; } = new BigFloat(int.MaxValue);
+
+        public static BigFloat MinInt { get; } = new BigFloat(int.MinValue);
+
+        public static BigFloat MaxLong { get; } = new BigFloat(long.MaxValue);
+
+        public static BigFloat MinLong { get; } = new BigFloat(long.MinValue);
+
+        public static BigFloat MaxDouble { get; } = new BigFloat(double.MaxValue);
+
+        public static BigFloat MinDouble { get; } = new BigFloat(double.MinValue);
+
+        public static BigFloat MaxFloat { get; } = new BigFloat(float.MaxValue);
+
+        public static BigFloat MinFloat { get; } = new BigFloat(float.MinValue);
+
         /// <summary>
         /// Positive sign
         /// </summary>
