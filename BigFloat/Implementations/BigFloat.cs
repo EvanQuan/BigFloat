@@ -418,32 +418,45 @@ namespace BigFloatingPoint.Implementations
             BigInteger result = BigInteger.DivRem(numerator, denominator, out BigInteger remainder);
 
             if (remainder == 0 && trailingZeros)
+            {
                 return result + ".0";
-            else if(remainder == 0)
+            }
+            else if (remainder == 0)
+            {
                 return result.ToString();
+            }
 
 
             BigInteger decimals = BigInteger.Abs((numerator * BigInteger.Pow(10, precision)) / denominator);
 
 
             if (decimals == 0 && trailingZeros)
+            {
                 return result + ".0";
-            else if(decimals == 0)
+            }
+            else if (decimals == 0)
+            {
                 return result.ToString();
+            }
 
             StringBuilder sb = new StringBuilder();
 
             while (precision-- > 0 && decimals > 0)
             {
-                sb.Append(decimals%10);
+                sb.Append(decimals % 10);
                 decimals /= 10;
             }
 
             if (trailingZeros)
+            {
                 return (Sign < 0 ? "-" : "") + result + "." + new string(sb.ToString().Reverse().ToArray());
+            }
             else
+            {
                 return (Sign < 0 ? "-" : "") + result + "." + new string(sb.ToString().Reverse().ToArray()).TrimEnd(new char[] { '0' });
+            }
         }
+
         public string ToMixString()
         {
             Factor();
