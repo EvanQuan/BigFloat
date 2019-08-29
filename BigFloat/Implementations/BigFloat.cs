@@ -424,15 +424,16 @@ namespace BigFloatingPoint.Implementations
         {
             Factor();
 
-            BigInteger result = BigInteger.DivRem(numerator, denominator, out BigInteger remainder);
+            BigInteger unit = BigInteger.DivRem(numerator, denominator, out BigInteger remainder);
+            string unitString = unit.ToString();
 
             if (remainder == 0 && trailingZeros)
             {
-                return result + ".0";
+                return unitString + ".0";
             }
             else if (remainder == 0)
             {
-                return result.ToString();
+                return unitString;
             }
 
 
@@ -440,11 +441,11 @@ namespace BigFloatingPoint.Implementations
 
             if (decimals == 0 && trailingZeros)
             {
-                return result + ".0";
+                return unitString + ".0";
             }
             else if (decimals == 0)
             {
-                return result.ToString();
+                return unitString;
             }
 
             StringBuilder sb = new StringBuilder();
@@ -472,11 +473,11 @@ namespace BigFloatingPoint.Implementations
 
             if (trailingZeros)
             {
-                return SignString + result + "." + new string(sb.ToString().Reverse().ToArray());
+                return SignString + unitString + "." + new string(sb.ToString().Reverse().ToArray());
             }
             else
             {
-                return SignString + result + "." + new string(sb.ToString().Reverse().ToArray()).TrimEnd(new char[] { '0' });
+                return SignString + unitString + "." + new string(sb.ToString().Reverse().ToArray()).TrimEnd(new char[] { '0' });
             }
         }
 
