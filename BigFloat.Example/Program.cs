@@ -6,7 +6,7 @@ namespace Com.Github.EvanQuan.BigFloatingPoint.Example
 {
     class Program
     {
-        static void Main()
+        private static void FMain()
         {
             //multiple ways to construct a BigFloat
             BigFloat bigfloat1 = new BigFloat(1234567);
