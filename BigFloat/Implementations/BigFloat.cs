@@ -33,22 +33,22 @@ namespace BigFloatingPoint.Implementations
         /// <summary>
         /// Gets a value that represents the number one (1).
         /// </summary>
-        public static readonly BigFloat One = new BigFloat(1);
+        public static BigFloat One => new BigFloat(1);
 
         /// <summary>
         /// Gets a value that represents the number 0 (zero).
         /// </summary>
-        public static readonly BigFloat Zero = new BigFloat(0);
+        public static BigFloat Zero => new BigFloat(0);
 
         /// <summary>
         /// Gets a value that represents the number negative one (-1).
         /// </summary>
-        public static readonly BigFloat MinusOne = new BigFloat(-1);
+        public static BigFloat MinusOne => new BigFloat(-1);
 
         /// <summary>
         /// Gets a value that represents the number one half (1/2).
         /// </summary>
-        public static readonly BigFloat OneHalf = new BigFloat(1,2);
+        public static BigFloat OneHalf => new BigFloat(1, 2);
 
         public const int PositiveSign = 1;
         public const int NegativeSign = -1;
