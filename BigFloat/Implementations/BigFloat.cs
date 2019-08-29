@@ -416,9 +416,14 @@ namespace BigFloatingPoint.Implementations
         {
             BigInteger ceilNumerator;
             if (numerator < 0)
+            {
+
                 ceilNumerator = numerator - BigInteger.Remainder(numerator, denominator);
+            }
             else
+            {
                 ceilNumerator = numerator + denominator - BigInteger.Remainder(numerator, denominator);
+            }
 
             return new BigFloat(ceilNumerator, denominator).Factor();
         }
@@ -427,9 +432,13 @@ namespace BigFloatingPoint.Implementations
         {
             BigInteger floorNumerator;
             if (numerator < 0)
+            {
                 floorNumerator = numerator + denominator - BigInteger.Remainder(numerator, denominator);
+            }
             else
+            {
                 floorNumerator = numerator - BigInteger.Remainder(numerator, denominator);
+            }
 
             return new BigFloat(floorNumerator, denominator).Factor();
         }
@@ -444,7 +453,9 @@ namespace BigFloatingPoint.Implementations
             BigFloat value = BigFloat.Decimals(this);
 
             if (value.CompareTo(OneHalf) >= 0)
+            {
                 return this.Ceil();
+            }
 
             return this.Floor();
         }
@@ -464,8 +475,10 @@ namespace BigFloatingPoint.Implementations
 
         public BigFloat ShiftDecimalLeft(int shift)
         {
-            if (shift < 0) 
+            if (shift < 0)
+            {
                 return ShiftDecimalRight(-shift);
+            }
 
             BigInteger shiftedNumerator = numerator * BigInteger.Pow(10,shift);
             return new BigFloat(shiftedNumerator, denominator);
@@ -474,7 +487,9 @@ namespace BigFloatingPoint.Implementations
         public BigFloat ShiftDecimalRight(int shift)
         {
             if (shift < 0)
+            {
                 return ShiftDecimalLeft(-shift);
+            }
 
             BigInteger shiftedDenominator = denominator * BigInteger.Pow(10, shift);
             return new BigFloat(numerator, shiftedDenominator);
@@ -540,9 +555,11 @@ namespace BigFloatingPoint.Implementations
             BigInteger result = BigInteger.DivRem(factoredSelf.numerator, factoredSelf.denominator, out BigInteger remainder);
 
             if (remainder == 0)
+            {
                 return result.ToString();
-            else
-                return result + ", " + remainder + "/" + factoredSelf.denominator;
+            }
+
+            return result + ", " + remainder + "/" + factoredSelf.denominator;
         }
         
         /// <summary>
@@ -576,10 +593,14 @@ namespace BigFloatingPoint.Implementations
         public int CompareTo(object other)
         {
             if (other == null)
+            {
                 throw new ArgumentNullException("other");
+            }
 
-            if (!(other is BigFloat)) 
+            if (!(other is BigFloat))
+            {
                 throw new System.ArgumentException("other is not a BigFloat");
+            }
 
             return CompareTo((BigFloat)other);
         }
@@ -618,11 +639,19 @@ namespace BigFloatingPoint.Implementations
 
         public new static bool Equals(object left, object right)
         {
-            if (left == null && right == null) return true;
-            else if (left == null || right == null) return false;
-            else if (left.GetType() != right.GetType()) return false;
-            else
-                return (((BigInteger)left).Equals((BigInteger)right));
+            if (left == null && right == null)
+            {
+                return true;
+            }
+            if (left == null || right == null)
+            {
+                return false;
+            }
+            if (left.GetType() != right.GetType())
+            {
+                return false;
+            }
+            return (((BigInteger)left).Equals((BigInteger)right));
         }
 
         public static string ToString(BigFloat value)
@@ -706,7 +735,9 @@ namespace BigFloatingPoint.Implementations
         public static BigFloat Parse(string value) 
         {
             if (value == null)
+            {
                 throw new ArgumentNullException("value");
+            }
 
             value.Trim();
             value = value.Replace(",", "");
@@ -716,17 +747,13 @@ namespace BigFloatingPoint.Implementations
             if (pos < 0)
             {
                 //no decimal point
-                BigInteger numerator = BigInteger.Parse(value);
-                return new BigFloat(numerator).Factor();
+                return new BigFloat(BigInteger.Parse(value)).Factor();
             }
-            else
-            {
-                //decimal point (length - pos - 1)
-                BigInteger numerator = BigInteger.Parse(value);
-                BigInteger denominator = BigInteger.Pow(10, value.Length - pos);
+            //decimal point (length - pos - 1)
+            BigInteger numerator = BigInteger.Parse(value);
+            BigInteger denominator = BigInteger.Pow(10, value.Length - pos);
 
-                return (new BigFloat(numerator, denominator)).Factor();
-            }
+            return (new BigFloat(numerator, denominator)).Factor();
         }
 
         public static BigFloat ShiftDecimalLeft(BigFloat value, int shift)
@@ -957,8 +984,10 @@ namespace BigFloatingPoint.Implementations
         public BigFloat Factor()
         {
             // Avoid recalculating if already factored.
-            if (this.factored) 
+            if (this.factored)
+            {
                 return this;
+            }
 
             //factor numerator and denominator
             BigInteger factor = BigInteger.GreatestCommonDivisor(numerator, denominator);
