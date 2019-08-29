@@ -19,17 +19,17 @@ namespace BigFloatingPoint.Implementations
         /// <summary>
         /// Numerator
         /// </summary>
-        private readonly BigInteger numerator;
+        internal readonly BigInteger numerator;
 
         /// <summary>
         /// Denominator
         /// </summary>
-        private readonly BigInteger denominator;
+        internal readonly BigInteger denominator;
 
         /// <summary>
         /// <see cref="string"/> representation of <see cref="Sign"/>.
         /// </summary>
-        private string SignString => Sign < 0 ? "-" : "";
+        internal string SignString => Sign < 0 ? "-" : "";
 
         #endregion
 
@@ -819,9 +819,9 @@ namespace BigFloatingPoint.Implementations
 
         #endregion
 
-        #region Private Methods
+        #region Internal Methods
 
-        private BigFloat Factor()
+        internal BigFloat Factor()
         {
             //factoring can be very slow. So use only when neccessary (ToString, and comparisons)
 
@@ -836,12 +836,12 @@ namespace BigFloatingPoint.Implementations
                 denominator: denominator / factor);
         }
 
-        private string GetUnitString(out BigInteger remainder)
+        internal string GetUnitString(out BigInteger remainder)
         {
             return BigInteger.Abs(BigInteger.DivRem(numerator, denominator, out remainder)).ToString();
         }
 
-        private string GetMantissaString(int precision, bool trailingZeros)
+        internal string GetMantissaString(int precision, bool trailingZeros)
         {
             BigInteger decimals = BigInteger.Abs((numerator * BigInteger.Pow(10, precision)) / denominator);
 
@@ -887,7 +887,7 @@ namespace BigFloatingPoint.Implementations
             return result;
         }
 
-        private string GetDecimalString(BigInteger remainder, bool trailingZeros)
+        internal string GetDecimalString(BigInteger remainder, bool trailingZeros)
         {
             return (remainder.IsZero && !trailingZeros) ? "" : ".";
         }

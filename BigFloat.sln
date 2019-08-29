@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BigFloatingPoint.UnitTests", "BigFloat.UnitTests\BigFloatingPoint.UnitTests.csproj", "{C05B5B9F-15AD-45C0-BC9B-7845DB39EDDE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BigFloatingPoint.FunctionalTests", "BigFloat.UnitTests\BigFloatingPoint.FunctionalTests.csproj", "{C05B5B9F-15AD-45C0-BC9B-7845DB39EDDE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BigFloatingPoint", "BigFloat\BigFloatingPoint.csproj", "{4FCC20ED-5341-4234-9FB1-F8E773DAFE7A}"
 EndProject
