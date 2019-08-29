@@ -415,8 +415,7 @@ namespace BigFloatingPoint.Implementations
         {
             Factor();
 
-            BigInteger remainder;
-            BigInteger result = BigInteger.DivRem(numerator, denominator, out remainder);
+            BigInteger result = BigInteger.DivRem(numerator, denominator, out BigInteger remainder);
 
             if (remainder == 0 && trailingZeros)
                 return result + ".0";
@@ -450,8 +449,7 @@ namespace BigFloatingPoint.Implementations
         {
             Factor();
 
-            BigInteger remainder;
-            BigInteger result = BigInteger.DivRem(numerator, denominator, out remainder);
+            BigInteger result = BigInteger.DivRem(numerator, denominator, out BigInteger remainder);
 
             if (remainder == 0)
                 return result.ToString();
@@ -514,7 +512,7 @@ namespace BigFloatingPoint.Implementations
 
         #region Static Methods
 
-        public static bool Equals(object left, object right)
+        public new static bool Equals(object left, object right)
         {
             if (left == null && right == null) return true;
             else if (left == null || right == null) return false;
