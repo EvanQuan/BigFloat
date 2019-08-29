@@ -437,14 +437,7 @@ namespace BigFloatingPoint.Implementations
             }
 
 
-            if (trailingZeros)
-            {
-                return SignString + unitString + "." + GetMantissaString(precision, trailingZeros);
-            }
-            else
-            {
-                return SignString + unitString + "." + GetMantissaString(precision, trailingZeros);
-            }
+            return SignString + unitString + "." + GetMantissaString(precision, trailingZeros);
         }
 
         public string ToMixString()
