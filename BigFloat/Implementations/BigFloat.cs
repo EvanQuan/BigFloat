@@ -31,6 +31,8 @@ namespace BigFloatingPoint.Implementations
         /// </summary>
         internal string SignString => Sign < 0 ? "-" : "";
 
+        internal readonly bool factored;
+
         #endregion
 
         #region Constants
@@ -133,6 +135,7 @@ namespace BigFloatingPoint.Implementations
             BigFloat bf = Parse(value);
             this.numerator = bf.numerator;
             this.denominator = bf.denominator;
+            this.factored = denominator.IsOne;
         }
 
         /// <summary>
@@ -144,10 +147,20 @@ namespace BigFloatingPoint.Implementations
         /// <param name="denominator">A <see cref="System.Numerics.BigInteger"/> value as the denominator.</param>
         public BigFloat(BigInteger numerator, BigInteger denominator)
         {
+            if (denominator == 0)
+                throw new ArgumentException("denominator equals 0");
+            this.numerator = numerator;
+            this.denominator = BigInteger.Abs(denominator);
+            this.factored = denominator.IsOne;
+        }
+
+        public BigFloat(BigInteger numerator, BigInteger denominator, bool factored)
+        {
             this.numerator = numerator;
             if (denominator == 0)
                 throw new ArgumentException("denominator equals 0");
             this.denominator = BigInteger.Abs(denominator);
+            this.factored = factored;
         }
 
         /// <summary>
@@ -159,6 +172,7 @@ namespace BigFloatingPoint.Implementations
         {
             this.numerator = value;
             this.denominator = BigInteger.One;
+            this.factored = denominator.IsOne;
         }
 
 
@@ -180,6 +194,7 @@ namespace BigFloatingPoint.Implementations
                 this.numerator = value.numerator;
                 this.denominator = value.denominator;
             }
+            this.factored = denominator.IsOne;
         }
 
         /// <summary>
@@ -191,6 +206,7 @@ namespace BigFloatingPoint.Implementations
         {
             numerator = new BigInteger(value);
             denominator = BigInteger.One;
+            this.factored = denominator.IsOne;
         }
 
         /// <summary>
@@ -202,6 +218,7 @@ namespace BigFloatingPoint.Implementations
         {
             numerator = new BigInteger(value);
             denominator = BigInteger.One;
+            this.factored = denominator.IsOne;
         }
 
         /// <summary>
@@ -213,6 +230,7 @@ namespace BigFloatingPoint.Implementations
         {
             numerator = new BigInteger(value);
             denominator = BigInteger.One;
+            this.factored = denominator.IsOne;
         }
 
         /// <summary>
@@ -224,6 +242,7 @@ namespace BigFloatingPoint.Implementations
         {
             numerator = new BigInteger(value);
             denominator = BigInteger.One;
+            this.factored = denominator.IsOne;
         }
 
         /// <summary>
@@ -502,12 +521,15 @@ namespace BigFloatingPoint.Implementations
                 return false;
             }
 
-            return this.numerator == ((BigFloat)other).numerator && this.denominator == ((BigFloat)other).denominator;
+            return this.Equals((BigFloat)other);
         }
 
         public bool Equals(BigFloat other)
         {
-            return (other.numerator == this.numerator && other.denominator == this.denominator);
+            BigFloat selfFactored = this.Factor();
+            BigFloat otherFactored = other.Factor();
+
+            return (otherFactored.numerator == selfFactored.numerator && otherFactored.denominator == selfFactored.denominator);
         }
 
         public override int GetHashCode()
@@ -852,11 +874,15 @@ namespace BigFloatingPoint.Implementations
 
         #region Internal Methods
 
-        internal BigFloat Factor()
+        /// <summary>
+        /// Factor
+        /// </summary>
+        /// <remarks>Factoring can be very slow.</remarks>
+        /// <returns></returns>
+        public BigFloat Factor()
         {
-            //factoring can be very slow. So use only when neccessary (ToString, and comparisons)
-
-            if (denominator == 1) 
+            // Avoid recalculating if already factored.
+            if (this.factored) 
                 return this;
 
             //factor numerator and denominator
@@ -864,7 +890,8 @@ namespace BigFloatingPoint.Implementations
 
             return new BigFloat(
                 numerator: numerator / factor,
-                denominator: denominator / factor);
+                denominator: denominator / factor,
+                factored: true);
         }
 
         internal string GetUnitString(out BigInteger remainder)
