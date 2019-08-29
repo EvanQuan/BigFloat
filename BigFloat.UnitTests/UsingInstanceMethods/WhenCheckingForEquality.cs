@@ -44,5 +44,15 @@ namespace BigFloatingPoint.UnitTests.UsingInstanceMethods
 
             Assert.Equal(bigFloatFromString, bigFloatFromDouble);
         }
+
+
+        [Fact]
+        public void ShouldBeEqualWhenNotFactored()
+        {
+            BigFloat oneHalf = new BigFloat(1, 2);
+            BigFloat twoQuarters = new BigFloat(2, 4);
+
+            Assert.Equal(oneHalf, twoQuarters);
+        }
     }
 }
