@@ -54,6 +54,11 @@ namespace BigFloatingPoint.Implementations
         public const int NegativeSign = -1;
         public const int NeutralSign = 0;
 
+        /// <summary>
+        /// Default <see cref="ToString"/> precision.
+        /// </summary>
+        public const int DefaultPrecision = 100;
+
         #endregion
 
         #region Properties
@@ -408,8 +413,7 @@ namespace BigFloatingPoint.Implementations
         }
         public override string ToString()
         {
-            //default precision = 100
-            return ToString(100);
+            return ToString(DefaultPrecision);
         }
         public string ToString(int precision, bool trailingZeros = false) 
         {
@@ -428,7 +432,6 @@ namespace BigFloatingPoint.Implementations
 
 
             BigInteger decimals = BigInteger.Abs((numerator * BigInteger.Pow(10, precision)) / denominator);
-
 
             if (decimals == 0 && trailingZeros)
             {
