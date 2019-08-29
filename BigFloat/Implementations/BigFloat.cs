@@ -444,10 +444,25 @@ namespace BigFloatingPoint.Implementations
 
             StringBuilder sb = new StringBuilder();
 
+
+            // Add digits after and including first non-zero digit
             while (precision-- > 0 && decimals > 0)
             {
                 sb.Append(decimals % 10);
                 decimals /= 10;
+            }
+
+            // Add leading zeros.
+            BigInteger absoluteNumerator = BigInteger.Abs(numerator);
+            BigInteger denominatorCopy = denominator;
+
+            denominatorCopy /= 10;
+            denominatorCopy /= 10;
+
+            while (denominatorCopy >= absoluteNumerator)
+            {
+                sb.Append(0);
+                denominatorCopy /= 10;
             }
 
             if (trailingZeros)
