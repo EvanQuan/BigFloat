@@ -442,6 +442,11 @@ namespace BigFloatingPoint.Implementations
 
             return new BigFloat(floorNumerator, denominator).Factor();
         }
+
+        /// <summary>
+        /// Round to the nearest integer value.
+        /// </summary>
+        /// <returns>The rounded value.</returns>
         public BigFloat Round() 
         {
             //get remainder. Over divisor see if it is > new BigFloat(0.5)
@@ -483,10 +488,12 @@ namespace BigFloatingPoint.Implementations
             BigInteger shiftedDenominator = denominator * BigInteger.Pow(10, shift);
             return new BigFloat(numerator, shiftedDenominator);
         }
+
         public double Sqrt()
         {
             return Math.Pow(10, BigInteger.Log10(numerator) / 2) / Math.Pow(10, BigInteger.Log10(denominator) / 2);
         }
+
         public double Log10()
         {
             return BigInteger.Log10(numerator) - BigInteger.Log10(denominator);
@@ -497,11 +504,27 @@ namespace BigFloatingPoint.Implementations
             return BigInteger.Log(numerator, baseValue) - BigInteger.Log(numerator, baseValue);
         }
 
+        /// <summary>
+        /// Converts the numeric value of the current <see cref="BigFloat"/>
+        /// object to its equivalent <see cref="string"/> representation in
+        /// decimal format up to <see cref="DefaultPrecision"/> precision.
+        /// </summary>
+        /// <returns>The string representation of the current <see
+        /// cref="BigFloat"/> value.</returns>
         public override string ToString()
         {
             return ToString(DefaultPrecision);
         }
 
+        /// <summary>
+        /// Converts the numeric value of the current <see cref="BigFloat"/>
+        /// object to its equivalent <see cref="string"/> representation in
+        /// decimal format.
+        /// </summary>
+        /// <param name="precision"></param>
+        /// <param name="trailingZeros"></param>
+        /// <returns>The string representation of the current <see
+        /// cref="BigFloat"/> value.</returns>
         public string ToString(int precision, bool trailingZeros = false) 
         {
             BigFloat factoredSelf = Factor();
@@ -512,6 +535,13 @@ namespace BigFloatingPoint.Implementations
                 + factoredSelf.GetMantissaString(precision, trailingZeros);
         }
 
+        /// <summary>
+        /// Converts the numeric value of the current <see cref="BigFloat"/>
+        /// object to its equivalent <see cref="string"/> representation in
+        /// mixed fraction format.
+        /// </summary>
+        /// <returns>The string representation of the current <see
+        /// cref="BigFloat"/> value.</returns>
         public string ToMixString()
         {
             BigFloat factoredSelf = Factor();
@@ -524,11 +554,18 @@ namespace BigFloatingPoint.Implementations
                 return result + ", " + remainder + "/" + factoredSelf.denominator;
         }
         
+        /// <summary>
+        /// Converts the numeric value of the current <see cref="BigFloat"/>
+        /// object to its equivalent <see cref="string"/> representation in
+        /// simplified fraction format.
+        /// </summary>
+        /// <returns>The string representation of the current <see
+        /// cref="BigFloat"/> value.</returns>
         public string ToRationalString()
         {
             BigFloat factoredSelf = Factor();
 
-            return factoredSelf.numerator + " / " + factoredSelf.denominator;
+            return factoredSelf.numerator + "/" + factoredSelf.denominator;
         }
 
         public int CompareTo(BigFloat other)
@@ -566,6 +603,7 @@ namespace BigFloatingPoint.Implementations
             return this.Equals((BigFloat)other);
         }
 
+        ///
         public bool Equals(BigFloat other)
         {
             BigFloat selfFactored = this.Factor();
@@ -574,6 +612,10 @@ namespace BigFloatingPoint.Implementations
             return (otherFactored.numerator == selfFactored.numerator && otherFactored.denominator == selfFactored.denominator);
         }
 
+        /// <summary>
+        /// Returns the hash code for this instance.
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
             return base.GetHashCode();
@@ -936,11 +978,22 @@ namespace BigFloatingPoint.Implementations
                 factored: true);
         }
 
+        /// <summary>
+        /// The digits left of the decimal point.
+        /// </summary>
+        /// <param name="remainder"></param>
+        /// <returns></returns>
         private string GetUnitString(out BigInteger remainder)
         {
             return BigInteger.Abs(BigInteger.DivRem(numerator, denominator, out remainder)).ToString();
         }
 
+        /// <summary>
+        /// The digits right of the decimal point.
+        /// </summary>
+        /// <param name="precision"></param>
+        /// <param name="trailingZeros"></param>
+        /// <returns></returns>
         private string GetMantissaString(int precision, bool trailingZeros)
         {
             BigInteger decimals = BigInteger.Abs((numerator * BigInteger.Pow(10, precision)) / denominator);
@@ -987,6 +1040,12 @@ namespace BigFloatingPoint.Implementations
             return result;
         }
 
+        /// <summary>
+        /// The presence of decimal point is determined by the value of the mantissa.
+        /// </summary>
+        /// <param name="remainder"></param>
+        /// <param name="trailingZeros"></param>
+        /// <returns></returns>
         private string GetDecimalString(BigInteger remainder, bool trailingZeros)
         {
             return (remainder.IsZero && !trailingZeros) ? "" : ".";
