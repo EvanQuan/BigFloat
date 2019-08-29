@@ -2,7 +2,9 @@
 using System.Linq;
 using System.Text;
 using System.Numerics;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo(assemblyName: "BigFloatingPoint.UnitTests")]
 namespace BigFloatingPoint.Implementations
 {
     /// <summary>
@@ -19,19 +21,19 @@ namespace BigFloatingPoint.Implementations
         /// <summary>
         /// Numerator
         /// </summary>
-        internal readonly BigInteger numerator;
+        private readonly BigInteger numerator;
 
         /// <summary>
         /// Denominator
         /// </summary>
-        internal readonly BigInteger denominator;
+        private readonly BigInteger denominator;
 
         /// <summary>
         /// <see cref="string"/> representation of <see cref="Sign"/>.
         /// </summary>
-        internal string SignString => Sign < 0 ? "-" : "";
+        private string SignString => Sign < 0 ? "-" : "";
 
-        internal readonly bool factored;
+        private readonly bool factored;
 
         #endregion
 
@@ -872,7 +874,7 @@ namespace BigFloatingPoint.Implementations
 
         #endregion
 
-        #region Internal Methods
+        #region Private Methods
 
         /// <summary>
         /// Factor
@@ -894,12 +896,12 @@ namespace BigFloatingPoint.Implementations
                 factored: true);
         }
 
-        internal string GetUnitString(out BigInteger remainder)
+        private string GetUnitString(out BigInteger remainder)
         {
             return BigInteger.Abs(BigInteger.DivRem(numerator, denominator, out remainder)).ToString();
         }
 
-        internal string GetMantissaString(int precision, bool trailingZeros)
+        private string GetMantissaString(int precision, bool trailingZeros)
         {
             BigInteger decimals = BigInteger.Abs((numerator * BigInteger.Pow(10, precision)) / denominator);
 
@@ -945,7 +947,7 @@ namespace BigFloatingPoint.Implementations
             return result;
         }
 
-        internal string GetDecimalString(BigInteger remainder, bool trailingZeros)
+        private string GetDecimalString(BigInteger remainder, bool trailingZeros)
         {
             return (remainder.IsZero && !trailingZeros) ? "" : ".";
         }
