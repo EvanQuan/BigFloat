@@ -424,20 +424,10 @@ namespace BigFloatingPoint.Implementations
         {
             Factor();
 
-            BigInteger unit = BigInteger.DivRem(numerator, denominator, out BigInteger remainder);
-            string unitString = unit.ToString();
-
-            if (remainder == 0 && trailingZeros)
-            {
-                return unitString + ".0";
-            }
-            else if (remainder == 0)
-            {
-                return unitString;
-            }
-
-
-            return SignString + unitString + "." + GetMantissaString(precision, trailingZeros);
+            return SignString
+                + GetUnitString(out BigInteger remainder)
+                + GetDecimalString(remainder, trailingZeros)
+                + GetMantissaString(precision, trailingZeros);
         }
 
         public string ToMixString()
@@ -847,6 +837,10 @@ namespace BigFloatingPoint.Implementations
 
             return this;
         }
+        private string GetUnitString(out BigInteger remainder)
+        {
+            return BigInteger.Abs(BigInteger.DivRem(numerator, denominator, out remainder)).ToString();
+        }
 
         private string GetMantissaString(int precision, bool trailingZeros)
         {
@@ -892,6 +886,11 @@ namespace BigFloatingPoint.Implementations
             }
 
             return result;
+        }
+
+        private string GetDecimalString(BigInteger remainder, bool trailingZeros)
+        {
+            return (remainder.IsZero && !trailingZeros) ? "" : ".";
         }
 
         #endregion
