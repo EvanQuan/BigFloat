@@ -196,7 +196,7 @@ namespace BigFloatingPoint.Implementations
             this.factored = denominator.IsOne;
         }
 
-        public BigFloat(BigInteger numerator, BigInteger denominator, bool factored)
+        private BigFloat(BigInteger numerator, BigInteger denominator, bool factored)
         {
             this.numerator = numerator;
             if (denominator == 0)
