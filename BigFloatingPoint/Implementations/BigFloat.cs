@@ -184,11 +184,11 @@ namespace BigFloatingPoint.Implementations
 
         /// <summary>
         /// Initialize a new instance of the <see cref="BigFloat"/> structure as a
-        /// fraction with a <see cref="System.Numerics.BigInteger"/> numerator and
+        /// fraction with a <see cref="BigInteger"/> numerator and
         /// denominator.
         /// </summary>
-        /// <param name="numerator">A <see cref="System.Numerics.BigInteger"/> value as the numerator.</param>
-        /// <param name="denominator">A <see cref="System.Numerics.BigInteger"/> value as the denominator.</param>
+        /// <param name="numerator">A <see cref="BigInteger"/> value as the numerator.</param>
+        /// <param name="denominator">A <see cref="BigInteger"/> value as the denominator.</param>
         public BigFloat(BigInteger numerator, BigInteger denominator)
         {
             if (denominator.IsZero)
@@ -215,9 +215,9 @@ namespace BigFloatingPoint.Implementations
 
         /// <summary>
         /// Initialize a new instance of the <see cref="BigFloat"/> structure with
-        /// a <see cref="System.Numerics.BigInteger"/> value.
+        /// a <see cref="BigInteger"/> value.
         /// </summary>
-        /// <param name="value">A <see cref="System.Numerics.BigInteger"/> value.</param>
+        /// <param name="value">A <see cref="BigInteger"/> value.</param>
         public BigFloat(BigInteger value)
         {
             this.numerator = value;
@@ -543,9 +543,9 @@ namespace BigFloatingPoint.Implementations
         {
             BigFloat factoredSelf = Factor();
 
-            BigInteger result = BigInteger.DivRem(factoredSelf.numerator, factoredSelf.denominator, out BigInteger remainder);
+            BigInteger quotient = BigInteger.DivRem(factoredSelf.numerator, factoredSelf.denominator, out BigInteger remainder);
 
-            return remainder == 0 ? result.ToString() : result + ", " + remainder + "/" + factoredSelf.denominator;
+            return remainder == 0 ? quotient.ToString() : quotient + ", " + remainder + "/" + factoredSelf.denominator;
         }
 
         /// <summary>
