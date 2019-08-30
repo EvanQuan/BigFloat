@@ -139,6 +139,8 @@ namespace BigFloatingPoint.Implementations
         /// </summary>
         public const int DefaultPrecision = 100;
 
+        private const string DenominatorIsZeroExceptionMessage = "Denominator cannot be 0.";
+
         #endregion
 
         #region Properties
@@ -189,8 +191,11 @@ namespace BigFloatingPoint.Implementations
         /// <param name="denominator">A <see cref="System.Numerics.BigInteger"/> value as the denominator.</param>
         public BigFloat(BigInteger numerator, BigInteger denominator)
         {
-            if (denominator == 0)
-                throw new ArgumentException("denominator equals 0");
+            if (denominator.IsZero)
+            {
+                throw new ArgumentException(DenominatorIsZeroExceptionMessage);
+            }
+
             this.numerator = numerator;
             this.denominator = BigInteger.Abs(denominator);
             this.factored = denominator.IsOne;
@@ -198,9 +203,12 @@ namespace BigFloatingPoint.Implementations
 
         private BigFloat(BigInteger numerator, BigInteger denominator, bool factored)
         {
+            if (denominator.IsZero)
+            {
+                throw new ArgumentException(DenominatorIsZeroExceptionMessage);
+            }
+
             this.numerator = numerator;
-            if (denominator == 0)
-                throw new ArgumentException("denominator equals 0");
             this.denominator = BigInteger.Abs(denominator);
             this.factored = factored;
         }
@@ -237,8 +245,8 @@ namespace BigFloatingPoint.Implementations
         /// <param name="value">A 64-bit unsigned integer value.</param>
         public BigFloat(ulong value)
         {
-            numerator = new BigInteger(value);
-            denominator = BigInteger.One;
+            this.numerator = new BigInteger(value);
+            this.denominator = BigInteger.One;
             this.factored = denominator.IsOne;
         }
 
@@ -249,8 +257,8 @@ namespace BigFloatingPoint.Implementations
         /// <param name="value">A 64-bit signed integer.</param>
         public BigFloat(long value)
         {
-            numerator = new BigInteger(value);
-            denominator = BigInteger.One;
+            this.numerator = new BigInteger(value);
+            this.denominator = BigInteger.One;
             this.factored = denominator.IsOne;
         }
 
@@ -261,8 +269,8 @@ namespace BigFloatingPoint.Implementations
         /// <param name="value">A 32-bit unsigned integer.</param>
         public BigFloat(uint value)
         {
-            numerator = new BigInteger(value);
-            denominator = BigInteger.One;
+            this.numerator = new BigInteger(value);
+            this.denominator = BigInteger.One;
             this.factored = denominator.IsOne;
         }
 
@@ -273,8 +281,8 @@ namespace BigFloatingPoint.Implementations
         /// <param name="value"></param>
         public BigFloat(int value)
         {
-            numerator = new BigInteger(value);
-            denominator = BigInteger.One;
+            this.numerator = new BigInteger(value);
+            this.denominator = BigInteger.One;
             this.factored = denominator.IsOne;
         }
 
@@ -359,88 +367,88 @@ namespace BigFloatingPoint.Implementations
 
         public BigFloat Pow(int exponent)
         {
-            if (numerator.IsZero)
+            if (this.numerator.IsZero)
             {
                 return this;
             }
             else if (exponent < 0)
             {
-                BigInteger savedNumerator = numerator;
+                BigInteger savedNumerator = this.numerator;
 
                 return new BigFloat(
-                    numerator: BigInteger.Pow(denominator, -exponent),
+                    numerator: BigInteger.Pow(this.denominator, -exponent),
                     denominator: BigInteger.Pow(savedNumerator, -exponent));
             }
 
             return new BigFloat(
-                numerator: BigInteger.Pow(numerator, exponent),
-                denominator: BigInteger.Pow(denominator, exponent));
+                numerator: BigInteger.Pow(this.numerator, exponent),
+                denominator: BigInteger.Pow(this.denominator, exponent));
         }
 
         public BigFloat Abs()
         {
             return new BigFloat(
-                numerator: BigInteger.Abs(numerator),
-                denominator: denominator);
+                numerator: BigInteger.Abs(this.numerator),
+                denominator: this.denominator);
         }
 
         public BigFloat Negate()
         {
             return new BigFloat(
-                numerator: BigInteger.Negate(numerator),
-                denominator: denominator);
+                numerator: BigInteger.Negate(this.numerator),
+                denominator: this.denominator);
         }
 
         public BigFloat Inverse()
         {
             return new BigFloat(
-                numerator: denominator,
-                denominator: numerator);
+                numerator: this.denominator,
+                denominator: this.numerator);
         }
 
         public BigFloat Increment()
         {
             return new BigFloat(
-                numerator: numerator + denominator,
-                denominator: denominator);
+                numerator: this.numerator + this.denominator,
+                denominator: this.denominator);
         }
 
         public BigFloat Decrement()
         {
             return new BigFloat(
-                numerator: numerator - denominator,
-                denominator: denominator);
+                numerator: this.numerator - this.denominator,
+                denominator: this.denominator);
         }
 
         public BigFloat Ceil()
         {
             BigInteger ceilNumerator;
-            if (numerator < 0)
+            if (this.numerator < 0)
             {
 
-                ceilNumerator = numerator - BigInteger.Remainder(numerator, denominator);
+                ceilNumerator = this.numerator - BigInteger.Remainder(this.numerator, this.denominator);
             }
             else
             {
-                ceilNumerator = numerator + denominator - BigInteger.Remainder(numerator, denominator);
+                ceilNumerator = this.numerator + this.denominator - BigInteger.Remainder(this.numerator, this.denominator);
             }
 
-            return new BigFloat(ceilNumerator, denominator).Factor();
+            return new BigFloat(ceilNumerator, this.denominator).Factor();
         }
 
         public BigFloat Floor()
         {
             BigInteger floorNumerator;
-            if (numerator < 0)
+            if (this.numerator < 0)
             {
-                floorNumerator = numerator + denominator - BigInteger.Remainder(numerator, denominator);
+                floorNumerator = this.numerator + this.denominator - BigInteger.Remainder(this.numerator, this.denominator);
             }
             else
             {
-                floorNumerator = numerator - BigInteger.Remainder(numerator, denominator);
+                floorNumerator = this.numerator - BigInteger.Remainder(this.numerator, this.denominator);
             }
 
-            return new BigFloat(floorNumerator, denominator).Factor();
+            return new BigFloat(floorNumerator, this.denominator).Factor();
         }
 
         /// <summary>
@@ -462,15 +470,15 @@ namespace BigFloatingPoint.Implementations
 
         public BigFloat Truncate()
         {
-            BigInteger truncatedNumerator = numerator - BigInteger.Remainder(numerator, denominator);
-            return new BigFloat(truncatedNumerator, denominator).Factor();
+            BigInteger truncatedNumerator = this.numerator - BigInteger.Remainder(this.numerator, this.denominator);
+            return new BigFloat(truncatedNumerator, this.denominator).Factor();
         }
 
         public BigFloat Decimals()
         {
-            BigInteger result = BigInteger.Remainder(numerator, denominator);
+            BigInteger result = BigInteger.Remainder(this.numerator, this.denominator);
 
-            return new BigFloat(result, denominator);
+            return new BigFloat(result, this.denominator);
         }
 
         public BigFloat ShiftDecimalLeft(int shift)
@@ -480,8 +488,8 @@ namespace BigFloatingPoint.Implementations
                 return ShiftDecimalRight(-shift);
             }
 
-            BigInteger shiftedNumerator = numerator * BigInteger.Pow(10,shift);
-            return new BigFloat(shiftedNumerator, denominator);
+            BigInteger shiftedNumerator = this.numerator * BigInteger.Pow(10,shift);
+            return new BigFloat(shiftedNumerator, this.denominator);
         }
 
         public BigFloat ShiftDecimalRight(int shift)
@@ -491,23 +499,23 @@ namespace BigFloatingPoint.Implementations
                 return ShiftDecimalLeft(-shift);
             }
 
-            BigInteger shiftedDenominator = denominator * BigInteger.Pow(10, shift);
-            return new BigFloat(numerator, shiftedDenominator);
+            BigInteger shiftedDenominator = this.denominator * BigInteger.Pow(10, shift);
+            return new BigFloat(this.numerator, shiftedDenominator);
         }
 
         public double Sqrt()
         {
-            return Math.Pow(10, BigInteger.Log10(numerator) / 2) / Math.Pow(10, BigInteger.Log10(denominator) / 2);
+            return Math.Pow(10, BigInteger.Log10(this.numerator) / 2) / Math.Pow(10, BigInteger.Log10(this.denominator) / 2);
         }
 
         public double Log10()
         {
-            return BigInteger.Log10(numerator) - BigInteger.Log10(denominator);
+            return BigInteger.Log10(this.numerator) - BigInteger.Log10(this.denominator);
         }
 
         public double Log(double baseValue)
         {
-            return BigInteger.Log(numerator, baseValue) - BigInteger.Log(numerator, baseValue);
+            return BigInteger.Log(this.numerator, baseValue) - BigInteger.Log(this.numerator, baseValue);
         }
 
         /// <summary>
@@ -990,11 +998,11 @@ namespace BigFloatingPoint.Implementations
             }
 
             //factor numerator and denominator
-            BigInteger factor = BigInteger.GreatestCommonDivisor(numerator, denominator);
+            BigInteger factor = BigInteger.GreatestCommonDivisor(this.numerator, this.denominator);
 
             return new BigFloat(
-                numerator: numerator / factor,
-                denominator: denominator / factor,
+                numerator: this.numerator / factor,
+                denominator: this.denominator / factor,
                 factored: true);
         }
 
@@ -1005,7 +1013,7 @@ namespace BigFloatingPoint.Implementations
         /// <returns></returns>
         private string GetUnitString(out BigInteger remainder)
         {
-            return BigInteger.Abs(BigInteger.DivRem(numerator, denominator, out remainder)).ToString();
+            return BigInteger.Abs(BigInteger.DivRem(this.numerator, this.denominator, out remainder)).ToString();
         }
 
         /// <summary>
@@ -1016,7 +1024,7 @@ namespace BigFloatingPoint.Implementations
         /// <returns></returns>
         private string GetMantissaString(int precision, bool trailingZeros)
         {
-            BigInteger decimals = BigInteger.Abs((numerator * BigInteger.Pow(10, precision)) / denominator);
+            BigInteger decimals = BigInteger.Abs((this.numerator * BigInteger.Pow(10, precision)) / this.denominator);
 
             if (decimals == 0 && trailingZeros)
             {
@@ -1038,8 +1046,8 @@ namespace BigFloatingPoint.Implementations
             }
 
             // Add leading zeros.
-            BigInteger absoluteNumerator = BigInteger.Abs(numerator);
-            BigInteger denominatorCopy = denominator;
+            BigInteger absoluteNumerator = BigInteger.Abs(this.numerator);
+            BigInteger denominatorCopy = this.denominator;
 
             denominatorCopy /= 10;
             denominatorCopy /= 10;
