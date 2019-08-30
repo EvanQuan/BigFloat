@@ -422,31 +422,18 @@ namespace BigFloatingPoint.Implementations
 
         public BigFloat Ceil()
         {
-            BigInteger ceilNumerator;
-            if (this.numerator < 0)
-            {
-
-                ceilNumerator = this.numerator - BigInteger.Remainder(this.numerator, this.denominator);
-            }
-            else
-            {
-                ceilNumerator = this.numerator + this.denominator - BigInteger.Remainder(this.numerator, this.denominator);
-            }
+            BigInteger ceilNumerator = this.numerator < 0
+                ? this.numerator - BigInteger.Remainder(this.numerator, this.denominator)
+                : this.numerator + this.denominator - BigInteger.Remainder(this.numerator, this.denominator);
 
             return new BigFloat(ceilNumerator, this.denominator).Factor();
         }
 
         public BigFloat Floor()
         {
-            BigInteger floorNumerator;
-            if (this.numerator < 0)
-            {
-                floorNumerator = this.numerator + this.denominator - BigInteger.Remainder(this.numerator, this.denominator);
-            }
-            else
-            {
-                floorNumerator = this.numerator - BigInteger.Remainder(this.numerator, this.denominator);
-            }
+            BigInteger floorNumerator = this.numerator < 0
+                ? this.numerator + this.denominator - BigInteger.Remainder(this.numerator, this.denominator)
+                : this.numerator - BigInteger.Remainder(this.numerator, this.denominator);
 
             return new BigFloat(floorNumerator, this.denominator).Factor();
         }
@@ -460,17 +447,13 @@ namespace BigFloatingPoint.Implementations
             //get remainder. Over divisor see if it is > new BigFloat(0.5)
             BigFloat value = BigFloat.Decimals(this);
 
-            if (value.CompareTo(OneHalf) >= 0)
-            {
-                return this.Ceil();
-            }
-
-            return this.Floor();
+            return value.CompareTo(OneHalf) >= 0 ? this.Ceil() : this.Floor();
         }
 
         public BigFloat Truncate()
         {
             BigInteger truncatedNumerator = this.numerator - BigInteger.Remainder(this.numerator, this.denominator);
+
             return new BigFloat(truncatedNumerator, this.denominator).Factor();
         }
 
@@ -562,14 +545,9 @@ namespace BigFloatingPoint.Implementations
 
             BigInteger result = BigInteger.DivRem(factoredSelf.numerator, factoredSelf.denominator, out BigInteger remainder);
 
-            if (remainder == 0)
-            {
-                return result.ToString();
-            }
-
-            return result + ", " + remainder + "/" + factoredSelf.denominator;
+            return remainder == 0 ? result.ToString() : result + ", " + remainder + "/" + factoredSelf.denominator;
         }
-        
+
         /// <summary>
         /// Converts the numeric value of the current <see cref="BigFloat"/>
         /// object to its equivalent <see cref="string"/> representation in
@@ -629,7 +607,7 @@ namespace BigFloatingPoint.Implementations
             BigFloat selfFactored = this.Factor();
             BigFloat otherFactored = other.Factor();
 
-            return (otherFactored.numerator == selfFactored.numerator && otherFactored.denominator == selfFactored.denominator);
+            return otherFactored.numerator == selfFactored.numerator && otherFactored.denominator == selfFactored.denominator;
         }
 
         /// <summary>
