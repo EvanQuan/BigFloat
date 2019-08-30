@@ -562,17 +562,29 @@ namespace BigFloatingPoint.Implementations
             return factoredSelf.numerator + "/" + factoredSelf.denominator;
         }
 
+        /// <summary>
+        /// Compares two <see cref="BigFloat"/> values and returns the <see
+        /// cref="int"/> that indicates whether the first value is less than,
+        /// equal, or greater than the second value.
+        /// </summary>
+        /// <param name="other">The other vaue to compare to.</param>
+        /// <returns>
+        /// A signed integer that indicates the relative values of left and
+        /// right, as shown in the following table. Value Condition Less than
+        /// zero left is less than right. Zero left equals right. Greater than
+        /// zero left is greater than right.
+        /// </returns>
         public int CompareTo(BigFloat other)
         {
-            //Make copies
+            // Make copies
             BigInteger one = this.numerator;
             BigInteger two = other.numerator;
 
-            //cross multiply
+            // Cross multiply
             one *= other.denominator;
             two *= this.denominator;
 
-            //test
+            // Test
             return BigInteger.Compare(one, two);
         }
 
