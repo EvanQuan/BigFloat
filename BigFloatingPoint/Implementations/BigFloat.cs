@@ -496,6 +496,15 @@ namespace BigFloatingPoint.Implementations
             return BigInteger.Log10(this.numerator) - BigInteger.Log10(this.denominator);
         }
 
+        /// <summary>
+        /// Returns the natural (base e) logarithm of this <see cref="BigFloat"/> instance.
+        /// </summary>
+        /// <returns>The natural (base e) logarithm of this <see cref="BigFloat"/> instance.</returns>
+        public double Log()
+        {
+            return BigInteger.Log(this.numerator) - BigInteger.Log(this.denominator);
+        }
+
         public double Log(double baseValue)
         {
             return BigInteger.Log(this.numerator, baseValue) - BigInteger.Log(this.numerator, baseValue);
@@ -804,6 +813,15 @@ namespace BigFloatingPoint.Implementations
         public static double Log10(BigFloat value)
         {
             return value.Log10();
+        }
+
+        /// <summary>
+        /// Returns the natural (base e) logarithm of a specified number.
+        /// </summary>
+        /// <returns>The natural (base e) logarithm of value.</returns>
+        public static double Log(BigFloat value)
+        {
+            return value.Log();
         }
 
         public static double Log(BigFloat value, double baseValue)
