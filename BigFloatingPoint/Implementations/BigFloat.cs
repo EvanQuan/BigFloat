@@ -796,11 +796,11 @@ namespace BigFloatingPoint.Implementations
 
         public static BigFloat operator -(BigFloat value)
         {
-            return (new BigFloat(value)).Negate();
+            return value.Negate();
         }
         public static BigFloat operator -(BigFloat left, BigFloat right)
         {
-            return (new BigFloat(left)).Subtract(right);
+            return left.Subtract(right);
         }
         public static BigFloat operator --(BigFloat value)
         {
@@ -808,11 +808,11 @@ namespace BigFloatingPoint.Implementations
         }
         public static BigFloat operator +(BigFloat left, BigFloat right)
         {
-            return (new BigFloat(left)).Add(right);
+            return left.Add(right);
         }
         public static BigFloat operator +(BigFloat value)
         {
-            return (new BigFloat(value)).Abs();
+            return value.Abs();
         }
         public static BigFloat operator ++(BigFloat value)
         {
@@ -820,31 +820,31 @@ namespace BigFloatingPoint.Implementations
         }
         public static BigFloat operator %(BigFloat left, BigFloat right)
         {
-            return (new BigFloat(left)).Remainder(right);
+            return left.Remainder(right);
         }
         public static BigFloat operator *(BigFloat left, BigFloat right)
         {
-            return (new BigFloat(left)).Multiply(right);
+            return left.Multiply(right);
         }
         public static BigFloat operator /(BigFloat left, BigFloat right)
         {
-            return (new BigFloat(left)).Divide(right);
+            return left.Divide(right);
         }
         public static BigFloat operator >>(BigFloat value, int shift)
         {
-            return (new BigFloat(value)).ShiftDecimalRight(shift);
+            return value.ShiftDecimalRight(shift);
         }
         public static BigFloat operator <<(BigFloat value, int shift)
         {
-            return (new BigFloat(value)).ShiftDecimalLeft(shift);
+            return value.ShiftDecimalLeft(shift);
         }
         public static BigFloat operator ^(BigFloat left, int right)
         {
-            return (new BigFloat(left)).Pow(right);
+            return left.Pow(right);
         }
         public static BigFloat operator ~(BigFloat value)
         {
-            return (new BigFloat(value)).Inverse();
+            return value.Inverse();
         }
 
         public static bool operator !=(BigFloat left, BigFloat right)
