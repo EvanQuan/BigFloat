@@ -661,51 +661,51 @@ namespace BigFloatingPoint.Implementations
 
         public static BigFloat Inverse(BigFloat value)
         {
-            return (new BigFloat(value)).Inverse();
+            return value.Inverse();
         }
         public static BigFloat Decrement(BigFloat value)
         {
-            return (new BigFloat(value)).Decrement();
+            return value.Decrement();
         }
         public static BigFloat Negate(BigFloat value)
         {
-            return (new BigFloat(value)).Negate();
+            return value.Negate();
         }
         public static BigFloat Increment(BigFloat value)
         {
-            return (new BigFloat(value)).Increment();
+            return value.Increment();
         }
         public static BigFloat Abs(BigFloat value)
         {
-            return (new BigFloat(value)).Abs();
+            return value.Abs();
         }
         public static BigFloat Add(BigFloat left, BigFloat right)
         {
-            return (new BigFloat(left)).Add(right);
+            return left.Add(right);
         }
         public static BigFloat Subtract(BigFloat left, BigFloat right)
         {
-            return (new BigFloat(left)).Subtract(right);
+            return left.Subtract(right);
         }
         public static BigFloat Multiply(BigFloat left, BigFloat right)
         {
-            return (new BigFloat(left)).Multiply(right);
+            return left.Multiply(right);
         }
         public static BigFloat Divide(BigFloat left, BigFloat right)
         {
-            return (new BigFloat(left)).Divide(right);
+            return left.Divide(right);
         }
         public static BigFloat Pow(BigFloat value, int exponent)
         {
-            return (new BigFloat(value)).Pow(exponent);
+            return value.Pow(exponent);
         }
         public static BigFloat Remainder(BigFloat left, BigFloat right)
         {
-            return (new BigFloat(left)).Remainder(right);
+            return left.Remainder(right);
         }
         public static BigFloat DivideRemainder(BigFloat left, BigFloat right, out BigFloat remainder)
         {
-            return (new BigFloat(left)).DivideRemainder(right, out remainder);
+            return left.DivideRemainder(right, out remainder);
         }
         public static BigFloat Decimals(BigFloat value)
         {
@@ -714,22 +714,22 @@ namespace BigFloatingPoint.Implementations
 
         public static BigFloat Truncate(BigFloat value)
         {
-            return (new BigFloat(value)).Truncate();
+            return value.Truncate();
         }
 
         public static BigFloat Ceil(BigFloat value)
         {
-            return (new BigFloat(value)).Ceil();
+            return value.Ceil();
         }
 
         public static BigFloat Floor(BigFloat value)
         {
-            return (new BigFloat(value)).Floor();
+            return value.Floor();
         }
 
         public static BigFloat Round(BigFloat value)
         {
-            return (new BigFloat(value)).Round();
+            return value.Round();
         }
 
         public static BigFloat Parse(string value) 
@@ -753,17 +753,17 @@ namespace BigFloatingPoint.Implementations
             BigInteger numerator = BigInteger.Parse(value);
             BigInteger denominator = BigInteger.Pow(10, value.Length - pos);
 
-            return (new BigFloat(numerator, denominator)).Factor();
+            return new BigFloat(numerator, denominator).Factor();
         }
 
         public static BigFloat ShiftDecimalLeft(BigFloat value, int shift)
         {
-            return (new BigFloat(value)).ShiftDecimalLeft(shift);
+            return value.ShiftDecimalLeft(shift);
         }
 
         public static BigFloat ShiftDecimalRight(BigFloat value, int shift)
         {
-            return (new BigFloat(value)).ShiftDecimalRight(shift);
+            return value.ShiftDecimalRight(shift);
         }
 
         public static bool TryParse(string value, out BigFloat result) 
@@ -786,22 +786,22 @@ namespace BigFloatingPoint.Implementations
         }
         public static int Compare(BigFloat left, BigFloat right)
         {
-            return (new BigFloat(left)).CompareTo(right);
+            return left.CompareTo(right);
         }
 
         public static double Log10(BigFloat value)
         {
-            return (new BigFloat(value)).Log10();
+            return value.Log10();
         }
 
         public static double Log(BigFloat value, double baseValue)
         {
-            return (new BigFloat(value)).Log(baseValue);
+            return value.Log(baseValue);
         }
 
         public static double Sqrt(BigFloat value)
         {
-            return (new BigFloat(value)).Sqrt();
+            return value.Sqrt();
         }
 
         #endregion
