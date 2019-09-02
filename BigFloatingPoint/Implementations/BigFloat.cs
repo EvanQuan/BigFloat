@@ -175,10 +175,10 @@ namespace BigFloatingPoint.Implementations
         #region Constructors
 
         /// <summary>
-        /// Initialize a new instance of the <see cref="BigFloat"/> structure
+        /// Initialize a new object of the <see cref="BigFloat"/> structure
         /// with the <see cref="string"/> representation of a number.
         /// </summary>
-        /// <param name="value">A <see cref="string"/> value.</param>
+        /// <param name="value">A <see cref="string"/> object.</param>
         public BigFloat(string value)
         {
             BigFloat bf = Parse(value);
@@ -188,15 +188,15 @@ namespace BigFloatingPoint.Implementations
         }
 
         /// <summary>
-        /// Initialize a new instance of the <see cref="BigFloat"/> structure
+        /// Initialize a new object of the <see cref="BigFloat"/> structure
         /// as a fraction with a <see cref="BigInteger"/> numerator and
         /// denominator.
         /// </summary>
         /// <param name="numerator">
-        /// A <see cref="BigInteger"/> value as the numerator.
+        /// A <see cref="BigInteger"/> object as the numerator.
         /// </param>
         /// <param name="denominator">
-        /// A <see cref="BigInteger"/> value as the denominator.
+        /// A <see cref="BigInteger"/> object as the denominator.
         /// </param>
         public BigFloat(BigInteger numerator, BigInteger denominator)
         {
@@ -226,10 +226,10 @@ namespace BigFloatingPoint.Implementations
         }
 
         /// <summary>
-        /// Initialize a new instance of the <see cref="BigFloat"/> structure
-        /// with a <see cref="BigInteger"/> value.
+        /// Initialize a new object of the <see cref="BigFloat"/> structure
+        /// with a <see cref="BigInteger"/> object.
         /// </summary>
-        /// <param name="value">A <see cref="BigInteger"/> value.</param>
+        /// <param name="value">A <see cref="BigInteger"/> object.</param>
         public BigFloat(BigInteger value)
         {
             this.numerator = value;
@@ -239,10 +239,10 @@ namespace BigFloatingPoint.Implementations
 
 
         /// <summary>
-        /// Initilize a new instance of the <see cref="BigFloat"/> structure
-        /// with a <see cref="BigFloat"/> value.
+        /// Initilize a new object of the <see cref="BigFloat"/> structure
+        /// with a <see cref="BigFloat"/> object.
         /// </summary>
-        /// <param name="value">A <see cref="BigFloat"/> value.</param>
+        /// <param name="value">A <see cref="BigFloat"/> object.</param>
         public BigFloat(BigFloat value)
         {
             this.numerator = value.numerator;
@@ -251,7 +251,7 @@ namespace BigFloatingPoint.Implementations
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BigFloat"/> structure
+        /// Initializes a new object of the <see cref="BigFloat"/> structure
         /// with an unsigned 64-bit integer value.
         /// </summary>
         /// <param name="value">A 64-bit unsigned integer value.</param>
@@ -263,7 +263,7 @@ namespace BigFloatingPoint.Implementations
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BigFloat"/> structure
+        /// Initializes a new object of the <see cref="BigFloat"/> structure
         /// using a 64-bit signed integer value.
         /// </summary>
         /// <param name="value">A 64-bit signed integer.</param>
@@ -275,7 +275,7 @@ namespace BigFloatingPoint.Implementations
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BigFloat"/> structure
+        /// Initializes a new object of the <see cref="BigFloat"/> structure
         /// using a 32-bit unsigned integer value.
         /// </summary>
         /// <param name="value">A 32-bit unsigned integer.</param>
@@ -287,7 +287,7 @@ namespace BigFloatingPoint.Implementations
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BigFloat"/> structure
+        /// Initializes a new object of the <see cref="BigFloat"/> structure
         /// using a 32-bit signed integer value.
         /// </summary>
         /// <param name="value"></param>
@@ -299,7 +299,7 @@ namespace BigFloatingPoint.Implementations
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BigFloat"/> structure
+        /// Initializes a new object of the <see cref="BigFloat"/> structure
         /// using a single-precision floating-point value.
         /// </summary>
         /// <param name="value">A single-precision floating-point value.</param>
@@ -308,7 +308,7 @@ namespace BigFloatingPoint.Implementations
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BigFloat"/> structure
+        /// Initializes a new object of the <see cref="BigFloat"/> structure
         /// using a double-precision floating-point value.
         /// </summary>
         /// <param name="value">A double-precision floating-point value.</param>
@@ -317,7 +317,7 @@ namespace BigFloatingPoint.Implementations
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BigFloat"/> structure
+        /// Initializes a new object of the <see cref="BigFloat"/> structure
         /// using a <see cref="System.Decimal"/> value.
         /// </summary>
         /// <param name="value">A decimal number.</param>
@@ -394,8 +394,9 @@ namespace BigFloatingPoint.Implementations
         }
 
         /// <summary>
-        /// Performs integer division on this value by the specified <see
-        /// cref="BigFloat"/> object and returns the remainder.
+        /// Performs integer division on this <see cref="BigFloat"/> object by
+        /// the specified <see cref="BigFloat"/> object and returns the
+        /// remainder.
         /// </summary>
         /// <param name="other">The value to divide by.</param>
         /// <returns>
@@ -430,12 +431,14 @@ namespace BigFloatingPoint.Implementations
         }
 
         /// <summary>
-        /// Raise this value to the power of a specified <see cref="BigFloat"/>
-        /// value.
+        /// Raise the value of this <see cref="BigFloat"/> object to the
+        /// power of the value of a specified <see cref="BigFloat"/> object.
         /// </summary>
-        /// <param name="exponent">The exponent to raise this value by.</param>
+        /// <param name="exponent">
+        /// The exponent to raise this object's value by.
+        /// </param>
         /// <returns>
-        /// The result of raising this value by the exponent value.
+        /// The result of raising this object by <paramref name="exponent"/>.
         /// </returns>
         public BigFloat Pow(int exponent)
         {
@@ -469,10 +472,10 @@ namespace BigFloatingPoint.Implementations
         }
 
         /// <summary>
-        /// Negates this <see cref="BigFloat"/> value.
+        /// Negates the value of this <see cref="BigFloat"/> object.
         /// </summary>
         /// <returns>
-        /// The result of this <see cref="BigFloat"/> value multiplied by
+        /// The result of this <see cref="BigFloat"/> object multiplied by
         /// negative one (-1).
         /// </returns>
         public BigFloat Negate()
@@ -484,9 +487,9 @@ namespace BigFloatingPoint.Implementations
 
         /// <summary>
         /// Switches the numerator and denominator of this <see
-        /// cref="BigFloat"/> value.
+        /// cref="BigFloat"/> object.
         /// </summary>
-        /// <returns>The result of inverting this value.</returns>
+        /// <returns>The result of inverting this object.</returns>
         public BigFloat Inverse()
         {
             return new BigFloat(
@@ -498,7 +501,7 @@ namespace BigFloatingPoint.Implementations
         /// Increments this <see cref="BigFloat"/> value by 1.
         /// </summary>
         /// <returns>
-        /// The value of this <see cref="BigFloat"/> value incremented by 1.
+        /// The value of this <see cref="BigFloat"/> object incremented by 1.
         /// </returns>
         public BigFloat Increment()
         {
@@ -511,7 +514,7 @@ namespace BigFloatingPoint.Implementations
         /// Decrements this <see cref="BigFloat"/> value by 1.
         /// </summary>
         /// <returns>
-        /// The value of this <see cref="BigFloat"/> value decremented by 1.
+        /// The value of this <see cref="BigFloat"/> object decremented by 1.
         /// </returns>
         public BigFloat Decrement()
         {
@@ -806,19 +809,19 @@ namespace BigFloatingPoint.Implementations
         }
 
         /// <summary>
-        /// Compares this <see cref="BigFloat"/> instance to a specified <see
+        /// Compares this <see cref="BigFloat"/> object to a specified <see
         /// cref="object"/> and returns an <see cref="int"/> that indicates
-        /// whether the value of this instance is less than, equal to, or
+        /// whether the value of this object is less than, equal to, or
         /// greater than the value of the specified object.
         /// </summary>
         /// <param name="other">The object to compare.</param>
         /// <returns>
         /// A signed <see cref="int"/> that indicates the relationship of the
-        /// current instance to the <paramref name="other"/> parameter. If the
-        /// return value is less than zero, the current instance is less than
+        /// current object to the <paramref name="other"/> parameter. If the
+        /// return value is less than zero, the current object is less than
         /// <paramref name="other"/>. If the return value is zero, the current
-        /// instance equals <paramref name="other"/>. If the return value is
-        /// greater than zero, the current instance is greater than <paramref
+        /// object equals <paramref name="other"/>. If the return value is
+        /// greater than zero, the current object is greater than <paramref
         /// name="other"/> or <paramref name="other"/> is null.
         /// </returns>
         public int CompareTo(object other)
@@ -837,14 +840,14 @@ namespace BigFloatingPoint.Implementations
         }
 
         /// <summary>
-        /// Returns a value that indicates whether the current instance and a
+        /// Returns a value that indicates whether the current object and a
         /// specified <see cref="object"/> have the same value.
         /// </summary>
         /// <param name="other">The compare to compare.</param>
         /// <returns>
         /// true if the <paramref name="other"/> argument is a <see
         /// cref="BigFloat"/>, and its value is equal to the value of the
-        /// current <see cref="BigFloat"/> instance; otherwise false.
+        /// current <see cref="BigFloat"/> object; otherwise false.
         /// </returns>
         public override bool Equals(object other)
         {
@@ -857,7 +860,7 @@ namespace BigFloatingPoint.Implementations
         }
 
         /// <summary>
-        /// Returns a value that indicates whether the current instance and a
+        /// Returns a value that indicates whether the current object and a
         /// specified <see cref="BigFloat"/> object have the same value.
         /// </summary>
         /// <param name="other">The object to compare.</param>
@@ -919,10 +922,26 @@ namespace BigFloatingPoint.Implementations
             return value.ToString();
         }
 
+        /// <summary>
+        /// Switches the numerator and denominator of a specified <see
+        /// cref="BigFloat"/> value.
+        /// </summary>
+        /// <param name="value">A <see cref="BigFloat"/> object.</param>
+        /// <returns>
+        /// The result of the inverting <paramref name="value"/>.
+        /// </returns>
         public static BigFloat Inverse(BigFloat value)
         {
             return value.Inverse();
         }
+
+        /// <summary>
+        /// Decrements the specified <see cref="BigFloat"/> value by 1.
+        /// </summary>
+        /// <param name="value">A <see cref="BigFloat"/> object.</param>
+        /// <returns>
+        /// The value of <paramref name="value"/> decremented by 1.
+        /// </returns>
         public static BigFloat Decrement(BigFloat value)
         {
             return value.Decrement();
