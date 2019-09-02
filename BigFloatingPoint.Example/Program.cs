@@ -37,7 +37,7 @@ namespace Com.Github.EvanQuan.BigFloatingPoint.Example
 
             //additional methods
             Console.WriteLine("Round(1234567.1234)     = " + BigFloat.Round(bigfloat4));
-            Console.WriteLine("Ceil(1234567.1234)      = " + BigFloat.Ceil(bigfloat4));
+            Console.WriteLine("Ceiling(1234567.1234)      = " + BigFloat.Ceiling(bigfloat4));
             Console.WriteLine("Floor(1234567.1234)     = " + BigFloat.Floor(bigfloat4));
             Console.WriteLine("Inverse(1234567.1234)   = " + BigFloat.Inverse(bigfloat4).ToString(20));
             Console.WriteLine("Sqrt(1234567.1234)      = " + BigFloat.Sqrt(bigfloat4));

@@ -330,115 +330,112 @@ namespace BigFloatingPoint.Implementations
         #region Instance Methods
 
         /// <summary>
-        /// Adds the value of the specified <see cref="BigFloat"/> object to
-        /// this one.
+        /// Adds the value of <paramref name="addend"/> to this one.
         /// </summary>
-        /// <param name="other">The value to add to this.</param>
-        /// <returns>The sum of <paramref name="other"/> and this.</returns>
-        public BigFloat Add(BigFloat other)
+        /// <param name="addend">The value to add to this.</param>
+        /// <returns>The sum of <paramref name="addend"/> and this.</returns>
+        public BigFloat Add(BigFloat addend)
         {
             return new BigFloat(
-                numerator: this.numerator * other.denominator
-                    + other.numerator * this.denominator,
-                denominator: this.denominator * other.denominator);
+                numerator: this.numerator * addend.denominator
+                    + addend.numerator * this.denominator,
+                denominator: this.denominator * addend.denominator);
         }
 
         /// <summary>
-        /// Subtracts the value of the specified <see cref="BigFloat"/> object
-        /// from this one.
+        /// Subtracts <paramref name="subtrahend"/> from this one.
         /// </summary>
-        /// <param name="other">The value to subtract from this.</param>
+        /// <param name="subtrahend">The value to subtract from this.</param>
         /// <returns>
-        /// The difference of <paramref name="other"/> from this.
+        /// The difference between this and <paramref name="subtrahend"/>.
         /// </returns>
-        public BigFloat Subtract(BigFloat other)
+        public BigFloat Subtract(BigFloat subtrahend)
         {
             return new BigFloat(
-                numerator: this.numerator * other.denominator
-                    - other.numerator * this.denominator,
-                denominator: this.denominator * other.denominator);
+                numerator: this.numerator * subtrahend.denominator
+                    - subtrahend.numerator * this.denominator,
+                denominator: this.denominator * subtrahend.denominator);
         }
 
         /// <summary>
-        /// Multiplies the value of the specified <see cref="BigFloat"/> object
-        /// with this one.
+        /// Multiplies this value by <paramref name="multiplier"/>.
         /// </summary>
-        /// <param name="other">The value to multiply with this.</param>
+        /// <param name="multiplier">The value to multiply with this.</param>
         /// <returns>
-        /// The product of <paramref name="other"/> and this.
+        /// The product of <paramref name="multiplier"/> and this.
         /// </returns>
-        public BigFloat Multiply(BigFloat other)
+        public BigFloat Multiply(BigFloat multiplier)
         {
             return new BigFloat(
-                numerator: this.numerator * other.numerator,
-                denominator: this.denominator * other.denominator);
+                numerator: this.numerator * multiplier.numerator,
+                denominator: this.denominator * multiplier.denominator);
         }
 
         /// <summary>
-        /// Divides this value by the specified <see cref="BigFloat"/> object.
+        /// Divides this value by <paramref name="divisor"/>.
         /// </summary>
-        /// <param name="other">The value to divide by.</param>
+        /// <param name="divisor">The value to divide by.</param>
         /// <returns>
-        /// The quotient of <paramref name="other"/> and this.
+        /// The quotient of <paramref name="divisor"/> and this.
         /// </returns>
-        public BigFloat Divide(BigFloat other)
+        public BigFloat Divide(BigFloat divisor)
         {
-            if (other.numerator == 0)
+            if (divisor.numerator == 0)
             {
                 throw new System.DivideByZeroException("other");
             }
 
             return new BigFloat(
-                numerator: this.numerator * other.denominator,
-                denominator: this.denominator * other.numerator);
+                numerator: this.numerator * divisor.denominator,
+                denominator: this.denominator * divisor.numerator);
         }
 
         /// <summary>
         /// Performs integer division on this <see cref="BigFloat"/> object by
-        /// the specified <see cref="BigFloat"/> object and returns the
-        /// remainder.
+        /// <paramref name="divisor"/> and returns the remainder.
         /// </summary>
-        /// <param name="other">The value to divide by.</param>
+        /// <param name="divisor">The value to divide by.</param>
         /// <returns>
-        /// The remainder after dividing this by <paramref name="other"/>.
+        /// The remainder after dividing this by <paramref name="divisor"/>.
         /// </returns>
-        public BigFloat Remainder(BigFloat other)
+        public BigFloat Remainder(BigFloat divisor)
         {
             //b = a mod n
             //remainder = a - floor(a/n) * n
 
-            return this - Floor(this / other) * other;
+            return this - Floor(this / divisor) * divisor;
         }
 
         /// <summary>
-        /// Performs integer division on this value by the specified <see
-        /// cref="BigFloat"/> object and returns the quotient and remainder.
+        /// Performs integer division on this value by
+        /// <paramref name="divisor"/> and returns the quotient and remainder.
         /// </summary>
-        /// <param name="other">The value to divide by.</param>
+        /// <param name="divisor">The value to divide by.</param>
         /// <param name="remainder">The remainder.</param>
         /// <returns>
-        /// The quotient after dividing this by <paramref name="other"/>.
+        /// The quotient after dividing this by <paramref name="divisor"/>.
         /// </returns>
         public BigFloat DivideRemainder(
-            BigFloat other,
+            BigFloat divisor,
             out BigFloat remainder)
         {
-            BigFloat quotient = this.Divide(other);
+            BigFloat quotient = this.Divide(divisor);
 
-            remainder = BigFloat.Remainder(quotient, other);
+            remainder = BigFloat.Remainder(quotient, divisor);
 
             return quotient;
         }
 
         /// <summary>
         /// Raise the value of this <see cref="BigFloat"/> object to the
-        /// power of the value of a specified <see cref="BigFloat"/> object.
+        /// power of <paramref name="exponent"/>.
         /// </summary>
         /// <param name="exponent">
         /// The exponent to raise this object's value by.
         /// </param>
         /// <returns>
-        /// The result of raising this object by <paramref name="exponent"/>.
+        /// The result of raising this object by the power of
+        /// <paramref name="exponent"/>.
         /// </returns>
         public BigFloat Pow(int exponent)
         {
@@ -498,7 +495,7 @@ namespace BigFloatingPoint.Implementations
         }
 
         /// <summary>
-        /// Increments this <see cref="BigFloat"/> value by 1.
+        /// Increments the value of this <see cref="BigFloat"/> object by 1.
         /// </summary>
         /// <returns>
         /// The value of this <see cref="BigFloat"/> object incremented by 1.
@@ -511,7 +508,7 @@ namespace BigFloatingPoint.Implementations
         }
 
         /// <summary>
-        /// Decrements this <see cref="BigFloat"/> value by 1.
+        /// Decrements the value of this <see cref="BigFloat"/> object by 1.
         /// </summary>
         /// <returns>
         /// The value of this <see cref="BigFloat"/> object decremented by 1.
@@ -525,7 +522,7 @@ namespace BigFloatingPoint.Implementations
 
         /// <summary>
         /// Returns the smallest integral value that is greater than or equal
-        /// to this <see cref="BigFloat"/> value.
+        /// to the value of this <see cref="BigFloat"/> object.
         /// </summary>
         /// <returns>
         /// The smallest integral value that is greater than or equal to this
@@ -602,7 +599,7 @@ namespace BigFloatingPoint.Implementations
         /// Calculates the fractional part of this <see cref="BigFloat"/>
         /// value.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The fractional part of this value.</returns>
         public BigFloat Decimals()
         {
             BigInteger result = BigInteger
@@ -613,7 +610,7 @@ namespace BigFloatingPoint.Implementations
 
         /// <summary>
         /// Shift the decimal point of this <see cref="BigFloat"/> value to the
-        /// left by a specified number of decimal places.
+        /// left by <paramref name="shift"/> number of decimal places.
         /// </summary>
         /// <param name="shift">
         /// Number of decimal places to shift the decimal point to the left.
@@ -637,7 +634,7 @@ namespace BigFloatingPoint.Implementations
 
         /// <summary>
         /// Shift the decimal point of this <see cref="BigFloat"/> value to the
-        /// right by a specified number of decimal places.
+        /// right by <paramref name="shift"/> number of decimal places.
         /// </summary>
         /// <param name="shift">
         /// Number of decimal places to shift the decimal point to the right.
@@ -699,18 +696,18 @@ namespace BigFloatingPoint.Implementations
         }
 
         /// <summary>
-        /// Returns the specified base logarithm of this <see cref="BigFloat"/>
-        /// value.
+        /// Returns the <paramref name="base"/> logarithm of this <see
+        /// cref="BigFloat"/> value.
         /// </summary>
-        /// <param name="baseValue">The base of the logarithm</param>
+        /// <param name="base">The base of the logarithm</param>
         /// <returns>
-        /// The <paramref name="baseValue"/> logarithm of this <see
+        /// The <paramref name="base"/> logarithm of this <see
         /// cref="BigFloat"/> value.
         /// </returns>
-        public double Log(double baseValue)
+        public double Log(double @base)
         {
-            return BigInteger.Log(this.numerator, baseValue)
-                - BigInteger.Log(this.numerator, baseValue);
+            return BigInteger.Log(this.numerator, @base)
+                - BigInteger.Log(this.numerator, @base);
         }
 
         /// <summary>
@@ -809,10 +806,10 @@ namespace BigFloatingPoint.Implementations
         }
 
         /// <summary>
-        /// Compares this <see cref="BigFloat"/> object to a specified <see
-        /// cref="object"/> and returns an <see cref="int"/> that indicates
-        /// whether the value of this object is less than, equal to, or
-        /// greater than the value of the specified object.
+        /// Compares this <see cref="BigFloat"/> object to <paramref
+        /// name="other"/> and returns an <see cref="int"/> that indicates
+        /// whether the value of this object is less than, equal to, or greater
+        /// than the value of <paramref name="other"/>.
         /// </summary>
         /// <param name="other">The object to compare.</param>
         /// <returns>
@@ -840,8 +837,8 @@ namespace BigFloatingPoint.Implementations
         }
 
         /// <summary>
-        /// Returns a value that indicates whether the current object and a
-        /// specified <see cref="object"/> have the same value.
+        /// Returns a value that indicates whether the current object and
+        /// <paramref name="other"/> have the same value.
         /// </summary>
         /// <param name="other">The compare to compare.</param>
         /// <returns>
@@ -861,12 +858,12 @@ namespace BigFloatingPoint.Implementations
 
         /// <summary>
         /// Returns a value that indicates whether the current object and a
-        /// specified <see cref="BigFloat"/> object have the same value.
+        /// <paramref name="other"/> have the same value.
         /// </summary>
         /// <param name="other">The object to compare.</param>
         /// <returns>
-        /// true if this <see cref="BigFloat"/> object and <paramref
-        /// name="other"/> have the same value; otherwise, false.
+        /// true if this <see cref="BigFloat"/> object and
+        /// <paramref name="other"/> have the same value; otherwise, false.
         /// </returns>
         public bool Equals(BigFloat other)
         {
@@ -909,13 +906,15 @@ namespace BigFloatingPoint.Implementations
         }
 
         /// <summary>
-        /// Converts the numeric value of the specified <see cref="BigFloat"/>
-        /// object to its equivalent <see cref="string"/> representation.
+        /// Converts the numeric value of <paramref name="value"/> to its
+        /// equivalent <see cref="string"/> representation.
         /// </summary>
-        /// <param name="value">A <see cref="BigFloat"/> value.</param>
+        /// <param name="value">
+        /// The <see cref="BigFloat"/> value to convert.
+        /// </param>
         /// <returns>
-        /// The <see cref="string"/> representation of the specified
-        /// <see cref="BigFloat"/> value.
+        /// The <see cref="string"/> representation of
+        /// <paramref name="value"/>.
         /// </returns>
         public static string ToString(BigFloat value)
         {
@@ -923,10 +922,11 @@ namespace BigFloatingPoint.Implementations
         }
 
         /// <summary>
-        /// Switches the numerator and denominator of a specified <see
-        /// cref="BigFloat"/> value.
+        /// Switches the numerator and denominator of <paramref name="value"/>.
         /// </summary>
-        /// <param name="value">A <see cref="BigFloat"/> object.</param>
+        /// <param name="value">
+        /// The <see cref="BigFloat"/> object to invert.
+        /// </param>
         /// <returns>
         /// The result of the inverting <paramref name="value"/>.
         /// </returns>
@@ -936,9 +936,11 @@ namespace BigFloatingPoint.Implementations
         }
 
         /// <summary>
-        /// Decrements the specified <see cref="BigFloat"/> value by 1.
+        /// Decrements the value of <paramref name="value"/>. by 1.
         /// </summary>
-        /// <param name="value">A <see cref="BigFloat"/> object.</param>
+        /// <param name="value">
+        /// The <see cref="BigFloat"/> object to decrement.
+        /// </param>
         /// <returns>
         /// The value of <paramref name="value"/> decremented by 1.
         /// </returns>
@@ -946,84 +948,251 @@ namespace BigFloatingPoint.Implementations
         {
             return value.Decrement();
         }
+
+        /// <summary>
+        /// Negates the value of the <paramref name="value"/>.
+        /// </summary>
+        /// <param name="value">
+        /// The <see cref="BigFloat"/> object to negate.
+        /// </param>
+        /// <returns>
+        /// The result of <paramref name="value"/> multiplied by negative one
+        /// (-1).
+        /// </returns>
         public static BigFloat Negate(BigFloat value)
         {
             return value.Negate();
         }
+
+        /// <summary>
+        /// Increments the value the <paramref name="value"/> by 1.
+        /// </summary>
+        /// <param name="value">
+        /// The <see cref="BigFloat"/> object to increment.
+        /// </param>
+        /// <returns>
+        /// The value of <paramref name="value"/> incremented by 1.
+        /// </returns>
         public static BigFloat Increment(BigFloat value)
         {
             return value.Increment();
         }
+
+        /// <summary>
+        /// Gets the absolute value of the <paramref name="value"/>.
+        /// </summary>
+        /// <param name="value">
+        /// The <see cref="BigFloat"/> object to get the absolute value of.
+        /// </param>
+        /// <returns>The absolute value of <paramref name="value"/>.</returns>
         public static BigFloat Abs(BigFloat value)
         {
             return value.Abs();
         }
 
         /// <summary>
-        /// Adds two <see cref="BigFloat"/> values and returns the result.
+        /// Adds the values of two <see cref="BigFloat"/> objects and returns
+        /// the result.
         /// </summary>
-        /// <param name="left">The first value to add.</param>
-        /// <param name="right">The second value to add.</param>
+        /// <param name="leftAddend">The first value to add.</param>
+        /// <param name="rightAddend">The second value to add.</param>
         /// <returns>
-        /// The sum of <paramref name="left"/> and <paramref name="right"/>.
+        /// The sum of <paramref name="leftAddend"/> and
+        /// <paramref name="rightAddend"/>.
         /// </returns>
-        public static BigFloat Add(BigFloat left, BigFloat right)
+        public static BigFloat Add(
+            BigFloat leftAddend,
+            BigFloat rightAddend)
         {
-            return left.Add(right);
+            return leftAddend.Add(rightAddend);
         }
 
-        public static BigFloat Subtract(BigFloat left, BigFloat right)
+        /// <summary>
+        /// Subtracts <paramref name="subtrahend"/> from
+        /// <paramref name="minuend"/> and returns the result.
+        /// </summary>
+        /// <param name="minuend">The value to subtract from.</param>
+        /// <param name="subtrahend">The value to subtract by.</param>
+        /// <returns>
+        /// The difference between <paramref name="minuend"/> and
+        /// <paramref name="subtrahend"/>.
+        /// </returns>
+        public static BigFloat Subtract(
+            BigFloat minuend,
+            BigFloat subtrahend)
         {
-            return left.Subtract(right);
+            return minuend.Subtract(subtrahend);
         }
-        public static BigFloat Multiply(BigFloat left, BigFloat right)
+
+        /// <summary>
+        /// Multiplies <paramref name="multiplicand"/> by
+        /// <paramref name="multiplier"/> and returns the result.
+        /// </summary>
+        /// <param name="multiplicand">The multiplicand.</param>
+        /// <param name="multiplier">The multiplier.</param>
+        /// <returns>
+        /// The product of <paramref name="multiplicand"/> and
+        /// <paramref name="multiplier"/>.
+        /// </returns>
+        public static BigFloat Multiply(
+            BigFloat multiplicand,
+            BigFloat multiplier)
         {
-            return left.Multiply(right);
+            return multiplicand.Multiply(multiplier);
         }
-        public static BigFloat Divide(BigFloat left, BigFloat right)
+
+        /// <summary>
+        /// Divides <paramref name="dividend"/> by <paramref name="divisor"/>
+        /// and returns the result.
+        /// </summary>
+        /// <param name="dividend">The value to be divided.</param>
+        /// <param name="divisor">The value to divide by.</param>
+        /// <returns>The quotient of the division.</returns>
+        public static BigFloat Divide(
+            BigFloat dividend,
+            BigFloat divisor)
         {
-            return left.Divide(right);
+            return dividend.Divide(divisor);
         }
-        public static BigFloat Pow(BigFloat value, int exponent)
+
+        /// <summary>
+        /// Raises <paramref name="base"/> to the power of
+        /// <paramref name="exponent"/>.
+        /// </summary>
+        /// <param name="base">
+        /// The value to be raised to the power of <paramref name="exponent"/>.
+        /// </param>
+        /// <param name="exponent">
+        /// The exponent to raise <paramref name="base"/>'s value by.
+        /// </param>
+        /// <returns>
+        /// The result of raising <paramref name="base"/> to the power of
+        /// <paramref name="exponent"/>.
+        /// </returns>
+        public static BigFloat Pow(
+            BigFloat @base,
+            int exponent)
         {
-            return value.Pow(exponent);
+            return @base.Pow(exponent);
         }
-        public static BigFloat Remainder(BigFloat left, BigFloat right)
+
+        /// <summary>
+        /// Performs integer division on <paramref name="dividend"/> by
+        /// <paramref name="divisor"/> and returns the remainder.
+        /// </summary>
+        /// <param name="dividend">The value to be divided.</param>
+        /// <param name="divisor">The value to divide by.</param>
+        /// <returns>
+        /// The remainder after dividing <paramref name="dividend"/> by
+        /// <paramref name="divisor"/>.
+        /// </returns>
+        public static BigFloat Remainder(
+            BigFloat dividend,
+            BigFloat divisor)
         {
-            return left.Remainder(right);
+            return dividend.Remainder(divisor);
         }
+
+        /// <summary>
+        /// Performs integer division on <paramref name="dividend"/> by
+        /// <paramref name="divisor"/> and returns the quotient and remainder.
+        /// </summary>
+        /// <param name="dividend">The value to be divided.</param>
+        /// <param name="divisor">The value to divide by.</param>
+        /// <param name="remainder">The remainder.</param>
+        /// <returns>
+        /// The quotient after dividing <paramref name="dividend"/>
+        /// by <paramref name="divisor"/>.
+        /// </returns>
         public static BigFloat DivideRemainder(
-            BigFloat left,
-            BigFloat right,
+            BigFloat dividend,
+            BigFloat divisor,
             out BigFloat remainder)
         {
-            return left.DivideRemainder(right, out remainder);
+            return dividend.DivideRemainder(divisor, out remainder);
         }
+
+        /// <summary>
+        /// Calculates the fractional part of <paramref name="value"/>.
+        /// </summary>
+        /// <param name="value">
+        /// The value to obtain the fractional part.
+        /// </param>
+        /// <returns>The fractional part of <paramref name="value"/>.</returns>
         public static BigFloat Decimals(BigFloat value)
         {
             return value.Decimals();
         }
 
+        /// <summary>
+        /// Calculates the integral part of <paramref name="value"/>.
+        /// </summary>
+        /// <param name="value">The value to truncate.</param>
+        /// <returns>
+        /// The integral part of <paramref name="value"/>; that is, the number
+        /// that remains after any fractional digits have been discarded.
+        /// </returns>
         public static BigFloat Truncate(BigFloat value)
         {
             return value.Truncate();
         }
 
-        public static BigFloat Ceil(BigFloat value)
+        /// <summary>
+        /// Returns the smallest integral value that is greater than or equal
+        /// to <paramref name="value"/>.
+        /// </summary>
+        /// <param name="value">The value to get the ceiling of.</param>
+        /// <returns>
+        /// The smallest integral value that is greater than or equal
+        /// to <paramref name="value"/>. Note that this method returns a
+        /// <see cref="BigFloat"/> instead of an integral type.
+        /// </returns>
+        public static BigFloat Ceiling(BigFloat value)
         {
             return value.Ceiling();
         }
 
+        /// <summary>
+        /// Returns the largest integral value that is less thanor equal to
+        /// <paramref name="value"/>.
+        /// </summary>
+        /// <param name="value">The value to get the floor of.</param>
+        /// <returns>
+        /// The largest integral vaue that less than or equal to
+        /// <paramref name="value"/>. Note that this method returns a
+        /// <see cref="BigFloat"/> instead of an integral type.
+        /// </returns>
         public static BigFloat Floor(BigFloat value)
         {
             return value.Floor();
         }
 
+        /// <summary>
+        /// Rounds <paramref name="value"/> to the nearest integral value.
+        /// </summary>
+        /// <param name="value">The value to round.</param>
+        /// <returns>
+        /// The integral value nearest this value. If the fractional component
+        /// of <paramref name="value"/> is halfway between two integers, one of
+        /// which is even and the other odd, then the even number is returned.
+        /// Note that this methods returns a <see cref="BigFloat"/> instead of
+        /// an integral type.
+        /// </returns>
         public static BigFloat Round(BigFloat value)
         {
             return value.Round();
         }
 
+        /// <summary>
+        /// Converts the <see cref="string"/> representation of
+        /// <paramref name="value"/> to its <see cref="BigFloat"/> equivalent.
+        /// </summary>
+        /// <param name="value">
+        /// A <see cref="string"/> that contains the number to convert.
+        /// </param>
+        /// <returns>
+        /// A value that is equivalent to <paramref name="value"/>.
+        /// </returns>
         public static BigFloat Parse(string value) 
         {
             if (value == null)
@@ -1048,16 +1217,60 @@ namespace BigFloatingPoint.Implementations
             return new BigFloat(numerator, denominator).Factor();
         }
 
+        /// <summary>
+        /// Shift the decimal point of <paramref name="value"/> to the left by
+        /// <paramref name="shift"/> number of decimal places.
+        /// </summary>
+        /// <param name="value">The value to be shifted.</param>
+        /// <param name="shift">
+        /// The number of decimal places to shift the decimal point to the left.
+        /// </param>
+        /// <returns>
+        /// The result of shifting <paramref name="value"/> by <paramref
+        /// name="shift"/> number of decimal places to the left.
+        /// </returns>
         public static BigFloat ShiftDecimalLeft(BigFloat value, int shift)
         {
             return value.ShiftDecimalLeft(shift);
         }
 
+        /// <summary>
+        /// Shift the decimal point of <paramref name="value"/> to the right by
+        /// <paramref name="shift"/> number of decimal places.
+        /// </summary>
+        /// <param name="value">The value to be shifted.</param>
+        /// <param name="shift">
+        /// The number of decimal places to shift the decimal point to the right.
+        /// </param>
+        /// <returns>
+        /// The result of shifting <paramref name="value"/> by <paramref
+        /// name="shift"/> number of decimal places to the right.
+        /// </returns>
         public static BigFloat ShiftDecimalRight(BigFloat value, int shift)
         {
             return value.ShiftDecimalRight(shift);
         }
 
+        /// <summary>
+        /// Tries to convert the <see cref="string"/> representation of
+        /// <paramref name="value"/> to its <see cref="BigFloat"/> equivalent,
+        /// and returns a value that indicates whether the conversion
+        /// succeeded.
+        /// </summary>
+        /// <param name="value">
+        /// The <see cref="string"/> representation of a number.
+        /// </param>
+        /// <param name="result">
+        /// When this method returns, contains the <see cref="BigFloat"/>
+        /// equivalent to the number that is contained in
+        /// <paramref name="value"/>, or zero (0) if the conversion fails.
+        /// The conversion fails if <paramref name="value"/> is null or is not
+        /// of the correct format. This parameter is passed unitialized.
+        /// </param>
+        /// <returns>
+        /// true if <paramref name="value"/> was covnerted successfully;
+        /// otherwise, false.
+        /// </returns>
         public static bool TryParse(string value, out BigFloat result) 
         {
             try
@@ -1078,9 +1291,9 @@ namespace BigFloatingPoint.Implementations
         }
 
         /// <summary>
-        /// Compares two <see cref="BigFloat"/> values and returns the <see
-        /// cref="int"/> that indicates whether the first value is less than,
-        /// equal, or greater than the second value.
+        /// Compares <paramref name="left"/> to <paramref name="right"/> and
+        /// returns the <see cref="int"/> that indicates whether the first
+        /// value is less than, equal, or greater than the second value.
         /// </summary>
         /// <param name="left">The first vaue to compare.</param>
         /// <param name="right">The second vaue to compare.</param>
@@ -1095,25 +1308,51 @@ namespace BigFloatingPoint.Implementations
             return left.CompareTo(right);
         }
 
+        /// <summary>
+        /// Returns the base 10 logarithm of <paramref name="value"/>.
+        /// </summary>
+        /// <param name="value">
+        /// A number whose logarithm is to be found.
+        /// </param>
+        /// <returns>
+        /// The base 10 logarithm of <paramref name="value"/>.
+        /// </returns>
         public static double Log10(BigFloat value)
         {
             return value.Log10();
         }
 
         /// <summary>
-        /// Returns the natural (base e) logarithm of a specified number.
+        /// Returns the natural (base e) logarithm of <paramref name="value"/>.
         /// </summary>
-        /// <returns>The natural (base e) logarithm of value.</returns>
+        /// <returns>
+        /// The natural (base e) logarithm of <paramref name="value"/>.
+        /// </returns>
         public static double Log(BigFloat value)
         {
             return value.Log();
         }
 
-        public static double Log(BigFloat value, double baseValue)
+        /// <summary>
+        /// Returns the logarithm of <paramref name="value"/> with a base of
+        /// <paramref name="base"/>.
+        /// </summary>
+        /// <param name="value">A number whose logarithm is to be found.</param>
+        /// <param name="base">The base of the logarithm.</param>
+        /// <returns>The base <paramref name="base"/> logarithm of
+        /// <paramref name="value"/>.</returns>
+        public static double Log(BigFloat value, double @base)
         {
-            return value.Log(baseValue);
+            return value.Log(@base);
         }
 
+        /// <summary>
+        /// Returns the square root of <paramref name="value"/>.
+        /// </summary>
+        /// <param name="value">
+        /// The number whose square root is to be found.
+        /// </param>
+        /// <returns>The square root of <paramref name="value"/>.</returns>
         public static double Sqrt(BigFloat value)
         {
             return value.Sqrt();
