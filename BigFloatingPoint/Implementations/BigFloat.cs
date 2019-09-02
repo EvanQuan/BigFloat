@@ -889,6 +889,16 @@ namespace BigFloatingPoint.Implementations
 
         #region Static Methods
 
+        /// <summary>
+        /// Determines whether the specified object instances are considered equal.
+        /// </summary>
+        /// <param name="left">The first object to compare.</param>
+        /// <param name="right">The second object to compare.</param>
+        /// <returns>
+        /// true if the objects are considered equal; otherwise, false. If both
+        /// <paramref name="left"/> and <paramref name="right"/> are null, the
+        /// method returns true.
+        /// </returns>
         public new static bool Equals(object left, object right)
         {
             if (left == null && right == null)
@@ -1745,55 +1755,158 @@ namespace BigFloatingPoint.Implementations
             return (float)value.numerator / (float)value.denominator;
         }
 
-        //byte, sbyte, 
+        /// <summary>
+        /// Defines an implicit conversion of an unsigned byte to a
+        /// <see cref="BigFloat"/> value.
+        /// </summary>
+        /// <param name="value">
+        /// The value to convert to a <see cref="BigFloat"/>.
+        /// </param>
         public static implicit operator BigFloat(byte value)
         {
             return new BigFloat((uint)value);
         }
+
+        /// <summary>
+        /// Defines an implicit conversion of a signed byte to a
+        /// <see cref="BigFloat"/> value.
+        /// </summary>
+        /// <param name="value">
+        /// The value to convert to a <see cref="BigFloat"/>.
+        /// </param>
         public static implicit operator BigFloat(sbyte value)
         {
             return new BigFloat((int)value);
         }
+
+        /// <summary>
+        /// Defines an implicit conversion of a signed 16-bit integer to a
+        /// <see cref="BigFloat"/> value.
+        /// </summary>
+        /// <param name="value">
+        /// The value to convert to a <see cref="BigFloat"/>.
+        /// </param>
         public static implicit operator BigFloat(short value)
         {
             return new BigFloat((int)value);
         }
+
+        /// <summary>
+        /// Defines an implicit conversion of an unsigned 16-bit integer to a
+        /// <see cref="BigFloat"/> value.
+        /// </summary>
+        /// <param name="value">
+        /// The value to convert to a <see cref="BigFloat"/>.
+        /// </param>
         public static implicit operator BigFloat(ushort value)
         {
             return new BigFloat((uint)value);
         }
+
+        /// <summary>
+        /// Defines an implicit conversion of a signed 32-bit integer to a
+        /// <see cref="BigFloat"/> value.
+        /// </summary>
+        /// <param name="value">
+        /// The value to convert to a <see cref="BigFloat"/>.
+        /// </param>
         public static implicit operator BigFloat(int value)
         {
             return new BigFloat(value);
         }
+
+        /// <summary>
+        /// Defines an implicit conversion of a signed 64-bit integer to a
+        /// <see cref="BigFloat"/> value.
+        /// </summary>
+        /// <param name="value">
+        /// The value to convert to a <see cref="BigFloat"/>.
+        /// </param>
         public static implicit operator BigFloat(long value)
         {
             return new BigFloat(value);
         }
+
+        /// <summary>
+        /// Defines an implicit conversion of a signed 32-bit integer to a
+        /// <see cref="BigFloat"/> value.
+        /// </summary>
+        /// <param name="value">
+        /// The value to convert to a <see cref="BigFloat"/>.
+        /// </param>
         public static implicit operator BigFloat(uint value)
         {
             return new BigFloat(value);
         }
+
+        /// <summary>
+        /// Defines an implicit conversion of an unsigned 64-bit integer to a
+        /// <see cref="BigFloat"/> value.
+        /// </summary>
+        /// <param name="value">
+        /// The value to convert to a <see cref="BigFloat"/>.
+        /// </param>
         public static implicit operator BigFloat(ulong value)
         {
             return new BigFloat(value);
         }
+
+        /// <summary>
+        /// Defines an implicit conversion of a <see cref="decimal"/> to a
+        /// <see cref="BigFloat"/> value.
+        /// </summary>
+        /// <param name="value">
+        /// The value to convert to a <see cref="BigFloat"/>.
+        /// </param>
         public static implicit operator BigFloat(decimal value)
         {
             return new BigFloat(value);
         }
+
+        /// <summary>
+        /// Defines an implicit conversion of a <see cref="double"/> to a
+        /// <see cref="BigFloat"/> value.
+        /// </summary>
+        /// <param name="value">
+        /// The value to convert to a <see cref="BigFloat"/>.
+        /// </param>
         public static implicit operator BigFloat(double value)
         {
             return new BigFloat(value);
         }
+
+        /// <summary>
+        /// Defines an implicit conversion of a <see cref="float"/> to a
+        /// <see cref="BigFloat"/> value.
+        /// </summary>
+        /// <param name="value">
+        /// The value to convert to a <see cref="BigFloat"/>.
+        /// </param>
         public static implicit operator BigFloat(float value)
         {
             return new BigFloat(value);
         }
+
+
+        /// <summary>
+        /// Defines an implicit conversion of a <see cref="BigFloat"/> to a
+        /// <see cref="BigFloat"/> value.
+        /// </summary>
+        /// <param name="value">
+        /// The value to convert to a <see cref="BigFloat"/>.
+        /// </param>
         public static implicit operator BigFloat(BigInteger value)
         {
             return new BigFloat(value);
         }
+
+        /// <summary>
+        /// Defines an explicit conversion of a <see cref="string"/> to a
+        /// <see cref="BigFloat"/> value.
+        /// </summary>
+        /// <param name="value">
+        /// The value to convert to a <see cref="BigFloat"/>.
+        /// </param>
         public static explicit operator BigFloat(string value)
         {
             return new BigFloat(value);
