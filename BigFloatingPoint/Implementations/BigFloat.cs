@@ -1676,6 +1676,13 @@ namespace BigFloatingPoint.Implementations
             return value == 0;
         }
 
+        /// <summary>
+        /// Defines an explicit conversion of <paramref name="value"/> to a
+        /// <see cref="decimal"/> value.
+        /// </summary>
+        /// <param name="value">
+        /// The value to convert to a <see cref="decimal"/>.
+        /// </param>
         public static explicit operator decimal(BigFloat value) 
         { 
             if (decimal.MinValue > value)
@@ -1692,6 +1699,13 @@ namespace BigFloatingPoint.Implementations
             return (decimal)value.numerator / (decimal)value.denominator;
         }
 
+        /// <summary>
+        /// Defines an explicit conversion of <paramref name="value"/> to a
+        /// <see cref="double"/> value.
+        /// </summary>
+        /// <param name="value">
+        /// The value to convert to a <see cref="double"/>.
+        /// </param>
         public static explicit operator double(BigFloat value)
         {
             if (double.MinValue > value)
@@ -1708,6 +1722,13 @@ namespace BigFloatingPoint.Implementations
             return (double)value.numerator / (double)value.denominator;
         }
 
+        /// <summary>
+        /// Defines an explicit conversion of <paramref name="value"/> to a
+        /// <see cref="float"/> value.
+        /// </summary>
+        /// <param name="value">
+        /// The value to convert to a <see cref="float"/>.
+        /// </param>
         public static explicit operator float(BigFloat value)
         {
             if (float.MinValue > value)
