@@ -856,6 +856,7 @@ namespace BigFloatingPoint.Implementations
             return this.Equals((BigFloat)other);
         }
 
+        // TODO: Refactor for performance.
         /// <summary>
         /// Returns a value that indicates whether the current object and a
         /// <paramref name="other"/> have the same value.
@@ -1337,10 +1338,14 @@ namespace BigFloatingPoint.Implementations
         /// Returns the logarithm of <paramref name="value"/> with a base of
         /// <paramref name="base"/>.
         /// </summary>
-        /// <param name="value">A number whose logarithm is to be found.</param>
+        /// <param name="value">
+        /// A number whose logarithm is to be found.
+        /// </param>
         /// <param name="base">The base of the logarithm.</param>
-        /// <returns>The base <paramref name="base"/> logarithm of
-        /// <paramref name="value"/>.</returns>
+        /// <returns>
+        /// The base <paramref name="base"/> logarithm of
+        /// <paramref name="value"/>.
+        /// </returns>
         public static double Log(BigFloat value, double @base)
         {
             return value.Log(@base);
@@ -1362,93 +1367,310 @@ namespace BigFloatingPoint.Implementations
 
         #region Operators
 
+        /// <summary>
+        /// Negates the value of the <paramref name="value"/>.
+        /// </summary>
+        /// <param name="value">
+        /// The <see cref="BigFloat"/> object to negate.
+        /// </param>
+        /// <returns>
+        /// The result of <paramref name="value"/> multiplied by negative one
+        /// (-1).
+        /// </returns>
         public static BigFloat operator -(BigFloat value)
         {
             return value.Negate();
         }
-        public static BigFloat operator -(BigFloat left, BigFloat right)
+
+        /// <summary>
+        /// Subtracts <paramref name="subtrahend"/> from
+        /// <paramref name="minuend"/> and returns the result.
+        /// </summary>
+        /// <param name="minuend">The value to subtract from.</param>
+        /// <param name="subtrahend">The value to subtract by.</param>
+        /// <returns>
+        /// The difference between <paramref name="minuend"/> and
+        /// <paramref name="subtrahend"/>.
+        /// </returns>
+        public static BigFloat operator -(
+            BigFloat minuend,
+            BigFloat subtrahend)
         {
-            return left.Subtract(right);
+            return minuend.Subtract(subtrahend);
         }
+
+        /// <summary>
+        /// Decrements the value of <paramref name="value"/>. by 1.
+        /// </summary>
+        /// <param name="value">
+        /// The <see cref="BigFloat"/> object to decrement.
+        /// </param>
+        /// <returns>
+        /// The value of <paramref name="value"/> decremented by 1.
+        /// </returns>
         public static BigFloat operator --(BigFloat value)
         {
             return value.Decrement();
         }
+
+        /// <summary>
+        /// Adds the values of two <see cref="BigFloat"/> objects and returns
+        /// the result.
+        /// </summary>
+        /// <param name="leftAddend">The first value to add.</param>
+        /// <param name="rightAddend">The second value to add.</param>
+        /// <returns>
+        /// The sum of <paramref name="leftAddend"/> and
+        /// <paramref name="rightAddend"/>.
+        /// </returns>
         public static BigFloat operator +(BigFloat left, BigFloat right)
         {
             return left.Add(right);
         }
+
+        /// <summary>
+        /// Gets the absolute value of the <paramref name="value"/>.
+        /// </summary>
+        /// <param name="value">
+        /// The <see cref="BigFloat"/> object to get the absolute value of.
+        /// </param>
+        /// <returns>The absolute value of <paramref name="value"/>.</returns>
         public static BigFloat operator +(BigFloat value)
         {
             return value.Abs();
         }
+
+        /// <summary>
+        /// Increments the value the <paramref name="value"/> by 1.
+        /// </summary>
+        /// <param name="value">
+        /// The <see cref="BigFloat"/> object to increment.
+        /// </param>
+        /// <returns>
+        /// The value of <paramref name="value"/> incremented by 1.
+        /// </returns>
         public static BigFloat operator ++(BigFloat value)
         {
             return value.Increment();
         }
-        public static BigFloat operator %(BigFloat left, BigFloat right)
+
+        /// <summary>
+        /// Performs integer division on <paramref name="dividend"/> by
+        /// <paramref name="divisor"/> and returns the remainder.
+        /// </summary>
+        /// <param name="dividend">The value to be divided.</param>
+        /// <param name="divisor">The value to divide by.</param>
+        /// <returns>
+        /// The remainder after dividing <paramref name="dividend"/> by
+        /// <paramref name="divisor"/>.
+        /// </returns>
+        public static BigFloat operator %(
+            BigFloat dividend,
+            BigFloat divisor)
         {
-            return left.Remainder(right);
+            return dividend.Remainder(divisor);
         }
-        public static BigFloat operator *(BigFloat left, BigFloat right)
+
+        /// <summary>
+        /// Multiplies <paramref name="multiplicand"/> by
+        /// <paramref name="multiplier"/> and returns the result.
+        /// </summary>
+        /// <param name="multiplicand">The multiplicand.</param>
+        /// <param name="multiplier">The multiplier.</param>
+        /// <returns>
+        /// The product of <paramref name="multiplicand"/> and
+        /// <paramref name="multiplier"/>.
+        /// </returns>
+        public static BigFloat operator *(
+            BigFloat multiplicand,
+            BigFloat multiplier)
         {
-            return left.Multiply(right);
+            return multiplicand.Multiply(multiplier);
         }
+
+        /// <summary>
+        /// Divides <paramref name="dividend"/> by <paramref name="divisor"/>
+        /// and returns the result.
+        /// </summary>
+        /// <param name="dividend">The value to be divided.</param>
+        /// <param name="divisor">The value to divide by.</param>
+        /// <returns>The quotient of the division.</returns>
         public static BigFloat operator /(BigFloat left, BigFloat right)
         {
             return left.Divide(right);
         }
+
+        // TODO: Change to bitwise shift
+        /// <summary>
+        /// Shift the decimal point of <paramref name="value"/> to the right by
+        /// <paramref name="shift"/> number of decimal places.
+        /// </summary>
+        /// <param name="value">The value to be shifted.</param>
+        /// <param name="shift">
+        /// The number of decimal places to shift the decimal point to the right.
+        /// </param>
+        /// <returns>
+        /// The result of shifting <paramref name="value"/> by <paramref
+        /// name="shift"/> number of decimal places to the right.
+        /// </returns>
         public static BigFloat operator >>(BigFloat value, int shift)
         {
             return value.ShiftDecimalRight(shift);
         }
+
+        // TODO: Change to bitwise shift
+        /// <summary>
+        /// Shift the decimal point of <paramref name="value"/> to the left by
+        /// <paramref name="shift"/> number of decimal places.
+        /// </summary>
+        /// <param name="value">The value to be shifted.</param>
+        /// <param name="shift">
+        /// The number of decimal places to shift the decimal point to the left.
+        /// </param>
+        /// <returns>
+        /// The result of shifting <paramref name="value"/> by <paramref
+        /// name="shift"/> number of decimal places to the left.
+        /// </returns>
         public static BigFloat operator <<(BigFloat value, int shift)
         {
             return value.ShiftDecimalLeft(shift);
         }
+
         public static BigFloat operator ^(BigFloat left, int right)
         {
             return left.Pow(right);
         }
+
+        // TODO: Change to bitwise one's complement
+        /// <summary>
+        /// Switches the numerator and denominator of <paramref name="value"/>.
+        /// </summary>
+        /// <param name="value">
+        /// The <see cref="BigFloat"/> object to invert.
+        /// </param>
+        /// <returns>
+        /// The result of the inverting <paramref name="value"/>.
+        /// </returns>
         public static BigFloat operator ~(BigFloat value)
         {
             return value.Inverse();
         }
 
+        /// <summary>
+        /// Returns a value that indicates whether <paramref name="left"/> and
+        /// <paramref name="right"/> have different values.
+        /// </summary>
+        /// <param name="left">The first value to compare.</param>
+        /// <param name="right">The seconed value to compare.</param>
+        /// <returns>
+        /// true if <paramref name="left"/> and <paramref name="right"/> are
+        /// not equal; otherwise false.
+        /// </returns>
         public static bool operator !=(BigFloat left, BigFloat right)
         {
             return Compare(left, right) != 0;
         }
 
+        /// <summary>
+        /// Returns a value that indicates whether <paramref name="left"/> and
+        /// <paramref name="right"/> are equal.
+        /// </summary>
+        /// <param name="left">The first value to compare.</param>
+        /// <param name="right">The seconed value to compare.</param>
+        /// <returns>
+        /// true if <paramref name="left"/> and <paramref name="right"/> are
+        /// equal; otherwise false.
+        /// </returns>
         public static bool operator ==(BigFloat left, BigFloat right)
         {
             return Compare(left, right) == 0;
         }
 
+        /// <summary>
+        /// Returns a value that indicates whether <paramref name="left"/> is
+        /// less than <paramref name="right"/>.
+        /// </summary>
+        /// <param name="left">The first value to compare.</param>
+        /// <param name="right">The seconed value to compare.</param>
+        /// <returns>
+        /// true if <paramref name="left"/> is less than
+        /// <paramref name="right"/>; otherwise false.
+        /// </returns>
         public static bool operator <(BigFloat left, BigFloat right)
         {
             return Compare(left, right) < 0;
         }
 
+        /// <summary>
+        /// Returns a value that indicates whether <paramref name="left"/> is
+        /// less than or equal to <paramref name="right"/>.
+        /// </summary>
+        /// <param name="left">The first value to compare.</param>
+        /// <param name="right">The seconed value to compare.</param>
+        /// <returns>
+        /// true if <paramref name="left"/> is less than or equal to
+        /// <paramref name="right"/>; otherwise false.
+        /// </returns>
         public static bool operator <=(BigFloat left, BigFloat right)
         {
             return Compare(left, right) <= 0;
         }
 
+        /// <summary>
+        /// Returns a value that indicates whether <paramref name="left"/> is
+        /// greater than <paramref name="right"/>.
+        /// </summary>
+        /// <param name="left">The first value to compare.</param>
+        /// <param name="right">The seconed value to compare.</param>
+        /// <returns>
+        /// true if <paramref name="left"/> is greater than
+        /// <paramref name="right"/>; otherwise false.
+        /// </returns>
         public static bool operator >(BigFloat left, BigFloat right)
         {
             return Compare(left, right) > 0;
         }
 
+        /// <summary>
+        /// Returns a value that indicates whether <paramref name="left"/> is
+        /// greater than or equal to <paramref name="right"/>.
+        /// </summary>
+        /// <param name="left">The first value to compare.</param>
+        /// <param name="right">The seconed value to compare.</param>
+        /// <returns>
+        /// true if <paramref name="left"/> is greater than or equal to
+        /// <paramref name="right"/>; otherwise false.
+        /// </returns>
         public static bool operator >=(BigFloat left, BigFloat right)
         {
             return Compare(left, right) >= 0;
         }
+
+        // TODO: Remove
+        /// <summary>
+        /// Returns a value that indicates whether <paramref name="value"/> is
+        /// true.
+        /// </summary>
+        /// <param name="value">The value to check if true.</param>
+        /// <returns>
+        /// true if <paramref name="value"/> is not equal to zero (0);
+        /// otherwise false.
+        /// </returns>
         public static bool operator true(BigFloat value)
         {
             return value != 0;
         }
 
+        // TODO: Remove
+        /// <summary>
+        /// Returns a value that indicates whether <paramref name="value"/> is
+        /// false.
+        /// </summary>
+        /// <param name="value">The value to check if false.</param>
+        /// <returns>
+        /// true if <paramref name="value"/> is equal to zero (0); otherwise
+        /// false.
+        /// </returns>
         public static bool operator false(BigFloat value)
         {
             return value == 0;
