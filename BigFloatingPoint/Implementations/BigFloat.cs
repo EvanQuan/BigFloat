@@ -329,6 +329,12 @@ namespace BigFloatingPoint.Implementations
 
         #region Instance Methods
 
+        /// <summary>
+        /// Adds the value of the specified <see cref="BigFloat"/> object to
+        /// this one.
+        /// </summary>
+        /// <param name="other">The value to add to this.</param>
+        /// <returns>The sum of <paramref name="other"/> and this.</returns>
         public BigFloat Add(BigFloat other)
         {
             return new BigFloat(
@@ -337,6 +343,14 @@ namespace BigFloatingPoint.Implementations
                 denominator: this.denominator * other.denominator);
         }
 
+        /// <summary>
+        /// Subtracts the value of the specified <see cref="BigFloat"/> object
+        /// from this one.
+        /// </summary>
+        /// <param name="other">The value to subtract from this.</param>
+        /// <returns>
+        /// The difference of <paramref name="other"/> from this.
+        /// </returns>
         public BigFloat Subtract(BigFloat other)
         {
             return new BigFloat(
@@ -345,6 +359,14 @@ namespace BigFloatingPoint.Implementations
                 denominator: this.denominator * other.denominator);
         }
 
+        /// <summary>
+        /// Multiplies the value of the specified <see cref="BigFloat"/> object
+        /// with this one.
+        /// </summary>
+        /// <param name="other">The value to multiply with this.</param>
+        /// <returns>
+        /// The product of <paramref name="other"/> and this.
+        /// </returns>
         public BigFloat Multiply(BigFloat other)
         {
             return new BigFloat(
@@ -352,6 +374,13 @@ namespace BigFloatingPoint.Implementations
                 denominator: this.denominator * other.denominator);
         }
 
+        /// <summary>
+        /// Divides this value by the specified <see cref="BigFloat"/> object.
+        /// </summary>
+        /// <param name="other">The value to divide by.</param>
+        /// <returns>
+        /// The quotient of <paramref name="other"/> and this.
+        /// </returns>
         public BigFloat Divide(BigFloat other)
         {
             if (other.numerator == 0)
@@ -364,6 +393,14 @@ namespace BigFloatingPoint.Implementations
                 denominator: this.denominator * other.numerator);
         }
 
+        /// <summary>
+        /// Performs integer division on this value by the specified <see
+        /// cref="BigFloat"/> object and returns the remainder.
+        /// </summary>
+        /// <param name="other">The value to divide by.</param>
+        /// <returns>
+        /// The remainder after dividing this by <paramref name="other"/>.
+        /// </returns>
         public BigFloat Remainder(BigFloat other)
         {
             //b = a mod n
@@ -372,6 +409,15 @@ namespace BigFloatingPoint.Implementations
             return this - Floor(this / other) * other;
         }
 
+        /// <summary>
+        /// Performs integer division on this value by the specified <see
+        /// cref="BigFloat"/> object and returns the quotient and remainder.
+        /// </summary>
+        /// <param name="other">The value to divide by.</param>
+        /// <param name="remainder">The remainder.</param>
+        /// <returns>
+        /// The quotient after dividing this by <paramref name="other"/>.
+        /// </returns>
         public BigFloat DivideRemainder(
             BigFloat other,
             out BigFloat remainder)
@@ -383,6 +429,14 @@ namespace BigFloatingPoint.Implementations
             return quotient;
         }
 
+        /// <summary>
+        /// Raise this value to the power of a specified <see cref="BigFloat"/>
+        /// value.
+        /// </summary>
+        /// <param name="exponent">The exponent to raise this value by.</param>
+        /// <returns>
+        /// The result of raising this value by the exponent value.
+        /// </returns>
         public BigFloat Pow(int exponent)
         {
             if (this.numerator.IsZero)
@@ -403,6 +457,10 @@ namespace BigFloatingPoint.Implementations
                 denominator: BigInteger.Pow(this.denominator, exponent));
         }
 
+        /// <summary>
+        /// Gets the absolute value of this <see cref="BigFloat"/> object.
+        /// </summary>
+        /// <returns>The absolute value of this.</returns>
         public BigFloat Abs()
         {
             return new BigFloat(
@@ -410,6 +468,13 @@ namespace BigFloatingPoint.Implementations
                 denominator: this.denominator);
         }
 
+        /// <summary>
+        /// Negates this <see cref="BigFloat"/> value.
+        /// </summary>
+        /// <returns>
+        /// The result of this <see cref="BigFloat"/> value multiplied by
+        /// negative one (-1).
+        /// </returns>
         public BigFloat Negate()
         {
             return new BigFloat(
@@ -417,6 +482,11 @@ namespace BigFloatingPoint.Implementations
                 denominator: this.denominator);
         }
 
+        /// <summary>
+        /// Switches the numerator and denominator of this <see
+        /// cref="BigFloat"/> value.
+        /// </summary>
+        /// <returns>The result of inverting this value.</returns>
         public BigFloat Inverse()
         {
             return new BigFloat(
@@ -424,6 +494,12 @@ namespace BigFloatingPoint.Implementations
                 denominator: this.numerator);
         }
 
+        /// <summary>
+        /// Increments this <see cref="BigFloat"/> value by 1.
+        /// </summary>
+        /// <returns>
+        /// The value of this <see cref="BigFloat"/> value incremented by 1.
+        /// </returns>
         public BigFloat Increment()
         {
             return new BigFloat(
@@ -431,6 +507,12 @@ namespace BigFloatingPoint.Implementations
                 denominator: this.denominator);
         }
 
+        /// <summary>
+        /// Decrements this <see cref="BigFloat"/> value by 1.
+        /// </summary>
+        /// <returns>
+        /// The value of this <see cref="BigFloat"/> value decremented by 1.
+        /// </returns>
         public BigFloat Decrement()
         {
             return new BigFloat(
@@ -438,18 +520,36 @@ namespace BigFloatingPoint.Implementations
                 denominator: this.denominator);
         }
 
-        public BigFloat Ceil()
+        /// <summary>
+        /// Returns the smallest integral value that is greater than or equal
+        /// to this <see cref="BigFloat"/> value.
+        /// </summary>
+        /// <returns>
+        /// The smallest integral value that is greater than or equal to this
+        /// value. Note that this method returns a <see cref="BigFloat"/>
+        /// instead of an integral type.
+        /// </returns>
+        public BigFloat Ceiling()
         {
-            BigInteger ceilNumerator = this.numerator < 0
+            BigInteger numeratorCeiling = this.numerator < 0
                 ? this.numerator
                     - BigInteger.Remainder(this.numerator, this.denominator)
                 : this.numerator
                     + this.denominator
                     - BigInteger.Remainder(this.numerator, this.denominator);
 
-            return new BigFloat(ceilNumerator, this.denominator).Factor();
+            return new BigFloat(numeratorCeiling, this.denominator).Factor();
         }
 
+        /// <summary>
+        /// The returns the largest integgral value that is less than or equal
+        /// to this <see cref="BigFloat"/> value.
+        /// </summary>
+        /// <returns>
+        /// The largest integral value that is less than or equal to this
+        /// value. Note that this method returns a <see cref="BigFloat"/>
+        /// instead of an integral type.
+        /// </returns>
         public BigFloat Floor()
         {
             BigInteger floorNumerator = this.numerator < 0
@@ -463,17 +563,30 @@ namespace BigFloatingPoint.Implementations
         }
 
         /// <summary>
-        /// Round to the nearest integer value.
+        /// Rounds this <see cref="BigFloat"/> value to the nearest integral value.
         /// </summary>
-        /// <returns>The rounded value.</returns>
+        /// <returns>
+        /// The integral vaue nearest this value. If the fractional component
+        /// of this is halfway between two integers, one of which is even and
+        /// the other odd, then the even number is returned. Note that this
+        /// method returns a <see cref="BigFloat"/> instead of an integral
+        /// type.
+        /// </returns>
         public BigFloat Round() 
         {
             //get remainder. Over divisor see if it is > new BigFloat(0.5)
             BigFloat value = BigFloat.Decimals(this);
 
-            return value.CompareTo(OneHalf) >= 0 ? this.Ceil() : this.Floor();
+            return value.CompareTo(OneHalf) >= 0 ? this.Ceiling() : this.Floor();
         }
 
+        /// <summary>
+        /// Calculates the integral part of this <see cref="BigFloat"/> value.
+        /// </summary>
+        /// <returns>
+        /// The integral part of this; that is, the number that
+        /// remains after any fractional digits have been discarded.
+        /// </returns>
         public BigFloat Truncate()
         {
             BigInteger truncatedNumerator = this.numerator
@@ -482,6 +595,11 @@ namespace BigFloatingPoint.Implementations
             return new BigFloat(truncatedNumerator, this.denominator).Factor();
         }
 
+        /// <summary>
+        /// Calculates the fractional part of this <see cref="BigFloat"/>
+        /// value.
+        /// </summary>
+        /// <returns></returns>
         public BigFloat Decimals()
         {
             BigInteger result = BigInteger
@@ -490,6 +608,17 @@ namespace BigFloatingPoint.Implementations
             return new BigFloat(result, this.denominator);
         }
 
+        /// <summary>
+        /// Shift the decimal point of this <see cref="BigFloat"/> value to the
+        /// left by a specified number of decimal places.
+        /// </summary>
+        /// <param name="shift">
+        /// Number of decimal places to shift the decimal point to the left.
+        /// </param>
+        /// <returns>
+        /// The result of shifting this <see cref="BigFloat"/> value by
+        /// <paramref name="shift"/> number of decimal places to the left.
+        /// </returns>
         public BigFloat ShiftDecimalLeft(int shift)
         {
             if (shift < 0)
@@ -503,6 +632,17 @@ namespace BigFloatingPoint.Implementations
             return new BigFloat(shiftedNumerator, this.denominator);
         }
 
+        /// <summary>
+        /// Shift the decimal point of this <see cref="BigFloat"/> value to the
+        /// right by a specified number of decimal places.
+        /// </summary>
+        /// <param name="shift">
+        /// Number of decimal places to shift the decimal point to the right.
+        /// </param>
+        /// <returns>
+        /// The result of shifting this <see cref="BigFloat"/> value by
+        /// <paramref name="shift"/> number of decimal places to the right.
+        /// </returns>
         public BigFloat ShiftDecimalRight(int shift)
         {
             if (shift < 0)
@@ -516,12 +656,25 @@ namespace BigFloatingPoint.Implementations
             return new BigFloat(this.numerator, shiftedDenominator);
         }
 
+        // TODO: Test for edge cases and add to documentation.
+        /// <summary>
+        /// Returns the square root of this <see cref="BigFloat"/> value.
+        /// </summary>
+        /// <returns>
+        /// The square root of this value.
+        /// </returns>
         public double Sqrt()
         {
             return Math.Pow(10, BigInteger.Log10(this.numerator) / 2)
                 / Math.Pow(10, BigInteger.Log10(this.denominator) / 2);
         }
 
+        /// <summary>
+        /// Returns the base 10 logarithm of this <see cref="BigFloat"/> value.
+        /// </summary>
+        /// <returns>
+        /// The base 10 logarithm of this value; that is, log 10(this value).
+        /// </returns>
         public double Log10()
         {
             return BigInteger.Log10(this.numerator)
@@ -529,12 +682,12 @@ namespace BigFloatingPoint.Implementations
         }
 
         /// <summary>
-        /// Returns the natural (base e) logarithm of this <see
-        /// cref="BigFloat"/> instance.
+        /// Returns the natural (base e) logarithm of this
+        /// <see cref="BigFloat"/> value.
         /// </summary>
         /// <returns>
         /// The natural (base e) logarithm of this <see cref="BigFloat"/>
-        /// instance.
+        /// value.
         /// </returns>
         public double Log()
         {
@@ -542,6 +695,15 @@ namespace BigFloatingPoint.Implementations
                 - BigInteger.Log(this.denominator);
         }
 
+        /// <summary>
+        /// Returns the specified base logarithm of this <see cref="BigFloat"/>
+        /// value.
+        /// </summary>
+        /// <param name="baseValue">The base of the logarithm</param>
+        /// <returns>
+        /// The <paramref name="baseValue"/> logarithm of this <see
+        /// cref="BigFloat"/> value.
+        /// </returns>
         public double Log(double baseValue)
         {
             return BigInteger.Log(this.numerator, baseValue)
@@ -553,8 +715,10 @@ namespace BigFloatingPoint.Implementations
         /// object to its equivalent <see cref="string"/> representation in
         /// decimal format up to <see cref="DefaultPrecision"/> precision.
         /// </summary>
-        /// <returns>The string representation of the current <see
-        /// cref="BigFloat"/> value.</returns>
+        /// <returns>
+        /// The string representation of the current <see cref="BigFloat"/>
+        /// value.
+        /// </returns>
         public override string ToString()
         {
             return ToString(DefaultPrecision);
@@ -641,6 +805,22 @@ namespace BigFloatingPoint.Implementations
             return BigInteger.Compare(one, two);
         }
 
+        /// <summary>
+        /// Compares this <see cref="BigFloat"/> instance to a specified <see
+        /// cref="object"/> and returns an <see cref="int"/> that indicates
+        /// whether the value of this instance is less than, equal to, or
+        /// greater than the value of the specified object.
+        /// </summary>
+        /// <param name="other">The object to compare.</param>
+        /// <returns>
+        /// A signed <see cref="int"/> that indicates the relationship of the
+        /// current instance to the <paramref name="other"/> parameter. If the
+        /// return value is less than zero, the current instance is less than
+        /// <paramref name="other"/>. If the return value is zero, the current
+        /// instance equals <paramref name="other"/>. If the return value is
+        /// greater than zero, the current instance is greater than <paramref
+        /// name="other"/> or <paramref name="other"/> is null.
+        /// </returns>
         public int CompareTo(object other)
         {
             if (other == null)
@@ -656,6 +836,16 @@ namespace BigFloatingPoint.Implementations
             return CompareTo((BigFloat)other);
         }
 
+        /// <summary>
+        /// Returns a value that indicates whether the current instance and a
+        /// specified <see cref="object"/> have the same value.
+        /// </summary>
+        /// <param name="other">The compare to compare.</param>
+        /// <returns>
+        /// true if the <paramref name="other"/> argument is a <see
+        /// cref="BigFloat"/>, and its value is equal to the value of the
+        /// current <see cref="BigFloat"/> instance; otherwise false.
+        /// </returns>
         public override bool Equals(object other)
         {
             if (other == null || GetType() != other.GetType())
@@ -666,6 +856,15 @@ namespace BigFloatingPoint.Implementations
             return this.Equals((BigFloat)other);
         }
 
+        /// <summary>
+        /// Returns a value that indicates whether the current instance and a
+        /// specified <see cref="BigFloat"/> object have the same value.
+        /// </summary>
+        /// <param name="other">The object to compare.</param>
+        /// <returns>
+        /// true if this <see cref="BigFloat"/> object and <paramref
+        /// name="other"/> have the same value; otherwise, false.
+        /// </returns>
         public bool Equals(BigFloat other)
         {
             BigFloat selfFactored = this.Factor();
@@ -676,9 +875,10 @@ namespace BigFloatingPoint.Implementations
         }
 
         /// <summary>
-        /// Returns the hash code for this instance.
+        /// Returns the hash code for the current <see cref="BigFloat"/>
+        /// object.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A 32-bit signed integer hash code.</returns>
         public override int GetHashCode()
         {
             return base.GetHashCode();
@@ -705,6 +905,15 @@ namespace BigFloatingPoint.Implementations
             return (((BigInteger)left).Equals((BigInteger)right));
         }
 
+        /// <summary>
+        /// Converts the numeric value of the specified <see cref="BigFloat"/>
+        /// object to its equivalent <see cref="string"/> representation.
+        /// </summary>
+        /// <param name="value">A <see cref="BigFloat"/> value.</param>
+        /// <returns>
+        /// The <see cref="string"/> representation of the specified
+        /// <see cref="BigFloat"/> value.
+        /// </returns>
         public static string ToString(BigFloat value)
         {
             return value.ToString();
@@ -730,10 +939,20 @@ namespace BigFloatingPoint.Implementations
         {
             return value.Abs();
         }
+
+        /// <summary>
+        /// Adds two <see cref="BigFloat"/> values and returns the result.
+        /// </summary>
+        /// <param name="left">The first value to add.</param>
+        /// <param name="right">The second value to add.</param>
+        /// <returns>
+        /// The sum of <paramref name="left"/> and <paramref name="right"/>.
+        /// </returns>
         public static BigFloat Add(BigFloat left, BigFloat right)
         {
             return left.Add(right);
         }
+
         public static BigFloat Subtract(BigFloat left, BigFloat right)
         {
             return left.Subtract(right);
@@ -773,7 +992,7 @@ namespace BigFloatingPoint.Implementations
 
         public static BigFloat Ceil(BigFloat value)
         {
-            return value.Ceil();
+            return value.Ceiling();
         }
 
         public static BigFloat Floor(BigFloat value)
