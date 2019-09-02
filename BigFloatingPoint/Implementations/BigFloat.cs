@@ -1755,6 +1755,10 @@ namespace BigFloatingPoint.Implementations
             return (float)value.numerator / (float)value.denominator;
         }
 
+        #endregion
+
+        #region Implicit Converions
+
         /// <summary>
         /// Defines an implicit conversion of an unsigned byte to a
         /// <see cref="BigFloat"/> value.
@@ -1887,7 +1891,6 @@ namespace BigFloatingPoint.Implementations
             return new BigFloat(value);
         }
 
-
         /// <summary>
         /// Defines an implicit conversion of a <see cref="BigFloat"/> to a
         /// <see cref="BigFloat"/> value.
@@ -1899,6 +1902,10 @@ namespace BigFloatingPoint.Implementations
         {
             return new BigFloat(value);
         }
+
+        #endregion
+
+        #region Explicit Conversions
 
         /// <summary>
         /// Defines an explicit conversion of a <see cref="string"/> to a
