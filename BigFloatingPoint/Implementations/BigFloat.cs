@@ -1433,9 +1433,11 @@ namespace BigFloatingPoint.Implementations
         /// The sum of <paramref name="leftAddend"/> and
         /// <paramref name="rightAddend"/>.
         /// </returns>
-        public static BigFloat operator +(BigFloat left, BigFloat right)
+        public static BigFloat operator +(
+            BigFloat leftAddend,
+            BigFloat rightAddend)
         {
-            return left.Add(right);
+            return leftAddend.Add(rightAddend);
         }
 
         /// <summary>

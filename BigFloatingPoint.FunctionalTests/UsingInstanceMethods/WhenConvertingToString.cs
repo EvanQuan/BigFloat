@@ -1,4 +1,5 @@
-﻿using BigFloatingPoint.Implementations;
+﻿using BigFloatingPoint.FunctionalTests;
+using BigFloatingPoint.Implementations;
 using Xunit;
 
 namespace BigFloatingPoint.UnitTests.UsingInstanceMethods
@@ -19,8 +20,8 @@ namespace BigFloatingPoint.UnitTests.UsingInstanceMethods
         [InlineData(-0.15d, "-0.15")]
         [InlineData(-0.00001d, "-0.00001")]
         [InlineData(-0.000001d, "-0.000001")]
-        [InlineData(double.MaxValue, "179769313486232000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000")]
-        [InlineData(double.MinValue, "-179769313486232000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000")]
+        [InlineData(double.MaxValue, ConstantStrings.MaxDouble)]
+        [InlineData(double.MinValue, ConstantStrings.MinDouble)]
         public void ShouldWorkForDouble(double value, string expected)
         {
             Assert.Equal(expected, new BigFloat(value).ToString());
@@ -40,8 +41,8 @@ namespace BigFloatingPoint.UnitTests.UsingInstanceMethods
         [InlineData(-0.15f, "-0.15")]
         [InlineData(-0.00001f, "-0.00001")]
         [InlineData(-0.000001f, "-0.000001")]
-        [InlineData(float.MaxValue, "340282300000000000000000000000000000000")]
-        [InlineData(float.MinValue, "-340282300000000000000000000000000000000")]
+        [InlineData(float.MaxValue, ConstantStrings.MaxFloat)]
+        [InlineData(float.MinValue, ConstantStrings.MinFloat)]
         public void ShouldWorkForFloat(float value, string expected)
         {
             Assert.Equal(expected, new BigFloat(value).ToString());
@@ -51,8 +52,8 @@ namespace BigFloatingPoint.UnitTests.UsingInstanceMethods
         [InlineData(0, "0")]
         [InlineData(1, "1")]
         [InlineData(-1, "-1")]
-        [InlineData(int.MaxValue, "2147483647")]
-        [InlineData(int.MinValue, "-2147483648")]
+        [InlineData(int.MaxValue, ConstantStrings.MaxInt)]
+        [InlineData(int.MinValue, ConstantStrings.MinInt)]
         public void ShouldWorkForInt(int value, string expected)
         {
             Assert.Equal(expected, new BigFloat(value).ToString());
