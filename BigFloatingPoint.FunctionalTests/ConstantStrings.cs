@@ -6,6 +6,7 @@ namespace BigFloatingPoint.FunctionalTests
 {
     internal static class ConstantStrings
     {
+        public const string Negative = "-";
         public const string MaxInt = "2147483647";
         public const string MaxIntPlus1 = "2147483648";
         public const string MaxIntTimes2 = "4294967294";
