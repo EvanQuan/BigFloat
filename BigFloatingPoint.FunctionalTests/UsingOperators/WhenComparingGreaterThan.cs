@@ -30,7 +30,7 @@ namespace BigFloatingPoint.FunctionalTests.UsingOperators
         [InlineData("-1", "-0.99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999")]
         [InlineData("-0.1", "0")]
         [InlineData("0", "0.1")]
-        [InlineData("1", "0.1")]
+        [InlineData("0.1", "1")]
         [InlineData("1", "1.0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001")]
         public void ShouldReturnFalse(string left, string right)
         {
