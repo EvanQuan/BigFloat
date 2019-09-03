@@ -13,7 +13,7 @@ namespace BigFloatingPoint.FunctionalTests.UsingOperators
         [InlineData("1.0", "-3.0", "-0.333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333")]
         [InlineData("1.0", "0.5", "2.0")]
         [InlineData("1.0", "-0.5", "-2.0")]
-        [InlineData("-1.0", "0.5", "2.0")]
+        [InlineData("-1.0", "0.5", "-2.0")]
         [InlineData("1.0", "1.5", "0.666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666")]
         [InlineData("1.0", "-1.5", "-0.666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666")]
         [InlineData("1.0", "2.0", "0.5")]
@@ -29,7 +29,7 @@ namespace BigFloatingPoint.FunctionalTests.UsingOperators
         [InlineData("5.0", "4.0", "1.25")]
         [InlineData("5.0", "-4.0", "-1.25")]
         [InlineData("-5.0", "4.0", "-1.25")]
-        [InlineData("-5.0", "-4.0", "-1.25")]
+        [InlineData("-5.0", "-4.0", "1.25")]
         public void ShouldGetQuotient(
             string dividend,
             string divisor,
