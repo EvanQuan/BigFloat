@@ -6,10 +6,13 @@ namespace BigFloatingPoint.FunctionalTests.UsingOperators
     public class WhenPostDecrementing
     {
         [Theory]
-        [InlineData(0.0, -1.0)]
-        [InlineData(1.0, 0.0)]
-        [InlineData(-1.0, -2.0)]
-        public void ShouldMutateSelf(double value, double expected)
+        [InlineData("0.0", "-1.0")]
+        [InlineData("1.0", "0.0")]
+        [InlineData("-1.0", "-2.0")]
+        [InlineData(ConstantStrings.MinInt, ConstantStrings.MinIntMinus1)]
+        [InlineData(ConstantStrings.MinFloat, ConstantStrings.MinFloatMinus1)]
+        [InlineData(ConstantStrings.MinDouble, ConstantStrings.MinDoubleMinus1)]
+        public void ShouldMutateSelf(string value, string expected)
         {
             BigFloat bigValue = new BigFloat(value);
             BigFloat expectedBigValue = new BigFloat(expected);
@@ -21,10 +24,13 @@ namespace BigFloatingPoint.FunctionalTests.UsingOperators
         }
 
         [Theory]
-        [InlineData(0.0, -1.0)]
-        [InlineData(1.0, 0.0)]
-        [InlineData(-1.0, -2.0)]
-        public void ShouldPostDecrement(double value, double expected)
+        [InlineData("0.0", "-1.0")]
+        [InlineData("1.0", "0.0")]
+        [InlineData("-1.0", "-2.0")]
+        [InlineData(ConstantStrings.MinInt, ConstantStrings.MinIntMinus1)]
+        [InlineData(ConstantStrings.MinFloat, ConstantStrings.MinFloatMinus1)]
+        [InlineData(ConstantStrings.MinDouble, ConstantStrings.MinDoubleMinus1)]
+        public void ShouldPostDecrement(string value, string expected)
         {
             BigFloat bigValue = new BigFloat(value);
             BigFloat expectedDecrement = new BigFloat(expected);
