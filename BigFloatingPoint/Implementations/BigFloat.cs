@@ -1926,10 +1926,10 @@ namespace BigFloatingPoint.Implementations
         #region Private Methods
 
         /// <summary>
-        /// Factor
+        /// Simplify the <see cref="numerator"/> and <see cref="denominator"/>.
         /// </summary>
         /// <remarks>Factoring can be very slow.</remarks>
-        /// <returns></returns>
+        /// <returns>A factored instance of this.</returns>
         public BigFloat Factor()
         {
             // Avoid recalculating if already factored.
@@ -1951,10 +1951,12 @@ namespace BigFloatingPoint.Implementations
         }
 
         /// <summary>
-        /// The digits left of the decimal point.
+        /// Get the digits left of the decimal point.
         /// </summary>
-        /// <param name="remainder"></param>
-        /// <returns></returns>
+        /// <param name="remainder">
+        /// The fractional component not included in the unit.
+        /// </param>
+        /// <returns>The integral component of this instance.</returns>
         private string GetUnitString(out BigInteger remainder)
         {
             return BigInteger
@@ -1968,9 +1970,12 @@ namespace BigFloatingPoint.Implementations
         /// <summary>
         /// The digits right of the decimal point.
         /// </summary>
-        /// <param name="precision"></param>
-        /// <param name="trailingZeros"></param>
-        /// <returns></returns>
+        /// <param name="precision">The number of digits to include.</param>
+        /// <param name="trailingZeros">
+        /// true if trailing zeros should be included, else they will be
+        /// stripped.
+        /// </param>
+        /// <returns>The fractional component of this instance.</returns>
         private string GetMantissaString(int precision, bool trailingZeros)
         {
             BigInteger decimals = BigInteger
@@ -2020,17 +2025,26 @@ namespace BigFloatingPoint.Implementations
         }
 
         /// <summary>
-        /// The presence of decimal point is determined by the value of the
-        /// mantissa.
+        /// Optionally get the decimal point dividing the integral and
+        /// fractional components of this instance. The presence of decimal
+        /// point is determined by the value of the mantissa.
         /// </summary>
-        /// <param name="remainder"></param>
-        /// <param name="trailingZeros"></param>
-        /// <returns></returns>
+        /// <param name="remainder">The fractional component of this instance</param>
+        /// <param name="trailingZeros">
+        /// true if trailing zeros should be included, else they will be
+        /// stripped.
+        /// </param>
+        /// <returns>
+        /// A decimal if there is a non-zero fractional component;
+        /// else <see cref="string.Empty"/>
+        /// </returns>
         private string GetDecimalString(
             BigInteger remainder,
             bool trailingZeros)
         {
-            return (remainder.IsZero && !trailingZeros) ? "" : ".";
+            return (remainder.IsZero && !trailingZeros)
+                ? string.Empty
+                : ".";
         }
 
         #endregion
