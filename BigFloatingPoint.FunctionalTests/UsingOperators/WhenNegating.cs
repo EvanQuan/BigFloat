@@ -19,12 +19,12 @@ namespace BigFloatingPoint.FunctionalTests.UsingOperators
         [InlineData(-double.MaxValue, double.MaxValue)]
         public void ShouldNegate(double expected, double actual)
         {
-            BigFloat actualBig = -new BigFloat(actual);
-            BigFloat expectedBig = new BigFloat(expected);
+            BigFloat bigActual = -new BigFloat(actual);
+            BigFloat bigExpected = new BigFloat(expected);
 
             Assert.Equal(
-                expected: expectedBig,
-                actual: actualBig);
+                expected: bigExpected,
+                actual: bigActual);
         }
 
         [Theory]
@@ -40,11 +40,11 @@ namespace BigFloatingPoint.FunctionalTests.UsingOperators
         [InlineData(-double.MaxValue)]
         public void ShouldReturnSelfWhenDoubleNegating(double value)
         {
-            BigFloat valueBig = new BigFloat(value);
-            BigFloat doubleNegatedValue = -(-valueBig);
+            BigFloat bigValue = new BigFloat(value);
+            BigFloat doubleNegatedValue = -(-bigValue);
 
             Assert.Equal(
-                expected: valueBig,
+                expected: bigValue,
                 actual: doubleNegatedValue);
         }
     }
