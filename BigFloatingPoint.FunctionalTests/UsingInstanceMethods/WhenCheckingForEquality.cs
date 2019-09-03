@@ -1,7 +1,7 @@
 ﻿using BigFloatingPoint.Implementations;
 using Xunit;
 
-namespace BigFloatingPoint.UnitTests.UsingInstanceMethods
+namespace BigFloatingPoint.FunctionalTests.UsingInstanceMethods
 {
     public class WhenCheckingForEquality
     {

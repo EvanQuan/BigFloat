@@ -2,7 +2,7 @@
 using System;
 using Xunit;
 
-namespace BigFloatingPoint.UnitTests.UsingInstanceMethods
+namespace BigFloatingPoint.FunctionalTests.UsingInstanceMethods
 {
     public class WhenAdding
     {

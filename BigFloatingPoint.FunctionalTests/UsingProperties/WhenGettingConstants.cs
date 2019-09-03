@@ -1,7 +1,7 @@
 ﻿using BigFloatingPoint.Implementations;
 using Xunit;
 
-namespace BigFloatingPoint.UnitTests.UsingProperties
+namespace BigFloatingPoint.FunctionalTests.UsingProperties
 {
     public class WhenGettingConstants
     {
