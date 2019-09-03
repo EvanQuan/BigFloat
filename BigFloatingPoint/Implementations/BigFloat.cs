@@ -437,7 +437,7 @@ namespace BigFloatingPoint.Implementations
         /// The result of raising this object by the power of
         /// <paramref name="exponent"/>.
         /// </returns>
-        public BigFloat Pow(int exponent)
+        public BigFloat PowerTo(int exponent)
         {
             if (this.numerator.IsZero)
             {
@@ -461,7 +461,7 @@ namespace BigFloatingPoint.Implementations
         /// Gets the absolute value of this <see cref="BigFloat"/> object.
         /// </summary>
         /// <returns>The absolute value of this.</returns>
-        public BigFloat Abs()
+        public BigFloat AbsoluteValue()
         {
             return new BigFloat(
                 numerator: BigInteger.Abs(this.numerator),
@@ -663,7 +663,7 @@ namespace BigFloatingPoint.Implementations
         /// <returns>
         /// The square root of this value.
         /// </returns>
-        public double Sqrt()
+        public double SquareRoot()
         {
             return Math.Pow(10, BigInteger.Log10(this.numerator) / 2)
                 / Math.Pow(10, BigInteger.Log10(this.denominator) / 2);
@@ -996,9 +996,9 @@ namespace BigFloatingPoint.Implementations
         /// The <see cref="BigFloat"/> object to get the absolute value of.
         /// </param>
         /// <returns>The absolute value of <paramref name="value"/>.</returns>
-        public static BigFloat Abs(BigFloat value)
+        public static BigFloat AbsoluteValue(BigFloat value)
         {
-            return value.Abs();
+            return value.AbsoluteValue();
         }
 
         /// <summary>
@@ -1080,11 +1080,11 @@ namespace BigFloatingPoint.Implementations
         /// The result of raising <paramref name="base"/> to the power of
         /// <paramref name="exponent"/>.
         /// </returns>
-        public static BigFloat Pow(
+        public static BigFloat PowerTo(
             BigFloat @base,
             int exponent)
         {
-            return @base.Pow(exponent);
+            return @base.PowerTo(exponent);
         }
 
         /// <summary>
@@ -1368,9 +1368,9 @@ namespace BigFloatingPoint.Implementations
         /// The number whose square root is to be found.
         /// </param>
         /// <returns>The square root of <paramref name="value"/>.</returns>
-        public static double Sqrt(BigFloat value)
+        public static double SquareRoot(BigFloat value)
         {
-            return value.Sqrt();
+            return value.SquareRoot();
         }
 
         #endregion
@@ -1449,7 +1449,7 @@ namespace BigFloatingPoint.Implementations
         /// <returns>The absolute value of <paramref name="value"/>.</returns>
         public static BigFloat operator +(BigFloat value)
         {
-            return value.Abs();
+            return value.AbsoluteValue();
         }
 
         /// <summary>
@@ -1550,7 +1550,7 @@ namespace BigFloatingPoint.Implementations
 
         public static BigFloat operator ^(BigFloat left, int right)
         {
-            return left.Pow(right);
+            return left.PowerTo(right);
         }
 
         // TODO: Change to bitwise one's complement

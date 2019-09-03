@@ -21,11 +21,11 @@ namespace Com.Github.EvanQuan.BigFloatingPoint.Example
             Console.WriteLine("Arithmetic:             " + (Math.Pow(1234567 * 12,2) - 15));
 
             //non-static methods
-            Console.WriteLine("BigFloat w/ non-static: " + bigfloat1.Multiply(12).Pow(2).Subtract(15));
+            Console.WriteLine("BigFloat w/ non-static: " + bigfloat1.Multiply(12).PowerTo(2).Subtract(15));
 
             //static methods
             bigfloat2 = BigFloat.Multiply(bigfloat2, 12);
-            bigfloat2 = BigFloat.Pow(bigfloat2, 2);
+            bigfloat2 = BigFloat.PowerTo(bigfloat2, 2);
             bigfloat2 = BigFloat.Subtract(bigfloat2, new BigInteger(15));
             Console.WriteLine("BigFloat w/ static    : " + bigfloat2);
 
@@ -40,7 +40,7 @@ namespace Com.Github.EvanQuan.BigFloatingPoint.Example
             Console.WriteLine("Ceiling(1234567.1234)      = " + BigFloat.Ceiling(bigfloat4));
             Console.WriteLine("Floor(1234567.1234)     = " + BigFloat.Floor(bigfloat4));
             Console.WriteLine("Inverse(1234567.1234)   = " + BigFloat.Inverse(bigfloat4).ToString(20));
-            Console.WriteLine("Sqrt(1234567.1234)      = " + BigFloat.Sqrt(bigfloat4));
+            Console.WriteLine("SquareRoot(1234567.1234)      = " + BigFloat.SquareRoot(bigfloat4));
             Console.WriteLine("log10(1234567.1234)     = " + BigFloat.Log10(bigfloat4));
 
             //large numbers
