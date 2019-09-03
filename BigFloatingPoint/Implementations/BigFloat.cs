@@ -1507,9 +1507,9 @@ namespace BigFloatingPoint.Implementations
         /// <param name="dividend">The value to be divided.</param>
         /// <param name="divisor">The value to divide by.</param>
         /// <returns>The quotient of the division.</returns>
-        public static BigFloat operator /(BigFloat left, BigFloat right)
+        public static BigFloat operator /(BigFloat dividend, BigFloat divisor)
         {
-            return left.Divide(right);
+            return dividend.Divide(divisor);
         }
 
         // TODO: Change to bitwise shift
