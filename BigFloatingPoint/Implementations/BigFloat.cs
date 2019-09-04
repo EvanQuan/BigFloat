@@ -899,7 +899,7 @@ namespace BigFloatingPoint.Implementations
         /// <paramref name="left"/> and <paramref name="right"/> are null, the
         /// method returns true.
         /// </returns>
-        public new static bool Equals(object left, object right)
+        public static new bool Equals(object left, object right)
         {
             if (left == null && right == null)
             {
@@ -909,11 +909,12 @@ namespace BigFloatingPoint.Implementations
             {
                 return false;
             }
-            if (left.GetType() != right.GetType())
+            if (left.GetType() == typeof(BigFloat)
+                && right.GetType() == typeof(BigFloat))
             {
-                return false;
+                return ((BigFloat)left).Equals((BigFloat)right);
             }
-            return (((BigInteger)left).Equals((BigInteger)right));
+            return object.Equals(left, right);
         }
 
         /// <summary>

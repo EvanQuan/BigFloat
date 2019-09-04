@@ -2,7 +2,7 @@
 using BigFloatingPoint.Implementations;
 using Xunit;
 
-namespace BigFloatingPoint.FunctionalTests.UsingOperators
+namespace BigFloatingPoint.FunctionalTests.UsingInstanceMethods
 {
     public class WhenComparingEquals : EqualsTestBase
     {
@@ -10,7 +10,7 @@ namespace BigFloatingPoint.FunctionalTests.UsingOperators
             BigFloat left,
             BigFloat right)
         {
-            return left == right;
+            return left.Equals(right);
         }
     }
 }
