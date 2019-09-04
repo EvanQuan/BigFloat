@@ -1,30 +1,17 @@
-﻿using BigFloatingPoint.Implementations;
+﻿using BigFloatingPoint.FunctionalTests.TestBases;
+using BigFloatingPoint.Implementations;
 using System;
 using Xunit;
 
 namespace BigFloatingPoint.FunctionalTests.UsingInstanceMethods
 {
-    public class WhenAdding
+    public class WhenAdding : AddingTestBase
     {
-        [Theory]
-        [InlineData(0, 0, 0)]
-        [InlineData(1, 1, 2)]
-        [InlineData(-1, -1, -2)]
-        [InlineData(0.5, 0.5, 1)]
-        [InlineData(0, 1, 1)]
-        [InlineData(0, -1, -1)]
-        [InlineData(0, 0.5, 0.5)]
-        [InlineData(1, 0, 1)]
-        [InlineData(-1, 0, -1)]
-        [InlineData(0.5, 0, 0.5)]
-        public void ShouldAddCorrectly(double num1, double num2, double expected)
+        protected override BigFloat Add(
+            BigFloat leftAddend,
+            BigFloat rightAddend)
         {
-            BigFloat float1 = new BigFloat(num1);
-            BigFloat float2 = new BigFloat(num2);
-
-            BigFloat sum = float1.Add(float2);
-
-            Assert.Equal(new BigFloat(expected), sum);
+            return leftAddend.Add(rightAddend);
         }
     }
 }
