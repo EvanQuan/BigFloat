@@ -1,7 +1,7 @@
 ﻿using BigFloatingPoint.FunctionalTests.TestBases;
 using BigFloatingPoint.Implementations;
 
-namespace BigFloatingPoint.FunctionalTests.UsingOperators
+namespace BigFloatingPoint.FunctionalTests.UsingStaticMethods
 {
     public class WhenSubtracting : SubtractingTestBase
     {
@@ -9,7 +9,7 @@ namespace BigFloatingPoint.FunctionalTests.UsingOperators
             BigFloat minuend,
             BigFloat subtrahend)
         {
-            return minuend - subtrahend;
+            return BigFloat.Subtract(minuend, subtrahend);
         }
     }
 }
