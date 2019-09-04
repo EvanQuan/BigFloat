@@ -6,7 +6,7 @@ namespace BigFloatingPoint.FunctionalTests.UsingOperators
 {
     public class WhenComparingEquals : EqualsTestBase
     {
-        protected override bool Potato(
+        protected override bool Equal(
             BigFloat left,
             BigFloat right)
         {

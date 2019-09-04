@@ -1,4 +1,5 @@
 ﻿using BigFloatingPoint.Implementations;
+using System.Numerics;
 using Xunit;
 
 namespace BigFloatingPoint.FunctionalTests.TestBases
@@ -26,7 +27,7 @@ namespace BigFloatingPoint.FunctionalTests.TestBases
             BigFloat big1 = new BigFloat(value);
             BigFloat big2 = new BigFloat(value);
 
-            Assert.True(Potato(big1, big2));
+            Assert.True(Equal(big1, big2));
         }
 
         [Theory]
@@ -50,7 +51,7 @@ namespace BigFloatingPoint.FunctionalTests.TestBases
             BigFloat big1 = new BigFloat(value1);
             BigFloat big2 = new BigFloat(value2);
 
-            Assert.False(this.Potato(big1, big2));
+            Assert.False(this.Equal(big1, big2));
         }
 
         [Fact]
@@ -59,10 +60,10 @@ namespace BigFloatingPoint.FunctionalTests.TestBases
             BigFloat oneHalf = new BigFloat(1, 2);
             BigFloat twoQuarters = new BigFloat(2, 4);
 
-            Assert.True(this.Potato(oneHalf, twoQuarters));
+            Assert.True(this.Equal(oneHalf, twoQuarters));
         }
 
-        protected abstract bool Potato(
+        protected abstract bool Equal(
             BigFloat left,
             BigFloat right);
     }

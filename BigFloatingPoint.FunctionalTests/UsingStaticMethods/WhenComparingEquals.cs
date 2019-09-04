@@ -10,7 +10,7 @@ namespace BigFloatingPoint.FunctionalTests.UsingStaticMethods
 {
     public class WhenComparingEquals : EqualsTestBase
     {
-        protected override bool Potato(
+        protected override bool Equal(
             BigFloat left,
             BigFloat right)
         {
