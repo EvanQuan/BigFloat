@@ -54,13 +54,25 @@ namespace BigFloatingPoint.FunctionalTests.TestBases
             Assert.False(this.Equal(big1, big2));
         }
 
-        [Fact]
-        public void ShouldBeEqualWhenNotSimplified()
+        [Theory]
+        [InlineData(1, 2, 2, 4)]
+        [InlineData(1, 1, -1, -1)]
+        [InlineData(-1, 1, 1, -1)]
+        public void ShouldBeEqualWhenNotSimplified(
+            int numerator1,
+            int denominator1,
+            int numerator2,
+            int denominator2)
         {
-            BigFloat oneHalf = new BigFloat(1, 2);
-            BigFloat twoQuarters = new BigFloat(2, 4);
+            BigFloat one = new BigFloat(
+                numerator1,
+                denominator1);
 
-            Assert.True(this.Equal(oneHalf, twoQuarters));
+            BigFloat two = new BigFloat(
+                numerator2,
+                denominator2);
+
+            Assert.True(this.Equal(one, two));
         }
 
         protected abstract bool Equal(

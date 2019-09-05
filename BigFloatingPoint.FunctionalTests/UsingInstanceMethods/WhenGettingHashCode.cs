@@ -36,7 +36,7 @@ namespace BigFloatingPoint.FunctionalTests.UsingInstanceMethods
         [InlineData(-1, -1, 1, 1)]
         [InlineData(-1, -2, 1, 2)]
         [InlineData(-1, 1, 1, -1)]
-        public void ShouldReturnSameHashForSameValueDifferentFactors(
+        public void ShouldReturnDifferentHashForSameValueDifferentFactors(
             int numerator1,
             int denominator1,
             int numerator2,
@@ -44,6 +44,26 @@ namespace BigFloatingPoint.FunctionalTests.UsingInstanceMethods
         {
             BigFloat one = new BigFloat(numerator1, denominator1);
             BigFloat two = new BigFloat(numerator2, denominator2);
+
+            Assert.NotEqual(
+                one.GetHashCode(),
+                two.GetHashCode());
+        }
+
+        [Theory]
+        [InlineData(1, 1, 2, 2)]
+        [InlineData(1, 2, 2, 4)]
+        [InlineData(-1, -1, 1, 1)]
+        [InlineData(-1, -2, 1, 2)]
+        [InlineData(-1, 1, 1, -1)]
+        public void ShouldReturnDifferentHashWhenSimplified(
+            int numerator1,
+            int denominator1,
+            int numerator2,
+            int denominator2)
+        {
+            BigFloat one = new BigFloat(numerator1, denominator1).Simplify();
+            BigFloat two = new BigFloat(numerator2, denominator2).Simplify();
 
             Assert.Equal(
                 one.GetHashCode(),
