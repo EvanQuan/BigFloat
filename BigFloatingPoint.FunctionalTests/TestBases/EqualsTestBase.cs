@@ -55,7 +55,7 @@ namespace BigFloatingPoint.FunctionalTests.TestBases
         }
 
         [Fact]
-        public void ShouldBeEqualWhenNotFactored()
+        public void ShouldBeEqualWhenNotSimplified()
         {
             BigFloat oneHalf = new BigFloat(1, 2);
             BigFloat twoQuarters = new BigFloat(2, 4);

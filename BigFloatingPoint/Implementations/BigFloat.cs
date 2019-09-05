@@ -33,7 +33,12 @@ namespace BigFloatingPoint.Implementations
         /// </summary>
         private string SignString => Sign < 0 ? "-" : "";
 
-        private readonly bool factored;
+        /// <summary>
+        /// Specifies whether this <see cref="BigFloat"/> object is simplified;
+        /// that is, the numerator and denominators in the fractional form are
+        /// reduced to the lowest possible value.
+        /// </summary>
+        public bool Simplified { get; }
 
         #endregion
 
@@ -184,7 +189,7 @@ namespace BigFloatingPoint.Implementations
             BigFloat bf = Parse(value);
             this.numerator = bf.numerator;
             this.denominator = bf.denominator;
-            this.factored = denominator.IsOne;
+            this.Simplified = denominator.IsOne;
         }
 
         /// <summary>
@@ -207,13 +212,14 @@ namespace BigFloatingPoint.Implementations
 
             this.numerator = numerator;
             this.denominator = BigInteger.Abs(denominator);
-            this.factored = denominator.IsOne;
+
+            this.Simplified = denominator.IsOne;
         }
 
         private BigFloat(
             BigInteger numerator,
             BigInteger denominator,
-            bool factored)
+            bool simplified)
         {
             if (denominator.IsZero)
             {
@@ -222,7 +228,7 @@ namespace BigFloatingPoint.Implementations
 
             this.numerator = numerator;
             this.denominator = BigInteger.Abs(denominator);
-            this.factored = factored;
+            this.Simplified = simplified;
         }
 
         /// <summary>
@@ -234,7 +240,7 @@ namespace BigFloatingPoint.Implementations
         {
             this.numerator = value;
             this.denominator = BigInteger.One;
-            this.factored = denominator.IsOne;
+            this.Simplified = denominator.IsOne;
         }
 
 
@@ -247,7 +253,7 @@ namespace BigFloatingPoint.Implementations
         {
             this.numerator = value.numerator;
             this.denominator = value.denominator;
-            this.factored = value.factored;
+            this.Simplified = value.Simplified;
         }
 
         /// <summary>
@@ -259,7 +265,7 @@ namespace BigFloatingPoint.Implementations
         {
             this.numerator = new BigInteger(value);
             this.denominator = BigInteger.One;
-            this.factored = denominator.IsOne;
+            this.Simplified = denominator.IsOne;
         }
 
         /// <summary>
@@ -271,7 +277,7 @@ namespace BigFloatingPoint.Implementations
         {
             this.numerator = new BigInteger(value);
             this.denominator = BigInteger.One;
-            this.factored = denominator.IsOne;
+            this.Simplified = denominator.IsOne;
         }
 
         /// <summary>
@@ -283,7 +289,7 @@ namespace BigFloatingPoint.Implementations
         {
             this.numerator = new BigInteger(value);
             this.denominator = BigInteger.One;
-            this.factored = denominator.IsOne;
+            this.Simplified = denominator.IsOne;
         }
 
         /// <summary>
@@ -295,7 +301,7 @@ namespace BigFloatingPoint.Implementations
         {
             this.numerator = new BigInteger(value);
             this.denominator = BigInteger.One;
-            this.factored = denominator.IsOne;
+            this.Simplified = denominator.IsOne;
         }
 
         /// <summary>
@@ -538,7 +544,7 @@ namespace BigFloatingPoint.Implementations
                     + this.denominator
                     - BigInteger.Remainder(this.numerator, this.denominator);
 
-            return new BigFloat(numeratorCeiling, this.denominator).Factor();
+            return new BigFloat(numeratorCeiling, this.denominator).Simplify();
         }
 
         /// <summary>
@@ -559,7 +565,7 @@ namespace BigFloatingPoint.Implementations
                 : this.numerator
                 - BigInteger.Remainder(this.numerator, this.denominator);
 
-            return new BigFloat(floorNumerator, this.denominator).Factor();
+            return new BigFloat(floorNumerator, this.denominator).Simplify();
         }
 
         /// <summary>
@@ -592,7 +598,7 @@ namespace BigFloatingPoint.Implementations
             BigInteger truncatedNumerator = this.numerator
                 - BigInteger.Remainder(this.numerator, this.denominator);
 
-            return new BigFloat(truncatedNumerator, this.denominator).Factor();
+            return new BigFloat(truncatedNumerator, this.denominator).Simplify();
         }
 
         /// <summary>
@@ -735,12 +741,12 @@ namespace BigFloatingPoint.Implementations
         /// cref="BigFloat"/> value.</returns>
         public string ToString(int precision, bool trailingZeros = false) 
         {
-            BigFloat factoredSelf = Factor();
+            BigFloat simplified = Simplify();
 
-            return factoredSelf.SignString
-                + factoredSelf.GetUnitString(out BigInteger remainder)
-                + factoredSelf.GetDecimalString(remainder, trailingZeros)
-                + factoredSelf.GetMantissaString(precision, trailingZeros);
+            return simplified.SignString
+                + simplified.GetUnitString(out BigInteger remainder)
+                + simplified.GetDecimalString(remainder, trailingZeros)
+                + simplified.GetMantissaString(precision, trailingZeros);
         }
 
         /// <summary>
@@ -752,7 +758,7 @@ namespace BigFloatingPoint.Implementations
         /// cref="BigFloat"/> value.</returns>
         public string ToMixString()
         {
-            BigFloat factoredSelf = Factor();
+            BigFloat factoredSelf = Simplify();
 
             BigInteger quotient = BigInteger
                 .DivRem(
@@ -774,7 +780,7 @@ namespace BigFloatingPoint.Implementations
         /// cref="BigFloat"/> value.</returns>
         public string ToRationalString()
         {
-            BigFloat factoredSelf = Factor();
+            BigFloat factoredSelf = Simplify();
 
             return factoredSelf.numerator + "/" + factoredSelf.denominator;
         }
@@ -868,8 +874,8 @@ namespace BigFloatingPoint.Implementations
         /// </returns>
         public bool Equals(BigFloat other)
         {
-            BigFloat selfFactored = this.Factor();
-            BigFloat otherFactored = other.Factor();
+            BigFloat selfFactored = this.Simplify();
+            BigFloat otherFactored = other.Simplify();
 
             return otherFactored.numerator == selfFactored.numerator
                 && otherFactored.denominator == selfFactored.denominator;
@@ -1220,13 +1226,13 @@ namespace BigFloatingPoint.Implementations
             if (pos < 0)
             {
                 //no decimal point
-                return new BigFloat(BigInteger.Parse(value)).Factor();
+                return new BigFloat(BigInteger.Parse(value)).Simplify();
             }
             //decimal point (length - pos - 1)
             BigInteger numerator = BigInteger.Parse(value);
             BigInteger denominator = BigInteger.Pow(10, value.Length - pos);
 
-            return new BigFloat(numerator, denominator).Factor();
+            return new BigFloat(numerator, denominator).Simplify();
         }
 
         /// <summary>
@@ -1931,15 +1937,15 @@ namespace BigFloatingPoint.Implementations
         /// </summary>
         /// <remarks>Factoring can be very slow.</remarks>
         /// <returns>A factored instance of this.</returns>
-        public BigFloat Factor()
+        public BigFloat Simplify()
         {
             // Avoid recalculating if already factored.
-            if (this.factored)
+            if (this.Simplified)
             {
                 return this;
             }
 
-            //factor numerator and denominator
+            // Find GCD of numerator and denominator
             BigInteger factor = BigInteger
                 .GreatestCommonDivisor(
                     this.numerator,
@@ -1948,7 +1954,7 @@ namespace BigFloatingPoint.Implementations
             return new BigFloat(
                 numerator: this.numerator / factor,
                 denominator: this.denominator / factor,
-                factored: true);
+                simplified: true);
         }
 
         /// <summary>
