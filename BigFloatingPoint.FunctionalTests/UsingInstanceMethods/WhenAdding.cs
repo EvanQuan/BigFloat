@@ -5,7 +5,7 @@ using Xunit;
 
 namespace BigFloatingPoint.FunctionalTests.UsingInstanceMethods
 {
-    public class WhenAdding : AddingTestBase
+    public class WhenAdding : AddTestBase
     {
         protected override BigFloat Add(
             BigFloat leftAddend,

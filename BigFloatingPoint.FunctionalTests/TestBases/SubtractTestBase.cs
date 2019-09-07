@@ -3,7 +3,7 @@ using Xunit;
 
 namespace BigFloatingPoint.FunctionalTests.TestBases
 {
-    public abstract class SubtractingTestBase
+    public abstract class SubtractTestBase
     {
         [Theory]
         [InlineData("0", "0", "0")]

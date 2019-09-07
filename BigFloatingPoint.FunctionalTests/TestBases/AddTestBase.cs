@@ -3,7 +3,7 @@ using Xunit;
 
 namespace BigFloatingPoint.FunctionalTests.TestBases
 {
-    public abstract class AddingTestBase
+    public abstract class AddTestBase
     {
 
         [Theory]

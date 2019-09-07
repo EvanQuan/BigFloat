@@ -3,7 +3,7 @@ using BigFloatingPoint.Implementations;
 
 namespace BigFloatingPoint.FunctionalTests.UsingStaticMethods
 {
-    public class WhenAdding : AddingTestBase
+    public class WhenAdding : AddTestBase
     {
         protected override BigFloat Add(BigFloat leftAddend, BigFloat rightAddend)
         {
