@@ -97,5 +97,69 @@ namespace BigFloatingPoint.FunctionalTests.UsingProperties
                 expected: new BigFloat(value),
                 actual: bigFloat);
         }
+
+        [Fact]
+        public void ShouldEqualMaxInt()
+        {
+            Assert.Equal(
+                expected: int.MaxValue,
+                actual: BigFloat.MaxInt);
+        }
+
+        [Fact]
+        public void ShouldEqualMinInt()
+        {
+            Assert.Equal(
+                expected: int.MinValue,
+                actual: BigFloat.MinInt);
+        }
+
+        [Fact]
+        public void ShouldEqualMaxLong()
+        {
+            Assert.Equal(
+                expected: long.MaxValue,
+                actual: BigFloat.MaxLong);
+        }
+
+        [Fact]
+        public void ShouldEqualMinLong()
+        {
+            Assert.Equal(
+                expected: long.MinValue,
+                actual: BigFloat.MinLong);
+        }
+
+        [Fact]
+        public void ShouldEqualMaxFloat()
+        {
+            Assert.Equal(
+                expected: float.MaxValue,
+                actual: BigFloat.MaxFloat);
+        }
+
+        [Fact]
+        public void ShouldEqualMinFloat()
+        {
+            Assert.Equal(
+                expected: float.MinValue,
+                actual: BigFloat.MinFloat);
+        }
+
+        [Fact]
+        public void ShouldEqualMaxDouble()
+        {
+            Assert.Equal(
+                expected: double.MaxValue,
+                actual: BigFloat.MaxDouble);
+        }
+
+        [Fact]
+        public void ShouldEqualMinDouble()
+        {
+            Assert.Equal(
+                expected: double.MinValue,
+                actual: BigFloat.MinDouble);
+        }
     }
 }
