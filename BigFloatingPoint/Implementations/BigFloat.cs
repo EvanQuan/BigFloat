@@ -210,7 +210,10 @@ namespace BigFloatingPoint.Implementations
                 throw new ArgumentException(DenominatorIsZeroExceptionMessage);
             }
 
-            this.numerator = numerator;
+            // The numerator takes the sign of the whole fraction
+            this.numerator = BigInteger.Abs(numerator)
+                * (numerator.Sign * denominator.Sign);
+            // The denominator is always positive.
             this.denominator = BigInteger.Abs(denominator);
 
             this.Simplified = denominator.IsOne;
@@ -799,13 +802,9 @@ namespace BigFloatingPoint.Implementations
         /// </returns>
         public int CompareTo(BigFloat other)
         {
-            // Make copies
-            BigInteger one = this.numerator;
-            BigInteger two = other.numerator;
-
             // Cross multiply
-            one *= other.denominator;
-            two *= this.denominator;
+            BigInteger one = this.numerator * other.denominator;
+            BigInteger two = other.numerator * this.denominator;
 
             // Test
             return BigInteger.Compare(one, two);

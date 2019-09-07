@@ -46,6 +46,25 @@ namespace BigFloatingPoint.FunctionalTests.TestBases
         }
 
         [Theory]
+        [InlineData(1, 1, 1, 1)]
+        [InlineData(-1, 1, 1, -1)]
+        [InlineData(1, 1, -1, -1)]
+        [InlineData(1, 2, 2, 4)]
+        public void ShouldReturnZeroForEquivalentFractions(
+            int numerator1,
+            int denominator1,
+            int numerator2,
+            int denominator2)
+        {
+            BigFloat one = new BigFloat(numerator1, denominator1);
+            BigFloat two = new BigFloat(numerator2, denominator2);
+
+            Assert.Equal(
+                expected: 0,
+                actual: this.CompareTo(one, two));
+        }
+
+        [Theory]
         [InlineData("1", "0.0")]
         [InlineData("0", "-1.0")]
         [InlineData("2", "1.0")]
