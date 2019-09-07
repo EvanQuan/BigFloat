@@ -1,5 +1,4 @@
 ﻿using BigFloatingPoint.Implementations;
-using System.Numerics;
 using Xunit;
 
 namespace BigFloatingPoint.FunctionalTests.TestBases
