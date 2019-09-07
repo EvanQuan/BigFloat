@@ -56,7 +56,7 @@ namespace BigFloatingPoint.FunctionalTests.UsingInstanceMethods
         [InlineData(-1, -1, 1, 1)]
         [InlineData(-1, -2, 1, 2)]
         [InlineData(-1, 1, 1, -1)]
-        public void ShouldReturnDifferentHashWhenSimplified(
+        public void ShouldReturnSameHashWhenSimplified(
             int numerator1,
             int denominator1,
             int numerator2,

@@ -27,7 +27,7 @@ namespace BigFloatingPoint.FunctionalTests.TestBases
             BigFloat big1 = new BigFloat(value);
             BigFloat big2 = new BigFloat(value);
 
-            Assert.True(Equal(big1, big2));
+            Assert.True(this.Equal(big1, big2));
         }
 
         [Theory]

@@ -11,7 +11,7 @@ namespace BigFloatingPoint.Implementations
     /// Represents an arbitrarily large signed floating point number.
     /// </summary>
     [Serializable]
-    public readonly struct BigFloat :
+    public class BigFloat :
         IComparable,
         IComparable<BigFloat>,
         IEquatable<BigFloat>
@@ -854,12 +854,14 @@ namespace BigFloatingPoint.Implementations
         /// </returns>
         public override bool Equals(object other)
         {
-            if (other == null || GetType() != other.GetType())
+            BigFloat otherFloat = other as BigFloat;
+
+            if (other is null)
             {
                 return false;
             }
 
-            return this.Equals((BigFloat)other);
+            return this.Equals(otherFloat);
         }
 
         // TODO: Refactor for performance.
@@ -874,11 +876,7 @@ namespace BigFloatingPoint.Implementations
         /// </returns>
         public bool Equals(BigFloat other)
         {
-            BigFloat selfFactored = this.Simplify();
-            BigFloat otherFactored = other.Simplify();
-
-            return otherFactored.numerator == selfFactored.numerator
-                && otherFactored.denominator == selfFactored.denominator;
+            return this == other;
         }
 
         /// <summary>
@@ -915,10 +913,17 @@ namespace BigFloatingPoint.Implementations
             {
                 return false;
             }
-            if (left.GetType() == typeof(BigFloat)
-                && right.GetType() == typeof(BigFloat))
+
+            BigFloat value = left as BigFloat;
+            if (!(value is null))
             {
-                return ((BigFloat)left).Equals((BigFloat)right);
+                return value.Equals(right);
+            }
+
+            value = right as BigFloat;
+            if (!(value is null))
+            {
+                return value.Equals(left);
             }
             return object.Equals(left, right);
         }
