@@ -11,7 +11,7 @@ namespace BigFloatingPoint.Implementations
     /// Represents an arbitrarily large signed floating point number.
     /// </summary>
     [Serializable]
-    public class BigFloat :
+    public readonly struct BigFloat :
         IComparable,
         IComparable<BigFloat>,
         IEquatable<BigFloat>
@@ -853,14 +853,14 @@ namespace BigFloatingPoint.Implementations
         /// </returns>
         public override bool Equals(object other)
         {
-            BigFloat otherFloat = other as BigFloat;
-
-            if (other is null)
+            try
+            {
+                return this.Equals((BigFloat)other);
+            }
+            catch (Exception)
             {
                 return false;
             }
-
-            return this.Equals(otherFloat);
         }
 
         // TODO: Refactor for performance.
@@ -913,18 +913,22 @@ namespace BigFloatingPoint.Implementations
                 return false;
             }
 
-            BigFloat value = left as BigFloat;
-            if (!(value is null))
+            try
             {
-                return value.Equals(right);
+                return ((BigFloat)left).Equals(right);
             }
+            catch (Exception)
+            {
+                try
+                {
 
-            value = right as BigFloat;
-            if (!(value is null))
-            {
-                return value.Equals(left);
+                    return ((BigFloat)right).Equals(left);
+                }
+                catch (Exception)
+                {
+                    return object.Equals(left, right);
+                }
             }
-            return object.Equals(left, right);
         }
 
         /// <summary>

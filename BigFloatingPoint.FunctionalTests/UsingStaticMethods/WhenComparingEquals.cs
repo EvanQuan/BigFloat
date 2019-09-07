@@ -27,7 +27,7 @@ namespace BigFloatingPoint.FunctionalTests.UsingStaticMethods
         public void ShouldEqualForCastableTypes(
             object obj)
         {
-            object big = obj as BigFloat;
+            BigFloat big = (BigFloat)obj;
             Assert.True(BigFloat.Equals(big, obj));
             Assert.True(BigFloat.Equals(obj, big));
         }
