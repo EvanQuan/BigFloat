@@ -9,13 +9,9 @@ namespace BigFloatingPoint.FunctionalTests.UsingOperators
         [Theory]
         [InlineData("0.0", "1.0", "0.0")]
         [InlineData("0.0", "-1.0", "0.0")]
-        [InlineData("1.0", "3.0", "0.3333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333")]
-        [InlineData("1.0", "-3.0", "-0.3333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333")]
         [InlineData("1.0", "0.5", "2.0")]
         [InlineData("1.0", "-0.5", "-2.0")]
         [InlineData("-1.0", "0.5", "-2.0")]
-        [InlineData("1.0", "1.5", "0.6666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666")]
-        [InlineData("1.0", "-1.5", "-0.6666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666")]
         [InlineData("1.0", "2.0", "0.5")]
         [InlineData("1.0", "0.8", "1.25")]
         [InlineData("1.0", "-0.8", "-1.25")]
@@ -43,6 +39,31 @@ namespace BigFloatingPoint.FunctionalTests.UsingOperators
 
             Assert.Equal(
                 expected: bigExpectedQuotient,
+                actual: actualQuotient);
+        }
+
+        [Theory]
+        [InlineData("1.0", "3.0", 1, 3)]
+        [InlineData("1.0", "-3.0", 1, -3)]
+        [InlineData("1.0", "-3.0", -1, 3)]
+        [InlineData("1.0", "1.5", 2, 3)]
+        [InlineData("1.0", "-1.5", -2, 3)]
+        [InlineData("1.0", "-1.5", 2, -3)]
+        public void ShouldGetQuotientForRepeatingDecimalFractions(
+            string dividend,
+            string divisor,
+            int expectedNumerator,
+            int expectedDenominator)
+        {
+            BigFloat expected = new BigFloat(expectedNumerator, expectedDenominator);
+
+            BigFloat bigDividend = new BigFloat(dividend);
+            BigFloat bigDivisor = new BigFloat(divisor);
+
+            BigFloat actualQuotient = bigDividend / bigDivisor;
+
+            Assert.Equal(
+                expected: expected,
                 actual: actualQuotient);
         }
 
