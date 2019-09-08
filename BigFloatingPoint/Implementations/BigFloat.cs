@@ -210,12 +210,15 @@ namespace BigFloatingPoint.Implementations
                 throw new ArgumentException(DenominatorIsZeroExceptionMessage);
             }
 
-            // The numerator takes the sign of the whole fraction
-            this.numerator = BigInteger.Abs(numerator)
-                * (numerator.Sign * denominator.Sign);
-            // The denominator is always positive.
-            this.denominator = BigInteger.Abs(denominator);
+            // Directly set the numerator and denominator without
+            // simplification.
+            this.numerator = numerator;
+            this.denominator = denominator;
 
+            // At minimum, if the denominator is positive one, the fraction is
+            // already simplified. While it is possible for fractions with
+            // non-one denominator fractions to be simplified, this is the
+            // easiest check to do without having to simplify.
             this.Simplified = denominator.IsOne;
         }
 
