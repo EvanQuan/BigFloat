@@ -1962,9 +1962,14 @@ namespace BigFloatingPoint.Implementations
                     this.numerator,
                     this.denominator);
 
+            // Simplify the sign such that if the fraction as a whole is:
+            // - Negative, then only the numerator is negative.
+            // - Positive, both numerator and denominators are positive.
+            int numeratorSign = numerator.Sign * denominator.Sign;
+
             return new BigFloat(
-                numerator: this.numerator / factor,
-                denominator: this.denominator / factor,
+                numerator: numeratorSign * BigInteger.Abs(this.numerator) / factor,
+                denominator: BigInteger.Abs(this.denominator) / factor,
                 simplified: true);
         }
 
