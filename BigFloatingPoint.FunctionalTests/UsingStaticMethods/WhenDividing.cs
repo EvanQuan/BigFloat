@@ -1,9 +1,10 @@
 ﻿using BigFloatingPoint.FunctionalTests.TestBases;
 using BigFloatingPoint.Implementations;
 using System;
-using Xunit;
+using System.Collections.Generic;
+using System.Text;
 
-namespace BigFloatingPoint.FunctionalTests.UsingOperators
+namespace BigFloatingPoint.FunctionalTests.UsingStaticMethods
 {
     public class WhenDividing : DivideTest
     {
@@ -11,7 +12,7 @@ namespace BigFloatingPoint.FunctionalTests.UsingOperators
             BigFloat dividend,
             BigFloat divisor)
         {
-            return dividend / divisor;
+            return BigFloat.Divide(dividend, divisor);
         }
     }
 }
