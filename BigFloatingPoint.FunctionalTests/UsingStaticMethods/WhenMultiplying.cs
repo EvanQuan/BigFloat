@@ -1,14 +1,13 @@
 ﻿using BigFloatingPoint.FunctionalTests.TestBases;
 using BigFloatingPoint.Implementations;
-using Xunit;
 
-namespace BigFloatingPoint.FunctionalTests.UsingOperators
+namespace BigFloatingPoint.FunctionalTests.UsingStaticMethods
 {
     public class WhenMultiplying : MultiplyTestBase
     {
         protected override BigFloat Multiply(BigFloat multiplicand, BigFloat multiplier)
         {
-            return multiplicand * multiplier;
+            return BigFloat.Multiply(multiplicand, multiplier);
         }
     }
 }

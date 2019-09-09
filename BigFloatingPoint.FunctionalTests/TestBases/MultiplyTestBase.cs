@@ -7,6 +7,7 @@ namespace BigFloatingPoint.FunctionalTests.TestBases
     {
 
         [Theory]
+        [InlineData("0", "0", "0")]
         [InlineData("1", "1", "1")]
         [InlineData("-1", "1", "-1")]
         [InlineData("-1", "-1", "1")]
@@ -16,6 +17,8 @@ namespace BigFloatingPoint.FunctionalTests.TestBases
         [InlineData("2", "2", "4")]
         [InlineData("-2", "2", "-4")]
         [InlineData("-2", "-2", "4")]
+        [InlineData("-1.5", "1", "-1.5")]
+        [InlineData("1.5", "1", "1.5")]
         [InlineData(ConstantStrings.MaxInt, "2", ConstantStrings.MaxIntTimes2)]
         [InlineData(ConstantStrings.MaxInt, "-2", ConstantStrings.NegativeMaxIntTimes2)]
         [InlineData(ConstantStrings.MaxFloat, "2", ConstantStrings.MaxFloatTimes2)]
