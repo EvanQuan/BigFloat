@@ -4,7 +4,7 @@ using System.Numerics;
 
 namespace Com.Github.EvanQuan.BigFloatingPoint.Example
 {
-    class Program
+    public class Program
     {
         private static void FMain()
         {

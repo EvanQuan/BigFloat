@@ -437,7 +437,7 @@ namespace BigFloatingPoint.Implementations
         {
             BigFloat quotient = this.Divide(divisor);
 
-            remainder = BigFloat.Remainder(quotient, divisor);
+            remainder = quotient.Remainder(divisor);
 
             return quotient;
         }
@@ -870,7 +870,6 @@ namespace BigFloatingPoint.Implementations
             }
         }
 
-        // TODO: Refactor for performance.
         /// <summary>
         /// Returns a value that indicates whether the current object and a
         /// <paramref name="other"/> have the same value.
