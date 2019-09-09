@@ -19,12 +19,12 @@ namespace BigFloatingPoint.FunctionalTests.TestBases
         [InlineData("-2", "-2", "4")]
         [InlineData("-1.5", "1", "-1.5")]
         [InlineData("1.5", "1", "1.5")]
-        [InlineData(ConstantStrings.MaxInt, "2", ConstantStrings.MaxIntTimes2)]
-        [InlineData(ConstantStrings.MaxInt, "-2", ConstantStrings.NegativeMaxIntTimes2)]
-        [InlineData(ConstantStrings.MaxFloat, "2", ConstantStrings.MaxFloatTimes2)]
-        [InlineData(ConstantStrings.MaxFloat, "-2", ConstantStrings.NegativeMaxFloatTimes2)]
-        [InlineData(ConstantStrings.MaxDouble, "2", ConstantStrings.MaxDoubleTimes2)]
-        [InlineData(ConstantStrings.MaxDouble, "-2", ConstantStrings.NegativeMaxDoubleTimes2)]
+        [InlineData(Constant.MaxInt, "2", Constant.MaxIntTimes2)]
+        [InlineData(Constant.MaxInt, "-2", Constant.NegativeMaxIntTimes2)]
+        [InlineData(Constant.MaxFloat, "2", Constant.MaxFloatTimes2)]
+        [InlineData(Constant.MaxFloat, "-2", Constant.NegativeMaxFloatTimes2)]
+        [InlineData(Constant.MaxDouble, "2", Constant.MaxDoubleTimes2)]
+        [InlineData(Constant.MaxDouble, "-2", Constant.NegativeMaxDoubleTimes2)]
         public void ShouldMultiply(
             string multiplicand,
             string multiplier,
