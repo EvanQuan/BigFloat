@@ -8,7 +8,7 @@ using Xunit;
 
 namespace BigFloatingPoint.FunctionalTests.UsingStaticMethods
 {
-    public class WhenComparingEquals : EqualsTestBase
+    public class WhenComparingEquals : EqualsTest
     {
         protected override bool Equal(
             BigFloat left,

@@ -3,7 +3,7 @@ using BigFloatingPoint.Implementations;
 
 namespace BigFloatingPoint.FunctionalTests.UsingStaticMethods
 {
-    public class WhenMultiplying : MultiplyTestBase
+    public class WhenMultiplying : MultiplyTest
     {
         protected override BigFloat Multiply(
             BigFloat multiplicand,

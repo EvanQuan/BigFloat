@@ -6,7 +6,7 @@ using System.Text;
 
 namespace BigFloatingPoint.FunctionalTests.UsingInstanceMethods
 {
-    public class WhenMultiplying : MultiplyTestBase
+    public class WhenMultiplying : MultiplyTest
     {
         protected override BigFloat Multiply(BigFloat multiplicand, BigFloat multiplier)
         {

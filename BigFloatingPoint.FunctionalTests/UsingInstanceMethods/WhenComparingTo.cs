@@ -6,7 +6,7 @@ using System.Text;
 
 namespace BigFloatingPoint.FunctionalTests.UsingInstanceMethods
 {
-    public class WhenComparingTo : CompareToTestBase
+    public class WhenComparingTo : CompareToTest
     {
         protected override int CompareTo(BigFloat left, BigFloat right)
         {

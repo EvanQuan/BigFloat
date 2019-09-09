@@ -4,7 +4,7 @@ using Xunit;
 
 namespace BigFloatingPoint.FunctionalTests.UsingOperators
 {
-    public class WhenMultiplying : MultiplyTestBase
+    public class WhenMultiplying : MultiplyTest
     {
         protected override BigFloat Multiply(
             BigFloat multiplicand,

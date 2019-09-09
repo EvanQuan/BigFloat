@@ -5,7 +5,7 @@ using Xunit;
 
 namespace BigFloatingPoint.FunctionalTests.UsingInstanceMethods
 {
-    public class WhenComparingEquals : EqualsTestBase
+    public class WhenComparingEquals : EqualsTest
     {
         protected override bool Equal(
             BigFloat left,

@@ -4,7 +4,7 @@ using Xunit;
 
 namespace BigFloatingPoint.FunctionalTests.TestBases
 {
-    public abstract class EqualsTestBase
+    public abstract class EqualsTest
     {
         [Theory]
         [InlineData("1")]

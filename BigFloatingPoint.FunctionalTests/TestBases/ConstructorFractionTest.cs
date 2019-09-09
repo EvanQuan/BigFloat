@@ -4,7 +4,7 @@ using Xunit;
 
 namespace BigFloatingPoint.FunctionalTests.TestBases
 {
-    public abstract class ConstructorFractionTestBase
+    public abstract class ConstructorFractionTest
     {
         [Theory]
         [InlineData(1, 1, 1)]

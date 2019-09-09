@@ -3,7 +3,7 @@ using BigFloatingPoint.Implementations;
 
 namespace BigFloatingPoint.FunctionalTests.UsingStaticMethods
 {
-    public class WhenSubtracting : SubtractTestBase
+    public class WhenSubtracting : SubtractTest
     {
         protected override BigFloat Subtract(
             BigFloat minuend,

@@ -3,7 +3,7 @@ using BigFloatingPoint.Implementations;
 
 namespace BigFloatingPoint.FunctionalTests.UsingConstructors
 {
-    public class WhenConstructingByFraction : ConstructorFractionTestBase
+    public class WhenConstructingByFraction : ConstructorFractionTest
     {
         protected override BigFloat ConstructByFraction(
             int numerator,
