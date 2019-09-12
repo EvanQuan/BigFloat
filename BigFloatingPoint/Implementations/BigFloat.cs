@@ -455,17 +455,22 @@ namespace BigFloatingPoint.Implementations
         /// </returns>
         public BigFloat PowerTo(int exponent)
         {
+            if (exponent == 0)
+            {
+                return One;
+            }
+
             if (this.numerator.IsZero)
             {
                 return this;
             }
-            else if (exponent < 0)
-            {
-                BigInteger savedNumerator = this.numerator;
 
+
+            if (exponent < 0)
+            {
                 return new BigFloat(
                     numerator: BigInteger.Pow(this.denominator, -exponent),
-                    denominator: BigInteger.Pow(savedNumerator, -exponent));
+                    denominator: BigInteger.Pow(this.numerator, -exponent));
             }
 
             return new BigFloat(
