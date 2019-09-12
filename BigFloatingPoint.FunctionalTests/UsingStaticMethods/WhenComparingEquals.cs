@@ -18,14 +18,67 @@ namespace BigFloatingPoint.FunctionalTests.UsingStaticMethods
         }
 
         [Theory]
-        [InlineData(1.0d)]
-        [InlineData(1.0f)]
-        [InlineData(1)]
-        [InlineData(1L)]
         [InlineData("1.0")]
         [InlineData("1")]
-        public void ShouldEqualForCastableTypes(
-            object obj)
+        [InlineData("-1")]
+        [InlineData("0")]
+        public void ShouldEqualForStrings(string obj)
+        {
+            BigFloat big = (BigFloat)obj;
+            Assert.True(BigFloat.Equals(big, obj));
+            Assert.True(BigFloat.Equals(obj, big));
+        }
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(-1)]
+        [InlineData(0)]
+        [InlineData(int.MaxValue)]
+        [InlineData(int.MinValue)]
+        public void ShouldEqualForInt(int obj)
+        {
+            BigFloat big = (BigFloat)obj;
+            Assert.True(BigFloat.Equals(big, obj));
+            Assert.True(BigFloat.Equals(obj, big));
+        }
+
+        [Theory]
+        [InlineData(1L)]
+        [InlineData(-1L)]
+        [InlineData(0L)]
+        [InlineData(long.MaxValue)]
+        [InlineData(long.MinValue)]
+        public void ShouldEqualForLong(long obj)
+        {
+            BigFloat big = (BigFloat)obj;
+            Assert.True(BigFloat.Equals(big, obj));
+            Assert.True(BigFloat.Equals(obj, big));
+        }
+
+        [Theory]
+        [InlineData(1.0f)]
+        [InlineData(-1.0f)]
+        [InlineData(0.0f)]
+        [InlineData(0.1f)]
+        [InlineData(-0.1f)]
+        [InlineData(float.MaxValue)]
+        [InlineData(float.MinValue)]
+        public void ShouldEqualForFloat(float obj)
+        {
+            BigFloat big = (BigFloat)obj;
+            Assert.True(BigFloat.Equals(big, obj));
+            Assert.True(BigFloat.Equals(obj, big));
+        }
+
+        [Theory]
+        [InlineData(1.0d)]
+        [InlineData(-1.0d)]
+        [InlineData(0.0d)]
+        [InlineData(0.1d)]
+        [InlineData(-0.1d)]
+        [InlineData(double.MaxValue)]
+        [InlineData(double.MinValue)]
+        public void ShouldEqualForDouble(double obj)
         {
             BigFloat big = (BigFloat)obj;
             Assert.True(BigFloat.Equals(big, obj));
@@ -52,7 +105,7 @@ namespace BigFloatingPoint.FunctionalTests.UsingStaticMethods
             string str)
         {
             BigInteger bigInt = BigInteger.Parse(str);
-            BigFloat bigFloat = (BigFloat)str;
+            BigFloat bigFloat = new BigFloat(str);
 
             Assert.True(BigFloat.Equals(bigFloat, bigInt));
             Assert.True(BigFloat.Equals(bigInt, bigFloat));

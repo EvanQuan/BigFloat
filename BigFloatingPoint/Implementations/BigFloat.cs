@@ -865,13 +865,63 @@ namespace BigFloatingPoint.Implementations
         /// </returns>
         public override bool Equals(object other)
         {
+            // Cannot use 'other as BigFloat' since BigFloat is a non-nullable type.
+            // Explicit casting to BigFloat will not work if other is not already a BigFloat.
+            // Must explicitly cast to other type first, and then that can be
+            // implicitly cast to a BigFloat.
+            // Due to the use of exceptions, this is very expensive to do,
+            // which is why it is not recommended to directly compare with objects.
+
+            // This will need refactoring.
             try
             {
                 return this.Equals((BigFloat)other);
             }
             catch (Exception)
             {
-                return false;
+                try
+                {
+                    return this.Equals((BigInteger)other);
+                }
+                catch (Exception)
+                {
+                    try
+                    {
+                        return this.Equals((BigFloat)(string)other);
+                    }
+                    catch (Exception)
+                    {
+                        try
+                        {
+                            return this.Equals((double)other);
+                        }
+                        catch (Exception)
+                        {
+                            try
+                            {
+                                return this.Equals((float)other);
+                            }
+                            catch (Exception)
+                            {
+                                try
+                                {
+                                    return this.Equals((long)other);
+                                }
+                                catch (Exception)
+                                {
+                                    try
+                                    {
+                                        return this.Equals((int)other);
+                                    }
+                                    catch (Exception)
+                                    {
+                                        return false;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
 
