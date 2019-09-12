@@ -419,7 +419,10 @@ namespace BigFloatingPoint.Implementations
             //b = a mod n
             //remainder = a - floor(a/n) * n
 
-            return this - Floor(this / divisor) * divisor;
+            BigFloat absThis = AbsoluteValue(this);
+            BigFloat absDivisor = AbsoluteValue(divisor);
+
+            return this.Sign * (absThis - Floor(absThis / absDivisor) * absDivisor);
         }
 
         /// <summary>
