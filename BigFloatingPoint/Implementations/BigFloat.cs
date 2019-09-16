@@ -720,18 +720,18 @@ namespace BigFloatingPoint.Implementations
         }
 
         /// <summary>
-        /// Returns the <paramref name="base"/> logarithm of this <see
+        /// Returns the <paramref name="baseValue"/> logarithm of this <see
         /// cref="BigFloat"/> value.
         /// </summary>
-        /// <param name="base">The base of the logarithm</param>
+        /// <param name="baseValue">The base of the logarithm</param>
         /// <returns>
-        /// The <paramref name="base"/> logarithm of this <see
+        /// The <paramref name="baseValue"/> logarithm of this <see
         /// cref="BigFloat"/> value.
         /// </returns>
-        public double Log(double @base)
+        public double Log(double baseValue)
         {
-            return BigInteger.Log(this.numerator, @base)
-                - BigInteger.Log(this.numerator, @base);
+            return BigInteger.Log(this.numerator, baseValue)
+                - BigInteger.Log(this.denominator, baseValue);
         }
 
         /// <summary>
@@ -1146,24 +1146,24 @@ namespace BigFloatingPoint.Implementations
         }
 
         /// <summary>
-        /// Raises <paramref name="base"/> to the power of
+        /// Raises <paramref name="baseValue"/> to the power of
         /// <paramref name="exponent"/>.
         /// </summary>
-        /// <param name="base">
+        /// <param name="baseValue">
         /// The value to be raised to the power of <paramref name="exponent"/>.
         /// </param>
         /// <param name="exponent">
-        /// The exponent to raise <paramref name="base"/>'s value by.
+        /// The exponent to raise <paramref name="baseValue"/>'s value by.
         /// </param>
         /// <returns>
-        /// The result of raising <paramref name="base"/> to the power of
+        /// The result of raising <paramref name="baseValue"/> to the power of
         /// <paramref name="exponent"/>.
         /// </returns>
         public static BigFloat PowerTo(
-            BigFloat @base,
+            BigFloat baseValue,
             int exponent)
         {
-            return @base.PowerTo(exponent);
+            return baseValue.PowerTo(exponent);
         }
 
         /// <summary>
@@ -1425,19 +1425,19 @@ namespace BigFloatingPoint.Implementations
 
         /// <summary>
         /// Returns the logarithm of <paramref name="value"/> with a base of
-        /// <paramref name="base"/>.
+        /// <paramref name="baseValue"/>.
         /// </summary>
         /// <param name="value">
         /// A number whose logarithm is to be found.
         /// </param>
-        /// <param name="base">The base of the logarithm.</param>
+        /// <param name="baseValue">The base of the logarithm.</param>
         /// <returns>
-        /// The base <paramref name="base"/> logarithm of
+        /// The base <paramref name="baseValue"/> logarithm of
         /// <paramref name="value"/>.
         /// </returns>
-        public static double Log(BigFloat value, double @base)
+        public static double Log(BigFloat value, double baseValue)
         {
-            return value.Log(@base);
+            return value.Log(baseValue);
         }
 
         /// <summary>

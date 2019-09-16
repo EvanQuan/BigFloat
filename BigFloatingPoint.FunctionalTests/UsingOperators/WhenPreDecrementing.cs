@@ -9,9 +9,9 @@ namespace BigFloatingPoint.FunctionalTests.UsingOperators
         [InlineData("0.0", "-1.0")]
         [InlineData("1.0", "0.0")]
         [InlineData("-1.0", "-2.0")]
-        [InlineData(Constant.MinInt, Constant.MinIntMinus1)]
-        [InlineData(Constant.MinFloat, Constant.MinFloatMinus1)]
-        [InlineData(Constant.MinDouble, Constant.MinDoubleMinus1)]
+        [InlineData(Constant.String.MinInt, Constant.String.MinIntMinus1)]
+        [InlineData(Constant.String.MinFloat, Constant.String.MinFloatMinus1)]
+        [InlineData(Constant.String.MinDouble, Constant.String.MinDoubleMinus1)]
         public void ShouldMutateSelf(string value, string expected)
         {
             BigFloat bigValue = new BigFloat(value);
@@ -27,9 +27,9 @@ namespace BigFloatingPoint.FunctionalTests.UsingOperators
         [InlineData("0.0", "-1.0")]
         [InlineData("1.0", "0.0")]
         [InlineData("-1.0", "-2.0")]
-        [InlineData(Constant.MinInt, Constant.MinIntMinus1)]
-        [InlineData(Constant.MinFloat, Constant.MinFloatMinus1)]
-        [InlineData(Constant.MinDouble, Constant.MinDoubleMinus1)]
+        [InlineData(Constant.String.MinInt, Constant.String.MinIntMinus1)]
+        [InlineData(Constant.String.MinFloat, Constant.String.MinFloatMinus1)]
+        [InlineData(Constant.String.MinDouble, Constant.String.MinDoubleMinus1)]
         public void ShouldPreDecrement(string value, string expected)
         {
             BigFloat bigValue = new BigFloat(value);
