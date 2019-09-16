@@ -1,4 +1,5 @@
 ﻿using BigFloatingPoint.Implementations;
+using System;
 using Xunit;
 
 namespace BigFloatingPoint.FunctionalTests.UsingProperties
@@ -161,5 +162,78 @@ namespace BigFloatingPoint.FunctionalTests.UsingProperties
                 expected: double.MinValue,
                 actual: BigFloat.MinDouble);
         }
+
+        /// <summary>
+        /// Should not equal <see cref="Math.PI"/> due to greater precision.
+        /// </summary>
+        [Fact]
+        public void ShouldNotEqualPi()
+        {
+            Assert.NotEqual(
+                expected: Math.PI,
+                actual: BigFloat.ArchemedesConstant);
+        }
+
+        [Fact]
+        public void ShouldEqualPi()
+        {
+            Assert.Equal(
+                expected: Math.PI,
+                actual: double.Parse(BigFloat.ArchemedesConstant.ToString(17)));
+        }
+
+        /// <summary>
+        /// Should not equal <see cref="Math.E"/> due to greater precision.
+        /// </summary>
+        [Fact]
+        public void ShouldNotEqualE()
+        {
+            Assert.NotEqual(
+                expected: Math.E,
+                actual: BigFloat.EulersNumber);
+        }
+
+        [Fact]
+        public void ShouldEqualE()
+        {
+            Assert.Equal(
+                expected: Math.E,
+                actual: double.Parse(BigFloat.EulersNumber.ToString(17)));
+        }
+
+        [Fact]
+        public void ShouldNotEqualPhi()
+        {
+            Assert.NotEqual(
+                expected: double.Parse(Constant.String.Phi),
+                actual: BigFloat.GoldenRatio);
+        }
+
+        [Fact]
+        public void ShouldEqualPhi()
+        {
+            Assert.Equal(
+                expected: double.Parse(Constant.String.Phi),
+                actual: double.Parse(BigFloat.GoldenRatio.ToString(17)));
+        }
+
+        [Fact]
+        public void ShouldNotEqualW()
+        {
+            Assert.NotEqual(
+                expected: double.Parse(Constant.String.W),
+                actual: BigFloat.WallissConstant);
+        }
+
+        [Fact]
+        public void ShouldEqualW()
+        {
+            Assert.Equal(
+                expected: double.Parse(Constant.String.W),
+                actual: double.Parse(BigFloat.WallissConstant.ToString(17)));
+        }
+
+
+
     }
 }
