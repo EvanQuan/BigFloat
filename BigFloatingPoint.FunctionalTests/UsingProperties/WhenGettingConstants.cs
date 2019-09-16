@@ -233,7 +233,29 @@ namespace BigFloatingPoint.FunctionalTests.UsingProperties
                 actual: double.Parse(BigFloat.WallissConstant.ToString(17)));
         }
 
+        [Fact]
+        public void ShouldEqualOneForPositiveSign()
+        {
+            Assert.Equal(
+                expected: 1,
+                actual: BigFloat.PositiveSign);
+        }
 
+        [Fact]
+        public void ShouldEqualNegativeOneForNegativeSign()
+        {
+            Assert.Equal(
+                expected: -1,
+                actual: BigFloat.NegativeSign);
+        }
+
+        [Fact]
+        public void ShouldEqualZeroForNeutralSign()
+        {
+            Assert.Equal(
+                expected: 0,
+                actual: BigFloat.NeutralSign);
+        }
 
     }
 }
