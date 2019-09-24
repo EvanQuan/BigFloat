@@ -27,6 +27,10 @@ namespace BigFloatingPoint.FunctionalTests.TestBases
                 actual: afterDecrement);
 
             Assert.Equal(
+                expected: beforeDecrement - BigFloat.One,
+                actual: afterDecrement);
+
+            Assert.Equal(
                 expected: expectedDecrement,
                 actual: preDecrement);
 
@@ -55,6 +59,10 @@ namespace BigFloatingPoint.FunctionalTests.TestBases
 
             Assert.NotEqual(
                 expected: beforeDecrement,
+                actual: afterDecrement);
+
+            Assert.Equal(
+                expected: beforeDecrement - BigFloat.One,
                 actual: afterDecrement);
 
             Assert.Equal(

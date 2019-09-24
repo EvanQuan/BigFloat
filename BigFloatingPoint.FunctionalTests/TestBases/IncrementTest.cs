@@ -22,6 +22,10 @@ namespace BigFloatingPoint.FunctionalTests.TestBases
             BigFloat preIncrement = this.PreIncrement(ref bigValue);
             BigFloat afterIncrement = bigValue;
 
+            Assert.NotEqual(
+                expected: beforeIncrement,
+                actual: afterIncrement);
+
             Assert.Equal(
                 expected: beforeIncrement + BigFloat.One,
                 actual: afterIncrement);
@@ -54,6 +58,10 @@ namespace BigFloatingPoint.FunctionalTests.TestBases
 
             Assert.NotEqual(
                 expected: beforeIncrement,
+                actual: afterIncrement);
+
+            Assert.Equal(
+                expected: beforeIncrement + BigFloat.One,
                 actual: afterIncrement);
 
             Assert.Equal(
