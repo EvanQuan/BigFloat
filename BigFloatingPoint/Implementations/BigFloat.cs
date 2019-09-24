@@ -1489,7 +1489,7 @@ namespace BigFloatingPoint.Implementations
         }
 
         /// <summary>
-        /// Decrements the value of <paramref name="value"/>. by 1.
+        /// Decrements the value of <paramref name="value"/> by 1.
         /// </summary>
         /// <param name="value">
         /// The <see cref="BigFloat"/> object to decrement.
