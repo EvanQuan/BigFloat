@@ -10,6 +10,7 @@ namespace BigFloatingPoint.FunctionalTests.TestBases
         [InlineData("1.0", "0.0")]
         [InlineData("-1.0", "-2.0")]
         [InlineData(Constant.String.MinInt, Constant.String.MinIntMinus1)]
+        [InlineData(Constant.String.MinLong, Constant.String.MinLongMinus1)]
         [InlineData(Constant.String.MinFloat, Constant.String.MinFloatMinus1)]
         [InlineData(Constant.String.MinDouble, Constant.String.MinDoubleMinus1)]
         public void ShouldPreDecrement(string value, string expected)
@@ -40,6 +41,7 @@ namespace BigFloatingPoint.FunctionalTests.TestBases
         [InlineData("1.0", "0.0")]
         [InlineData("-1.0", "-2.0")]
         [InlineData(Constant.String.MinInt, Constant.String.MinIntMinus1)]
+        [InlineData(Constant.String.MinLong, Constant.String.MinLongMinus1)]
         [InlineData(Constant.String.MinFloat, Constant.String.MinFloatMinus1)]
         [InlineData(Constant.String.MinDouble, Constant.String.MinDoubleMinus1)]
         public void ShouldPostDecrement(string value, string expected)

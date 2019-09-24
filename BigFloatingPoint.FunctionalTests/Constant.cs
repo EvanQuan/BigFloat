@@ -29,12 +29,12 @@ namespace BigFloatingPoint.FunctionalTests
             public const string NegativeMaxLongPlus1 = Negative + "9223372036854775808";
             public const string MaxLongTimes2 = "18446744073709551614";
             public const string NegativeMaxLongTimes2 = Negative + "4294967294";
-            public const string MinLong = "-2147483648";
-            public const string NegativeMinLong = "2147483648";
-            public const string MinLongMinus1 = "-2147483649";
-            public const string NegativeMinLongMinus1 = "2147483649";
-            public const string MinLongTimes2 = "-4294967296";
-            public const string NegativeMinLongTimes2 = "4294967296";
+            public const string MinLong = "-9223372036854775808";
+            public const string NegativeMinLong = "9223372036854775808";
+            public const string MinLongMinus1 = "-9223372036854775809";
+            public const string NegativeMinLongMinus1 = "9223372036854775809";
+            public const string MinLongTimes2 = "-18446744073709551616";
+            public const string NegativeMinLongTimes2 = "18446744073709551616";
 
             public const string MaxFloat = "340282300000000000000000000000000000000";
             public const string NegativeMaxFloat = Negative + "340282300000000000000000000000000000000";
