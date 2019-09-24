@@ -29,6 +29,7 @@ namespace BigFloatingPoint.FunctionalTests.TestBases
         [InlineData(Constant.String.MaxDouble, "-1", Constant.String.MaxDoublePlus1)]
         [InlineData(Constant.String.MinDouble, "1", Constant.String.MinDoubleMinus1)]
         [InlineData(Constant.String.MaxDouble, Constant.String.MaxDouble, "0")]
+        [InlineData(Constant.String.Pi, Constant.String.PiDelta, Constant.String.BelowPi)]
         public void ShouldSubtract(
             string minuend,
             string subtrahend,
